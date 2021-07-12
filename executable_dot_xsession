@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+# ~/.xinitrc
+#
+# Executed by startx (run your window manager from here)
+
+# idk lmao
+# without this line QT apps take forever to start
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
+# Make sure screen gets locked when lid is closed
+light-locker --lock-on-lid &
+
+# playerctl
+playerctld daemon
+
+# blur
+picom --experimental-backends &
+
+# screenshots
+flameshot &
+
+# notification server
+dunst &
+
+# turn off beeps
+xset b off 
+xset b 0 0 0
+
+# Curser rate
+xset r rate 330 40
+
+# turn off screen saver
+xset dpms 0 0 0
+xset s off
+
+# align two monitors
+xrandr --output eDP-1 --auto --output HDMI-1 --left-of eDP-1
+#mons -e left &
+
+# Enable tap to click on touchpad
+xinput set-prop "Synaptics TM3383-002" "libinput Tapping Enabled" 1
+
+# https://wiki.archlinux.org/index.php/arduino#Application_not_resizing_with_WM,_menus_immediately_closing
+wmname compiz
+export AWT_TOOLKIT=MToolkit
+
+# dolphin icons
+[ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || export QT_QPA_PLATFORMTHEME="qt5ct"
+
+# numlock
+numlockx &
+
+# Discord custom css
+/usr/local/bin/discocss &
+
+# toast wallpaper
+nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/toast.png
+nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/toast.png
+
+# bspwm
+sxhkd &
+exec bspwm

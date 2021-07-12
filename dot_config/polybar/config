@@ -1,0 +1,258 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+; include colors
+include-file = $HOME/.config/polybar/colors
+
+[bar/main]
+modules-left = bspwm 
+modules-center = date
+modules-right = flameshot alsa memory cpu battery powermenu
+
+;font-0 = fixed:pixelsize=10;1
+;font-1 = unifont:fontformat=truetype:size=10:antialias=true;0
+;font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
+font-0 = Hack Nerd Font:style=Regular:pixelsize=10;2
+font-1 = Source Han Sans JP,源ノ角ゴシック JP:style=Regular:size=10;2
+font-2 = siji:pixelsize=10;1
+
+monitor = ${env:MONITOR:}
+enable-ipc = true
+width = 99%
+height = 27
+offset-x = 0.5%
+offset-y = 0.5%
+radius = 15
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+override-redirect = true
+
+line-size = 3
+line-color = ${colors.color1}
+
+border-size = 0
+border-color = ${colors.foreground}
+
+padding = 5
+
+module-margin-left = 1
+module-margin-right = 2
+
+; full screen fix
+wm-restack = bspwm
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+
+format = <label-state>
+format-padding = 0
+
+label-monitor = %name%
+
+label-active = %name%
+label-active-foreground = ${colors.color3}
+label-active-background = ${colors.background}
+label-active-underline = ${colors.color3}
+
+label-occupied = %name%
+label-occupied-underline = ${colors.foreground}
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.background}
+label-urgent-background = ${colors.background}
+
+label-empty = %name%
+label-empty-background = ${colors.background}
+label-empty-foreground = ${colors.foreground}
+
+label-active-padding = 1
+label-urgent-padding = 1
+label-occupied-padding = 1
+label-empty-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.color5}
+format-foreground = ${colors.color5}
+format-underline = ${colors.color5}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.color12}
+format-foreground = ${colors.color12}
+format-underline = ${colors.color12}
+label = %mb_used%
+
+[module/date]
+type = internal/date
+interval = 1.0
+
+time = %I:%M %p
+time-alt = %Y-%m-%d
+
+format = <label>
+format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.background}
+format-underline = ${colors.foreground}
+format-padding = 0
+
+label = %date% %time%
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-background = ${colors.background}
+format-volume-foreground = ${colors.color9}
+format-volume-underline = ${colors.color9}
+format-volume-padding = 0
+
+label-volume = %percentage%%
+
+format-muted-prefix = 
+format-muted-background = ${colors.background}
+format-muted-foreground = ${colors.foreground}
+format-muted-padding = 0
+label-muted = "静"
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 99
+
+format-padding=0
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.color13}
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.color10}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 =  
+ramp-capacity-1 =  
+ramp-capacity-2 =  
+ramp-capacity-foreground = ${colors.foreground}
+
+animation-charging-0 =  
+animation-charging-1 =  
+animation-charging-2 =  
+animation-charging-foreground = ${colors.foreground}
+animation-charging-framerate = 750
+
+animation-discharging-0 =  
+animation-discharging-1 =  
+animation-discharging-2 =  
+animation-discharging-foreground = ${colors.foreground}
+animation-discharging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+;label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.color10}
+label-close =  cancel
+;label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = power off
+menu-2-0-exec = poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[module/flameshot]
+type = custom/text
+; content = 物
+content = 炎
+content-background = ${colors.foreground}
+content-foreground = ${colors.color10}
+content-padding = 1
+
+click-left = flameshot gui
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini

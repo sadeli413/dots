@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/thad/Pictures/wallpapers/toast.png",
+    "alpha": "100",
+    "special": {
+        "background": "#0a0c0b",
+        "foreground": "#e9e0cd",
+        "cursor": "#e9e0cd"
+    },
+    "colors": {
+        "color0": "#0a0c0b",
+        "color1": "#F0386B",
+        "color2": "#789485",
+        "color3": "#DBBB76",
+        "color4": "#9BEACA",
+        "color5": "#A176B5",
+        "color6": "#958C73",
+        "color7": "#e9e0cd",
+        "color8": "#0a0c0b",
+        "color9": "#F0386B",
+        "color10": "#789485",
+        "color11": "#DBBB76",
+        "color12": "#9BEACA",
+        "color13": "#A176B5",
+        "color14": "#958C73",
+        "color15": "#e9e0cd"
+    }
+}

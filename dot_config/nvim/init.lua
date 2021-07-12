@@ -38,30 +38,33 @@ vim.o.completeopt = "menuone,noselect"
 -- Global variables --
 ----------------------
 
--- Set default pdf viewer to okular
+-- Set default pdf viewer to okular for VimTex
 vim.g.vimtex_view_general_viwer="okular"
 
--- Set indent blank lines
+-- Set indent blank lines for indent-blankline
 vim.g.indentLinechar="|"
+
+-- Set default web browser for markdown-preview
+vim.g.mkdp_browser='firefox'
 
 ----------------------
 -- Run vim commands --
 ----------------------
 
 -- Enable syntax highlighting
-vim.cmd("syntax enable")
-
 -- Set colorscheme
-vim.cmd("colorscheme toast")
-
 -- Run PackerCompile when plugins.lua changes
-vim.cmd("autocmd BufWritePost plugins.lua PackerCompile")
-
 -- Allow nvim-colorizer to colorize .rasi files
-vim.cmd("au BufNewFile,BufRead /*.rasi setf css")
-
 -- Disable comment continuation on new line
-vim.cmd("au BufWinEnter * set formatoptions-=cro")
+-- Automatically apply chezmoi changes
+vim.cmd([[
+syntax enable
+colorscheme toast
+autocmd BufWritePost plugins.lua PackerCompile
+au BufNewFile,BufRead /*.rasi setf css
+au BufWinEnter * set formatoptions-=cro
+autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
+]])
 
 -------------
 -- Plugins --

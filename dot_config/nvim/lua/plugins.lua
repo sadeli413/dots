@@ -10,6 +10,10 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    ---------------
+    -- LSP stuff --
+    ---------------
+
     -- Language Server
     use 'neovim/nvim-lspconfig'
 
@@ -23,6 +27,10 @@ return require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/vim-vsnip-integ'
 
+    -------------
+    -- Editing --
+    -------------
+
     -- Colors for hex like this #FFFFFF
     use 'norcalli/nvim-colorizer.lua'
 
@@ -32,13 +40,23 @@ return require('packer').startup(function(use)
     -- Line indentation
     use 'lukas-reineke/indent-blankline.nvim'
 
-    -- LaTeX
-    use 'lervag/vimtex'
-
     -- Auto pairs
     use 'windwp/nvim-autopairs'
 
     -- Underline words under cursor
     use 'xiyaowong/nvim-cursorword'
+
+    ---------------------
+    -- Integration --
+    ---------------------
+
+    -- LaTeX
+    use 'lervag/vimtex'
+
+    -- Markdown preview
+    use {
+        'iamcco/markdown-preview.nvim',
+        run=[[sh -c 'cd app && yarn install']],
+    }
 
 end)

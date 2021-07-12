@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sadeli/Pictures/wallpapers/melt.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0d0d0c",
+        "foreground": "#8dd1e3",
+        "cursor": "#8dd1e3"
+    },
+    "colors": {
+        "color0": "#0d0d0c",
+        "color1": "#204E64",
+        "color2": "#45534E",
+        "color3": "#A16015",
+        "color4": "#E49E22",
+        "color5": "#1F6E93",
+        "color6": "#477988",
+        "color7": "#8dd1e3",
+        "color8": "#62929e",
+        "color9": "#204E64",
+        "color10": "#45534E",
+        "color11": "#A16015",
+        "color12": "#E49E22",
+        "color13": "#1F6E93",
+        "color14": "#477988",
+        "color15": "#8dd1e3"
+    }
+}

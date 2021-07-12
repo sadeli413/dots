@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# ~/.xinitrc
+#
+# Executed by startx (run your window manager from here)
+
+# without this line QT apps take forever to start
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
+# playerctl
+playerctld daemon
+
+# align two monitors
+xrandr --output eDP1 --auto --output HDMI1 --left-of eDP1
+
+# melt wallpaper
+nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/melt.jpg
+nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/melt.jpg
+
+# blur
+picom --experimental-backends &
+
+# screenshots
+flameshot &
+
+# notification server
+dunst &
+
+# turn off beeps
+xset b off 
+xset b 0 0 0
+
+# turn off screen saver
+xset dpms 0 0 0
+xset s off
+
+# https://wiki.archlinux.org/index.php/arduino#Application_not_resizing_with_WM,_menus_immediately_closing
+wmname compiz
+export AWT_TOOLKIT=MToolkit
+
+# bspwm
+sxhkd &
+exec bspwm

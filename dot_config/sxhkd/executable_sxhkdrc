@@ -6,6 +6,9 @@
 super + alt + f
 	/usr/bin/flameshot screen -c
 
+ctrl + alt + f
+    /usr/bin/flameshot full -c
+
 super + Print
     /usr/bin/flameshot screen -p $HOME/Pictures/
 

@@ -20,3 +20,6 @@ require("nvim-autopairs.completion.compe").setup({
     map_cr = true, --  map <CR> on insert mode
     map_complete = true
 })
+
+-- lsp_signature.nvim
+require'lsp_signature'.setup()

@@ -27,6 +27,9 @@ return require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/vim-vsnip-integ'
 
+    -- LSP signature help
+    use 'ray-x/lsp_signature.nvim'
+
     -------------
     -- Editing --
     -------------

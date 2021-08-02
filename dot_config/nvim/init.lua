@@ -16,6 +16,9 @@ vim.o.shiftwidth=4
 -- Express tabs as spaces
 vim.o.expandtab=true
 
+-- Turn on syntax
+vim.o.syntax='on'
+
 -- Use 24 bit colors
 vim.o.termguicolors=true
 
@@ -32,33 +35,32 @@ vim.o.guicursor="n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
 vim.o.conceallevel=0
 
 -- Set menuone and noselect for nvim-compe
-vim.o.completeopt = "menuone,noselect"
+vim.o.completeopt="menuone,noselect"
 
 ----------------------
 -- Global variables --
 ----------------------
 
 -- Set default pdf viewer to okular for VimTex
-vim.g.vimtex_view_general_viwer="okular"
+vim.g.vimtex_view_method="general"
+vim.g.vimtex_view_general_viewer="okular"
 
 -- Set indent blank lines for indent-blankline
 vim.g.indentLinechar="|"
 
 -- Set default web browser for markdown-preview
-vim.g.mkdp_browser='firefox'
+vim.g.mkdp_browser="firefox"
 
 ----------------------
 -- Run vim commands --
 ----------------------
 
 -- Enable syntax highlighting
--- Set colorscheme
 -- Run PackerCompile when plugins.lua changes
 -- Allow nvim-colorizer to colorize .rasi files
 -- Disable comment continuation on new line
 -- Automatically apply chezmoi changes
 vim.cmd([[
-syntax enable
 colorscheme toast
 autocmd BufWritePost plugins.lua PackerCompile
 au BufNewFile,BufRead /*.rasi setf css

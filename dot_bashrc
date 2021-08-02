@@ -77,7 +77,7 @@ if ${use_color} ; then
 		#PS1='\[\033[01;32m\]$ \[\033[00m\]'
 		#PS1='\n\[\033[01;32m\][\[\033[01;34m\]\w\[\033[01;32m\]]\$\[\033[00m\] '
         #PS1='\[\033[01;36m\]\w \n➜\[\033[00m\] '
-        PS1='\n\[\033[01;36m\][\[\033[01;32m\]\w\[\033[01;36m\]]\$\[\033[00m\] '
+        PS1='\[\033[01;36m\]╭─[\[\033[01;32m\]\w\[\033[01;36m\]] $(git branch 2>/dev/null | grep "*" | colrm 1 2)\n╰─\$\[\033[00m\] '
 	fi
 
 	alias ls='ls --color=auto'
@@ -160,7 +160,9 @@ alias locate='plocate'
 alias cme='chezmoi edit'
 bind '"\t":menu-complete'
 eval "$(thefuck --alias fuck)"
+
 export EDITOR=nvim
+# export PATH="$HOME/.local/bin:$PATH"
 
 # powerline
 #powerline-daemon -q

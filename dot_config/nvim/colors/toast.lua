@@ -13,29 +13,31 @@ vim.g.colors_name="toast"
 
 -- Colors
 vim.cmd([[
-hi Normal              guifg=#e9e0cd    guibg=#00000    gui=NONE
-hi Comment             guifg=#958C73    guibg=NONE      gui=NONE
-hi Constant            guifg=#789485    guibg=NONE      gui=NONE
-hi Special             guifg=#DBBB76    guibg=NONE      gui=NONE
-hi Identifier          guifg=#9BEACA    guibg=NONE      gui=NONE
-hi Statement           guifg=#DBBB76    guibg=NONE      gui=bold
-hi PreProc             guifg=#B4ADEA    guibg=NONE      gui=NONE
-hi Type                guifg=#C6BCA1    guibg=NONE      gui=bold
-hi Underlined          guifg=#e9e0cd    guibg=NONE      gui=NONE
-hi Ignore              guifg=#0a0c0b    guibg=NONE      gui=NONE
-hi Error               guifg=#0a0c0b    guibg=#F0386B   gui=NONE
-hi Todo                guifg=#8CA1CF    guibg=NONE      gui=NONE
-hi Pmenu               guifg=#e9e0cd    guibg=#686B69   gui=NONE
-hi PmenuSel            guifg=#0a0c0b    guibg=#e9e0cd   gui=NONE
-hi NormalFloat         guifg=#e9e0cd    guibg=#686B69   gui=italic
-hi LineNr              guifg=#789485    guibg=NONE      gui=NONE
-hi CursorLineNR        guifg=#DBBB76    guibg=NONE      gui=NONE
-hi Cursorline          guifg=NONE       guibg=#2A2B2E   gui=NONE
-hi Cursor              guifg=#e9e0cd    guibg=#e9e0cd
-hi iCursor             guifg=#e9e0cd    guibg=#e9e0cd
-hi IndentBlankLineChar guifg=#2A2B2E    gui=nocombine
+hi Normal               guifg=#e9e0cd   guibg=#0a0c0b   gui=NONE
+hi Comment              guifg=#958C73   guibg=NONE      gui=NONE
+hi Constant             guifg=#8CA1CF   guibg=NONE      gui=NONE
+hi String               guifg=#728576   guibg=NONE      gui=NONE
+hi Special              guifg=#E7AC67   guibg=NONE      gui=NONE
+hi Identifier           guifg=#9BEACA   guibg=NONE      gui=NONE
+hi Statement            guifg=#E7AC67   guibg=NONE      gui=bold
+hi PreProc              guifg=#B4ADEA   guibg=NONE      gui=NONE
+hi Type                 guifg=#C6BCA1   guibg=NONE      gui=bold
+hi Underlined           guifg=#e9e0cd   guibg=NONE      gui=NONE
+hi Ignore               guifg=#0a0c0b   guibg=NONE      gui=NONE
+hi Error                guifg=#0a0c0b   guibg=#F0386B   gui=NONE
+hi Todo                 guifg=#8CA1CF   guibg=NONE      gui=NONE
+hi Pmenu                guifg=#e9e0cd   guibg=#686B69   gui=NONE
+hi PmenuSel             guifg=#0a0c0b   guibg=#e9e0cd   gui=NONE
+hi NormalFloat          guifg=#e9e0cd   guibg=#686B69   gui=italic
+hi LineNr               guifg=#728576   guibg=NONE      gui=NONE
+hi CursorLineNR         guifg=#E7AC67   guibg=NONE      gui=NONE
+hi Cursorline           guifg=NONE      guibg=#2A2B2E   gui=NONE
+hi Cursor               guifg=#e9e0cd   guibg=#e9e0cd
+hi iCursor              guifg=#e9e0cd   guibg=#e9e0cd
+hi EndOfBuffer          guifg=#958C73   guibg=NONE      gui=NONE
+hi IndentBlankLineChar  guifg=#2A2B2E   guibg=NONE      gui=nocombine
+hi Search               guifg=NONE      guibg=#DBBB76   gui=NONE
 
-hi link String          Constant
 hi link Character       Constant
 hi link Number          Constant
 hi link Boolean         Constant

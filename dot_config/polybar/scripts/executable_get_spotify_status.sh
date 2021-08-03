@@ -2,7 +2,7 @@
 
 # https://github.com/PrayagS/polybar-spotify
 # The name of polybar bar which houses the main spotify module and the control modules.
-PARENT_BAR="now-playing"
+PARENT_BAR="right"
 PARENT_BAR_PID=$(pgrep -a "polybar" | grep "$PARENT_BAR" | cut -d" " -f1)
 
 # Set the source audio player here.

@@ -19,5 +19,5 @@ do
         11) echo 🕚;;
         12) echo 🕛;;
     esac
-    sleep 1m
+    sleep 60
 done

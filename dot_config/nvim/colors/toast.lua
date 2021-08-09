@@ -37,6 +37,7 @@ hi iCursor              guifg=#e9e0cd   guibg=#e9e0cd
 hi EndOfBuffer          guifg=#958C73   guibg=NONE      gui=NONE
 hi IndentBlankLineChar  guifg=#2A2B2E   guibg=NONE      gui=nocombine
 hi Search               guifg=NONE      guibg=#DBBB76   gui=NONE
+hi StatusLine           guifg=NONE      guibg=#0a0c0c   gui=NONE
 
 hi link Character       Constant
 hi link Number          Constant

@@ -1,11 +1,42 @@
 # Created by newuser for 5.8
 # Import colorscheme from 'wal' asynchronously
 
-# View zsh 
-autoload -U colors && colors
+autoload -U colors && colors    # Fancy zsh colors
+
+# Prompt
 PS1="$fg[cyan]╭─[$fg[green]%B%~%b$reset_color$fg[cyan]]
 ╰─%(!.#.$) $reset_color"
-# pywal
+
+export EDITOR=nvim
+
+# keybinds
+bindkey "^[[3~" delete-char     # Make 'delete' actually delete
+bindkey \^U backward-kill-line  # Ctrl-U works as in bash
+bindkey "^[[1;5C" forward-word  # Ctrl-right moves right a word
+bindkey "^[[1;5D" backward-word # Ctrl-left moves left a word
+
+# Aliases
+alias lc='ls --color=none'
+alias ls='exa --icons'                           # Fancy ls
+alias la='exa --icons -lgaa --git --color-scale'  # Fancy ls -la
+alias l='exa --icons -lg --git --color-scale'     # Fancy ls -l
+alias tree="exa --icons -T"
+alias vim='nvim'
+alias cme='chezmoi edit'
+alias ssh='TERM=xterm-256color ssh' # So ssh works properly with kitty
+alias cp="cp -i"                    # Confirm before overwriting something
+alias df='df -h'
+alias du='du . -h -d1 2>/dev/null | sort -hr'
+alias cd..='cd ..'
+alias cl='clear'
+alias icat='kitty +kitten icat'
+alias locate='plocate'
+alias mon2cam="deno run --unstable -A -r -q https://raw.githubusercontent.com/ShayBox/Mon2Cam/master/src/mod.ts"
+alias luamake=/home/thad/Downloads/installs/lua-language-server/3rd/luamake/luamake
+
+# pywal persistence
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors-tty.sh
 
+# autocorrect
+eval $(thefuck --alias)

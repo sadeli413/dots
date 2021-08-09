@@ -49,6 +49,18 @@ return require('packer').startup(function(use)
     -- Underline words under cursor
     use 'xiyaowong/nvim-cursorword'
 
+    -------------
+    -- Visuals --
+    -------------
+    use {
+        'glepnir/galaxyline.nvim',
+        branch='main',
+        -- custom statusline
+        config=function() require'config/eviline' end,
+        -- optional icons
+        requires={'kyazdani42/nvim-web-devicons', opt=true}
+    }
+
     ---------------------
     -- Integration --
     ---------------------

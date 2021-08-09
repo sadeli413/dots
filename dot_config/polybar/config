@@ -67,9 +67,9 @@ module-margin-right = 2
 
 [bar/right]
 inherit = bar/main
-width = 36%
-offset-x = 63.5%
-modules-right = clock time date alsa memory cpu battery powermenu
+width = 34%
+offset-x = 65.5%
+modules-center = clock time date alsa memory cpu battery powermenu
 padding = 5
 
 [module/bspwm]
@@ -245,7 +245,6 @@ content-background = ${colors.background}
 content-foreground = ${colors.color10}
 click-left = ~/.config/rofi/powermenu.sh
 
-
 [module/flameshot]
 type = custom/text
 ; content = 物
@@ -272,7 +271,7 @@ type = custom/script
 exec = echo "⏪"
 format = %{T3}<label>
 format-foreground = ${colors.color12}
-click-left = playerctl previous spotify
+click-left = playerctl previous --player=spotify
 
 ; https://github.com/PrayagS/polybar-spotify/issues/12
 [module/spotify-play-pause]
@@ -281,14 +280,14 @@ tail = true
 exec = ~/.config/polybar/scripts/polybar-player-status.sh
 format = %{T3}<label>
 format-foreground = ${colors.color12}
-click-left = playerctl play-pause spotify
+click-left = playerctl play-pause --player=spotify
 
 [module/spotify-next]
 type = custom/script
 exec = echo "⏩"
 format = %{T3}<label>
 format-foreground = ${colors.color12}
-click-left = playerctl next spotify
+click-left = playerctl next --player=spotify
 
 
 [settings]

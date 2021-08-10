@@ -110,7 +110,7 @@ interval = 2
 format-prefix = %{T3}%{T1}
 format-prefix-foreground = ${colors.color5}
 format-foreground = ${colors.color5}
-format-underline = ${colors.color5}
+; format-underline = ${colors.color5}
 label = %percentage:2%%
 
 [module/memory]
@@ -119,7 +119,7 @@ interval = 2
 format-prefix = %{T3}%{T1}
 format-prefix-foreground = ${colors.color12}
 format-foreground = ${colors.color12}
-format-underline = ${colors.color12}
+; format-underline = ${colors.color12}
 format-margin = 2
 label = %mb_used%
 
@@ -132,7 +132,7 @@ format = <label>
 format-prefix = %{T3}%{T1}
 format-prefix-foreground = ${colors.color11}
 format-prefix-background = ${colors.background}
-format-underline = ${colors.color11}
+; format-underline = ${colors.color11}
 format-margin = 2
 
 label = %date%
@@ -159,15 +159,15 @@ type = internal/alsa
 format-volume = <ramp-volume> <label-volume>
 format-volume-background = ${colors.background}
 format-volume-foreground = ${colors.color9}
-format-volume-underline = ${colors.color9}
+; format-volume-underline = ${colors.color9}
 
 label-volume = %percentage%%
 label-volume-minlen = 4
 
 format-muted-prefix = %{T3}%{T1}
 format-muted-background = ${colors.background}
-format-muted-foreground = ${colors.foreground}
-format-muted-underline = ${colors.color9}
+format-muted-foreground = ${colors.color9}
+; format-muted-underline = ${colors.color9}
 label-muted = " "
 label-muted-minlen = 5
 
@@ -186,18 +186,18 @@ battery = BAT0
 adapter = ADP1
 full-at = 99
 
-format-underline = ${colors.foreground}
+; format-underline = ${colors.foreground}
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.color13}
+; format-charging-underline = ${colors.color13}
 format-charging-margin = 2
 
 format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${colors.color13}
+; format-discharging-underline = ${colors.color13}
 format-discharging-margin = 2
 
 format-full-prefix = %{T3}%{T1}
 format-full-prefix-foreground = ${colors.color10}
-format-full-underline = ${colors.color13}
+; format-full-underline = ${colors.color13}
 format-full-margin = 2
 
 ramp-capacity-0 = %{T3}%{T1}
@@ -224,9 +224,9 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+; format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+; format-warn-underline = ${self.format-underline}
 format-padding = 2
 
 label = %temperature-c%

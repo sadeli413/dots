@@ -1,13 +1,21 @@
 # Created by newuser for 5.8
 # Import colorscheme from 'wal' asynchronously
 
-autoload -U colors && colors    # Fancy zsh colors
+# zsh autocompletion
+autoload -Uz compinit
+compinit
+# kitty autocompletion
+# kitty + complete setup zsh | source /dev/stdin
+
+# Fancy zsh colors
+autoload -U colors && colors
 
 # Prompt
-PS1="$fg[cyan]╭─[$fg[green]%B%~%b$reset_color$fg[cyan]]
+PS1="$fg[cyan]╭─[%B$fg[green]%n$fg[cyan]@$fg[green]%m$fg[cyan]: %~%b$fg[cyan]]
 ╰─%(!.#.$) $reset_color"
 
 export EDITOR=nvim
+export PATH=$PATH:$HOME/.local/bin
 
 # keybinds
 bindkey "^[[3~" delete-char     # Make 'delete' actually delete

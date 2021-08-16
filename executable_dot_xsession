@@ -35,7 +35,7 @@ xset dpms 0 0 0
 xset s off
 
 # align two monitors
-xrandr --output eDP-1 --auto --output HDMI-1 --left-of eDP-1
+xrandr --output eDP-1 --auto --output HDMI-1 --right-of eDP-1
 #mons -e left &
 
 # Use qt5
@@ -52,7 +52,7 @@ export AWT_TOOLKIT=MToolkit
 numlockx &
 
 # Discord custom css
-/usr/local/bin/discocss &
+$HOME/.local/bin/discocss &
 
 # bspwm
 sxhkd &

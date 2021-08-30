@@ -20,9 +20,8 @@ super + ctrl + alt + l
     /usr/bin/light-locker-command --lock
 
 # Color picker
-super + c
+super + C
     /usr/bin/colorpicker >> color.txt
-
 
 # terminal emulator
 super + Return

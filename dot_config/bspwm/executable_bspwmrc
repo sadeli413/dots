@@ -30,6 +30,9 @@ bspc config presel_feedback_color "$color1"
 # Use the line below if you are on bspwm < 0.9.4
 #bspc config presel_border_color "$color1"
 
+# notification server
+dunst &
+
 # Set wallpaper and then show rofi
 /usr/bin/nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/toast.png
 /usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/toast.png

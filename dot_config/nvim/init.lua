@@ -44,6 +44,7 @@ vim.o.completeopt="menuone,noselect"
 -- Set default pdf viewer to okular for VimTex
 vim.g.vimtex_view_method="general"
 vim.g.vimtex_view_general_viewer="okular"
+vim.g.vimtex_compiler_progname="nvr"
 
 -- Set indent blank lines for indent-blankline
 vim.g.indentLinechar="|"

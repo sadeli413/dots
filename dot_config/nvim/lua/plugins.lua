@@ -21,11 +21,9 @@ return require('packer').startup(function(use)
     use 'kabouzeid/nvim-lspinstall'
 
     -- Autocompletion
-    use 'hrsh7th/nvim-compe'
-
-    -- nvim-compe dependencies
-    use 'hrsh7th/vim-vsnip'
-    use 'hrsh7th/vim-vsnip-integ'
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-nvim-lua'
 
     -- LSP signature help
     use 'ray-x/lsp_signature.nvim'
@@ -52,14 +50,14 @@ return require('packer').startup(function(use)
     -------------
     -- Visuals --
     -------------
-    use {
-        'glepnir/galaxyline.nvim',
-        branch='main',
-        -- custom statusline
-        config=function() require'config/eviline' end,
-        -- optional icons
-        requires={'kyazdani42/nvim-web-devicons', opt=true}
-    }
+    -- use {
+    --     'glepnir/galaxyline.nvim',
+    --     branch='main',
+    --     -- custom statusline
+    --     config=function() require'config/eviline' end,
+    --     -- optional icons
+    --     requires={'kyazdani42/nvim-web-devicons', opt=true}
+    -- }
 
     ---------------------
     -- Integration --

@@ -14,8 +14,10 @@ autoload -U colors && colors
 PS1="$fg[cyan]╭─[%B$fg[green]%n$fg[cyan]@$fg[green]%m$fg[cyan]: %~%b$fg[cyan]]
 ╰─%(!.#.$) $reset_color"
 
-export EDITOR=nvim
 export PATH=$PATH:$HOME/.local/bin
+export EDITOR=nvim                          # Chezmoi edit
+export ZOOM_HOME=$HOME/zoomus               # Docker zoom-us
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket  # vimtex shift click
 
 # keybinds
 bindkey "^[[3~" delete-char     # Make 'delete' actually delete

@@ -5,8 +5,8 @@
 -- nvim-lspconfig and nvim-lspinstall
 require('config/nvim-lspconfig')
 
--- nvim-compe
-require('config/nvim-compe')
+-- nvim-cmp
+require('config/nvim-cmp')
 
 -- nvim-colorizer
 require'colorizer'.setup()
@@ -16,7 +16,7 @@ require('nvim_comment').setup({line_mapping="<C-_>"})
 
 -- nvim-autopairs
 require('nvim-autopairs').setup()
-require("nvim-autopairs.completion.compe").setup({
+require("nvim-autopairs.completion.cmp").setup({
     map_cr = true, --  map <CR> on insert mode
     map_complete = true
 })

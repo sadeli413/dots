@@ -36,7 +36,7 @@ radius = 15
 monitor = ${env:MONITOR:}
 enable-ipc = true
 height = 27
-offset-y = 0.5%
+offset-y = 5
 background = ${colors.background}
 override-redirect = true
 border-size = 0
@@ -126,7 +126,7 @@ label = %mb_used%
 [module/date]
 type = internal/date
 interval = 1.0
-date = %A, %B %d
+date = %{T1}%A, %B %d
 
 format = <label>
 format-prefix = %{T3}%{T1}

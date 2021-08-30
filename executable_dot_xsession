@@ -20,9 +20,6 @@ picom --experimental-backends &
 # screenshots
 flameshot &
 
-# notification server
-dunst &
-
 # turn off beeps
 xset b off 
 xset b 0 0 0
@@ -36,7 +33,9 @@ xset s off
 
 # align two monitors
 xrandr --output eDP-1 --auto --output HDMI-1 --right-of eDP-1
-#mons -e left &
+
+# mirror two monitors
+# xrandr --output eDP-1 --auto --output HDMI-1 --same-as eDP-1
 
 # Use qt5
 export QT_QPA_PLATFORMTHEME="qt5ct"
@@ -47,6 +46,10 @@ xinput set-prop "Synaptics TM3383-002" "libinput Tapping Enabled" 1
 # https://wiki.archlinux.org/index.php/arduino#Application_not_resizing_with_WM,_menus_immediately_closing
 wmname compiz
 export AWT_TOOLKIT=MToolkit
+
+# MATLAB
+export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # numlock
 numlockx &

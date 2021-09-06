@@ -7,6 +7,13 @@ require('config/nvim-lspconfig')
 
 -- nvim-cmp
 require('config/nvim-cmp')
+require'cmp'.setup {
+    sources = {
+        { name = 'nvim_lua' },
+        { name = 'path' },
+        { name = 'buffer' }
+    }
+}
 
 -- nvim-colorizer
 require'colorizer'.setup()

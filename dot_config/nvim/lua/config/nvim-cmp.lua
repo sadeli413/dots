@@ -29,6 +29,9 @@ local cmp = require('cmp')
     },
 }
 
-vim.cmd([[
-autocmd FileType lua lua require'cmp'.setup.buffer { sources = { { name = 'buffer' }, { name = 'nvim_lua' }, }, }
-]])
+-- vim.cmd([[
+-- autocmd FileType lua lua require'cmp'.setup.buffer { sources = { { name = 'buffer' }, { name = 'nvim_lua' }, { name = 'path' } }, }
+-- ]])
+-- require'cmp'.setup {
+
+-- }

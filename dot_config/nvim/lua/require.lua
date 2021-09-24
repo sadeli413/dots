@@ -11,7 +11,8 @@ require'cmp'.setup {
     sources = {
         { name = 'nvim_lua' },
         { name = 'path' },
-        { name = 'buffer' }
+        { name = 'buffer' },
+        { name = 'nvim_lsp' }
     }
 }
 

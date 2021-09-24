@@ -35,5 +35,5 @@ dunst &
 
 # Set wallpaper and then show rofi
 /usr/bin/nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/kukka_toast_wallpaper.jpg
-/usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpaper/kukka_toast_wallpaper.jpg
+/usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/kukka_toast_wallpaper.jpg
 /usr/bin/rofi -no-lazy-grab -show drun -theme $HOME/.config/rofi/style_11.rasi

@@ -60,6 +60,8 @@ bindkey "^[[3~" delete-char     # Make 'delete' actually delete
 bindkey \^U backward-kill-line  # Ctrl-U works as in bash
 bindkey "^[[1;5C" forward-word  # Ctrl-right moves right a word
 bindkey "^[[1;5D" backward-word # Ctrl-left moves left a word
+bindkey '^[[Z' autosuggest-accept # Accept suggestion from zsh-autosuggestions
+bindkey '^ ' autosuggest-execute  # Accept and execute suggestion from zsh-autosuggest
 
 # Aliases
 alias lc='ls --color=none'

@@ -34,6 +34,6 @@ bspc config presel_feedback_color "$color1"
 dunst &
 
 # Set wallpaper and then show rofi
-/usr/bin/nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/kukka_toast_wallpaper.jpg
-/usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/kukka_toast_wallpaper.jpg
+/usr/bin/nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/Liz_Halloween.png
+/usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/Liz_Halloween.png
 /usr/bin/rofi -no-lazy-grab -show drun -theme $HOME/.config/rofi/style_11.rasi

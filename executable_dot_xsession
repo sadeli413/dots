@@ -55,7 +55,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 numlockx &
 
 # Discord custom css
-# $HOME/.local/bin/discocss &
+$HOME/.local/bin/discocss &
 
 # bspwm
 sxhkd &

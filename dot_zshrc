@@ -1,5 +1,7 @@
-# Created by newuser for 5.8
+# ZSHRC
 
+# Fancy zsh colors
+autoload -U colors && colors
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -16,31 +18,26 @@ autoload -Uz _zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
-# zinit light-mode for \
-#     zinit-zsh/z-a-rust \
-#     zinit-zsh/z-a-as-monitor \
-#     zinit-zsh/z-a-patch-dl \
-#     zinit-zsh/z-a-bin-gem-node
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
 
 ### End of Zinit's installer chunk
 
-zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
+zinit wait lucid blockf for \
+    atinit"zicompinit; zicdreplay" \
+    atload"_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions \
-    zdharma/fast-syntax-highlighting \
     Aloxaf/fzf-tab \
+    zdharma/fast-syntax-highlighting \
     hlissner/zsh-autopair \
     MikeDacre/tmux-zsh-vim-titles
 
-# Fancy zsh colors
-autoload -U colors && colors
-
-# Get git status
-# source ~/.config/zsh/gitstatus
-# source ~/.config/zsh/gitstatus/gitstatus.prompt.zsh
-
 # Prompt
-PS1="$fg[cyan]╭─[%B$fg[green]%n$fg[cyan]@$fg[green]%m$fg[cyan]: %~%b$fg[cyan]]
-╰─%(!.#.$) $reset_color"
+PS1="%{$fg[cyan]%}╭─[%B%{$fg[blue]%}%n%{$fg[cyan]%}@%{$fg[blue]%}%m%{$fg[cyan]%}: %~%b%{$fg[cyan]%}]
+╰─%(!.#.$)%{$reset_color%} "
 
 # Environment variables
 export PATH=$PATH:$HOME/.local/bin
@@ -55,13 +52,20 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 setopt appendhistory
 
-# keybinds
-bindkey "^[[3~" delete-char     # Make 'delete' actually delete
-bindkey \^U backward-kill-line  # Ctrl-U works as in bash
-bindkey "^[[1;5C" forward-word  # Ctrl-right moves right a word
-bindkey "^[[1;5D" backward-word # Ctrl-left moves left a word
-bindkey '^[[Z' autosuggest-accept # Accept suggestion from zsh-autosuggestions
-bindkey '^ ' autosuggest-execute  # Accept and execute suggestion from zsh-autosuggest
+# fzf-tab
+source $HOME/.config/fzf/completion.zsh
+source $HOME/.config/fzf/key-bindings.zsh
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
+
 
 # Aliases
 alias lc='ls --color=none'
@@ -85,5 +89,15 @@ alias locate='plocate'
 source ~/.cache/wal/colors-tty.sh
 
 # autocorrect
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
+# kitty +kitten icat "$(find $HOME/Downloads/afterdark -type f -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' | shuf -n 1)"
+
+# keybinds
+bindkey -e
+bindkey "^[[3~" delete-char     # Make 'delete' actually delete
+bindkey \^U backward-kill-line  # Ctrl-U works as in bash
+bindkey "^[[1;5C" forward-word  # Ctrl-right moves right a word
+bindkey "^[[1;5D" backward-word # Ctrl-left moves left a word
+bindkey "^[[Z" autosuggest-accept # Accept suggestion from zsh-autosuggestions
+bindkey "^ " autosuggest-execute  # Accept and execute suggestion from zsh-autosuggest

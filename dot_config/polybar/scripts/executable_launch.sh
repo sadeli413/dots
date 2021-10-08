@@ -10,14 +10,10 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 # polybar on both screens https://github.com/polybar/polybar/issues/763
 if type "xrandr"; then
   for m in $(polybar --list-monitors | cut -d":" -f1); do
-    MONITOR=$m polybar --reload left &
-    MONITOR=$m polybar --reload spotify &
-    MONITOR=$m polybar --reload right &
+    MONITOR=$m polybar --reload main &
   done
 else
-  polybar --reload left &
-  polybar --reload spotify &
-  polybar --reload right &
+  polybar --reload main &
 fi
 
 echo "Polybar launched..."

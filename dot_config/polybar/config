@@ -21,128 +21,109 @@ include-file = $HOME/.config/polybar/colors
 
 [bar/main]
 
-;font-0 = fixed:pixelsize=10;1
-;font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
-font-0 = Hack Nerd Font Mono:style=Regular:pixelsize=10;2
-font-1 = Source Han Sans JP,源ノ角ゴシック JP:style=Regular:pixelsize=10;2
+font-0 = Hack Nerd Font Mono:style=Regular:size=10;2
+font-1 = Hack Nerd Font Mono:size=18;4
 font-2 = NotoEmoji Nerd Font Mono:style=Book:size=11;3
-; font-3 = siji:pixelsize=10;1
-; font-3 = NotoSerifDisplay Nerd Font:style=Bold:size=9;2
-; font-4 = Material Design Icons:style=Regular
-; font-5 = MesloLGM Nerd Font Mono:style=Regular:size=10;2
+
+width = 99%
 
 ; WIDTH + 2(OFFSET_X) = 100%
-radius = 15
 monitor = ${env:MONITOR:}
 enable-ipc = true
-height = 27
+height = 28
 offset-y = 5
-background = ${colors.background}
+offset-x = 0.5%
+background = ${colors.transparent}
 override-redirect = true
 border-size = 0
-line-size = 3
+padding = 0
 
 ; full screen fix
 wm-restack = bspwm
 
-[bar/left]
-inherit = bar/main
-modules-center = bspwm
-offset-x = 0.5%
-width = 17%
-padding = 5
-module-margin-left = 1
-module-margin-right = 2
+modules-left = round-left-black bspwm round-right-black
+modules-center = round-left-pink clock time round-right-pink
+modules-right = round-left-magenta3 date round-left-magenta2 alsa round-left-magenta1 battery round-right-magenta1
 
-[bar/spotify]
-inherit = bar/main
-width = 23%
-offset-x = 18%
-modules-left = spotify-logo 
-modules-center = spotify
-modules-right = spotify-prev spotify-play-pause spotify-next
-padding = 2
-module-margin-left = 1
-module-margin-right = 2
+[module/round-left-black]
+type = custom/text
+content=%{T2}%{T-}
+content-foreground = ${colors.yellow}
 
-[bar/right]
-inherit = bar/main
-width = 34%
-offset-x = 65.5%
-modules-center = clock time date alsa memory cpu battery powermenu
-padding = 5
+[module/round-right-black]
+type = custom/text
+content=%{T2} %{T1}
+content-foreground = ${colors.yellow}
+
+[module/round-left-pink]
+type = custom/text
+content=%{T2}%{T-}
+content-foreground = ${colors.pink}
+
+[module/round-right-pink]
+type = custom/text
+content=%{T2} %{T1}
+content-foreground = ${colors.pink}
+
+[module/round-left-magenta1]
+type = custom/text
+content=%{T2}%{T-}
+content-foreground = ${colors.magenta1}
+content-background = ${colors.magenta2}
+
+[module/round-right-magenta1]
+type = custom/text
+content=%{T2} %{T1}
+content-foreground = ${colors.magenta1}
+
+[module/round-left-magenta2]
+type = custom/text
+content=%{T2}%{T-}
+content-foreground = ${colors.magenta2}
+content-background = ${colors.magenta3}
+
+[module/round-left-magenta3]
+type = custom/text
+content=%{T2}%{T-}
+content-foreground = ${colors.magenta3}
 
 [module/bspwm]
 type = internal/bspwm
+format-background = ${colors.yellow}
 
 pin-workspaces = true
 enable-click = true
 enable-scroll = true
 
-format = <label-state>
-format-padding = 0
-
 label-monitor = %name%
 label-focused= %name%
-label-focused-foreground = ${colors.color3}
-label-focused-background = ${colors.background}
-label-focused-underline = ${colors.color3}
+label-focused-foreground = ${colors.gray}
+;label-focused-background = ${colors.white}
 
 label-occupied = %name%
-label-occupied-underline = ${colors.foreground}
+label-occupied-foreground = ${colors.orange}
+;label-occupied-background = ${colors.white}
 
 label-urgent = %name%
-label-urgent-foreground = ${colors.background}
-label-urgent-background = ${colors.background}
+label-urgent-foreground = ${colors.black}
+;label-urgent-background = ${colors.white}
 
 label-empty = %name%
-label-empty-background = ${colors.background}
-label-empty-foreground = ${colors.foreground}
+label-empty-foreground = ${colors.pink}
+;label-empty-background = ${colors.white}
 
 label-focused-padding = 1
 label-urgent-padding = 1
 label-occupied-padding = 1
 label-empty-padding = 1
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = %{T3}%{T1}
-format-prefix-foreground = ${colors.color5}
-format-foreground = ${colors.color5}
-; format-underline = ${colors.color5}
-label = %percentage:2%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = %{T3}%{T1}
-format-prefix-foreground = ${colors.color12}
-format-foreground = ${colors.color12}
-; format-underline = ${colors.color12}
-format-margin = 2
-label = %mb_used%
-
-[module/date]
-type = internal/date
-interval = 1.0
-date = %{T1}%A, %B %d
-
-format = <label>
-format-prefix = %{T3}%{T1}
-format-prefix-foreground = ${colors.color11}
-format-prefix-background = ${colors.background}
-; format-underline = ${colors.color11}
-format-margin = 2
-
-label = %date%
-
 [module/clock]
 type = custom/script
 tail = true
 exec = ~/.config/polybar/scripts/clock.sh
-format = %{T3}<label>
-format-foreground = ${colors.color12}
+format = %{T3}<label>%{T-}
+format-foreground = ${colors.green}
+format-background = ${colors.pink}
 
 [module/time]
 type = internal/date
@@ -151,25 +132,39 @@ time = %I:%M %p
 
 format = <label>
 label = %time%
-format-prefix-foreground = ${colors.color2}
+label-foreground = ${colors.white}
+label-background = ${colors.pink}
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %{T1}%A, %B %d
+
+format = <label>
+format-foreground = ${colors.black}
+format-background = ${colors.magenta3}
+format-padding = 1
+
+format-prefix = %{T3}%{T-}
+format-prefix-foreground = ${colors.green}
+format-prefix-background = ${colors.magenta3}
+
+label = %date%
 
 [module/alsa]
 type = internal/alsa
 
 format-volume = <ramp-volume> <label-volume>
-format-volume-background = ${colors.background}
-format-volume-foreground = ${colors.color9}
-; format-volume-underline = ${colors.color9}
+format-volume-foreground = ${colors.yellow}
+format-volume-background = ${colors.magenta2}
 
 label-volume = %percentage%%
-label-volume-minlen = 4
+label-volume-minlen = 5
 
 format-muted-prefix = %{T3}%{T1}
-format-muted-background = ${colors.background}
-format-muted-foreground = ${colors.color9}
-; format-muted-underline = ${colors.color9}
+format-muted-background = ${colors.magenta2}
 label-muted = " "
-label-muted-minlen = 5
+label-muted-minlen = 6
 
 ramp-volume-0 = %{T3}%{T1}
 ramp-volume-1 = %{T3}%{T1}
@@ -186,120 +181,36 @@ battery = BAT0
 adapter = ADP1
 full-at = 99
 
-; format-underline = ${colors.foreground}
 format-charging = <animation-charging> <label-charging>
-; format-charging-underline = ${colors.color13}
-format-charging-margin = 2
+format-charging-background = ${colors.magenta1}
 
 format-discharging = <animation-discharging> <label-discharging>
-; format-discharging-underline = ${colors.color13}
-format-discharging-margin = 2
+format-discharging-background = ${colors.magenta1}
 
 format-full-prefix = %{T3}%{T1}
-format-full-prefix-foreground = ${colors.color10}
-; format-full-underline = ${colors.color13}
-format-full-margin = 2
+format-full-prefix-foreground = ${colors.pink}
+format-full-background = ${colors.magenta1}
 
 ramp-capacity-0 = %{T3}%{T1}
 ramp-capacity-1 = %{T3}%{T1}
 ramp-capacity-2 = %{T3}%{T1}
-ramp-capacity-foreground = ${colors.foreground}
+ramp-capacity-foreground = ${colors.white}
 
 animation-charging-0 = %{T3}%{T1}
 animation-charging-1 = %{T3}%{T1}
 animation-charging-2 = %{T3}%{T1}
-animation-charging-foreground = ${colors.foreground}
+animation-charging-foreground = ${colors.green}
 animation-charging-framerate = 750
 
 animation-discharging-0 = %{T3}%{T1}
 animation-discharging-1 = %{T3}%{T1}
 animation-discharging-2 = %{T3}%{T1}
-animation-discharging-foreground = ${colors.foreground}
+animation-discharging-foreground = ${colors.cyan}
 animation-discharging-framerate = 750
-
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = <ramp> <label>
-; format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-; format-warn-underline = ${self.format-underline}
-format-padding = 2
-
-label = %temperature-c%
-label-warn = %temperature-c%
-;label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground}
-
-[module/powermenu]
-type = custom/text
-content = %{T3}⏻%{T1}
-content-background = ${colors.background}
-content-foreground = ${colors.color10}
-click-left = ~/.config/rofi/powermenu.sh
-
-[module/flameshot]
-type = custom/text
-; content = 物
-content = ⽕
-content-background = ${colors.foreground}
-content-foreground = ${colors.color10}
-content-padding = 1
-
-click-left = flameshot gui
-
-[module/spotify-logo]
-type = custom/text
-content = %{T3}%{T1}
-content-foreground = ${colors.color12}
-
-[module/spotify]
-type = custom/script
-tail = true
-format = <label>
-exec = ~/.config/polybar/scripts/scroll_spotify_status.sh
-
-[module/spotify-prev]
-type = custom/script
-exec = echo "⏪"
-format = %{T3}<label>
-format-foreground = ${colors.color12}
-click-left = playerctl previous --player=spotify
-
-; https://github.com/PrayagS/polybar-spotify/issues/12
-[module/spotify-play-pause]
-type = custom/script
-tail = true
-exec = ~/.config/polybar/scripts/polybar-player-status.sh
-format = %{T3}<label>
-format-foreground = ${colors.color12}
-click-left = playerctl play-pause --player=spotify
-
-[module/spotify-next]
-type = custom/script
-exec = echo "⏩"
-format = %{T3}<label>
-format-foreground = ${colors.color12}
-click-left = playerctl next --player=spotify
-
 
 [settings]
 screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-;pseudo-transparency = false
 
 [global/wm]
 margin-top = 5
 margin-bottom = 5
-
-; vim:ft=dosini

@@ -38,6 +38,14 @@ return require('packer').startup(function(use)
     -- Editing --
     -------------
 
+    -- goto preview
+    use {
+        'rmagatti/goto-preview',
+        config = function()
+            require('goto-preview').setup {}
+        end
+    }
+
     -- Colors for hex like this #FFFFFF
     use 'norcalli/nvim-colorizer.lua'
 

@@ -33,10 +33,21 @@ return require('packer').startup(function(use)
 
     -- LSP signature help
     use 'ray-x/lsp_signature.nvim'
+    
+    -- Pictograms
+    use 'onsails/lspkind-nvim'
 
     -------------
     -- Editing --
     -------------
+
+    -- goto preview
+    use {
+        'rmagatti/goto-preview',
+        config = function()
+            require('goto-preview').setup {}
+        end
+    }
 
     -- Colors for hex like this #FFFFFF
     use 'norcalli/nvim-colorizer.lua'

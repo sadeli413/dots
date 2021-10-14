@@ -24,6 +24,7 @@ include-file = $HOME/.config/polybar/colors
 font-0 = Hack Nerd Font Mono:style=Regular:size=10;2
 font-1 = Hack Nerd Font Mono:size=18;4
 font-2 = NotoEmoji Nerd Font Mono:style=Book:size=11;3
+font-3 = NotoEmoji Nerd Font Mono:style=Book:size=15;3
 
 width = 99%
 
@@ -42,7 +43,7 @@ padding = 0
 wm-restack = bspwm
 
 modules-left = round-left-black bspwm round-right-black
-modules-center = round-left-pink clock time round-right-pink
+modules-center = round-left-white clock time round-right-white
 modules-right = round-left-magenta3 date round-left-magenta2 alsa round-left-magenta1 battery round-right-magenta1
 
 [module/round-left-black]
@@ -55,15 +56,15 @@ type = custom/text
 content=%{T2} %{T1}
 content-foreground = ${colors.yellow}
 
-[module/round-left-pink]
+[module/round-left-white]
 type = custom/text
 content=%{T2}%{T-}
-content-foreground = ${colors.pink}
+content-foreground = ${colors.white}
 
-[module/round-right-pink]
+[module/round-right-white]
 type = custom/text
 content=%{T2} %{T1}
-content-foreground = ${colors.pink}
+content-foreground = ${colors.white}
 
 [module/round-left-magenta1]
 type = custom/text
@@ -121,9 +122,9 @@ label-empty-padding = 1
 type = custom/script
 tail = true
 exec = ~/.config/polybar/scripts/clock.sh
-format = %{T3}<label>%{T-}
-format-foreground = ${colors.green}
-format-background = ${colors.pink}
+format = %{T4}<label>%{T-}
+format-foreground = ${colors.pink}
+format-background = ${colors.white}
 
 [module/time]
 type = internal/date
@@ -132,8 +133,8 @@ time = %I:%M %p
 
 format = <label>
 label = %time%
-label-foreground = ${colors.white}
-label-background = ${colors.pink}
+label-foreground = ${colors.pink}
+label-background = ${colors.white}
 
 [module/date]
 type = internal/date

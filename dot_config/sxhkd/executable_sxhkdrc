@@ -104,6 +104,10 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
+# Rotate tree
+super + {e,r}
+    bspc node @/ -C {forward,backward}
+
 #
 # preselect
 #

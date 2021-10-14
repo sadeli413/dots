@@ -62,7 +62,7 @@ vim.g.mkdp_browser="firefox"
 -- Disable comment continuation on new line
 -- Automatically apply chezmoi changes
 vim.cmd([[
-colorscheme liz
+colorscheme halloween
 autocmd BufWritePost plugins.lua PackerCompile
 au BufNewFile,BufRead /*.rasi setf css
 au BufWinEnter * set formatoptions-=cro

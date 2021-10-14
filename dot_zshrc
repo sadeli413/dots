@@ -89,7 +89,7 @@ alias locate='plocate'
 source ~/.cache/wal/colors-tty.sh
 
 # autocorrect
-# eval $(thefuck --alias)
+eval $(thefuck --alias)
 
 # kitty +kitten icat "$(find $HOME/Downloads/afterdark -type f -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' | shuf -n 1)"
 

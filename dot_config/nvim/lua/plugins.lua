@@ -33,6 +33,9 @@ return require('packer').startup(function(use)
 
     -- LSP signature help
     use 'ray-x/lsp_signature.nvim'
+    
+    -- Pictograms
+    use 'onsails/lspkind-nvim'
 
     -------------
     -- Editing --

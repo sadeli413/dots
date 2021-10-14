@@ -43,3 +43,11 @@ local cmp = require('cmp')
         end, { "i", "s" })
     }
 }
+
+-- lspkind-nvim
+local lspkind = require('lspkind')
+cmp.setup {
+    formatting = {
+        format = lspkind.cmp_format({with_text = true, maxwidth = 50})
+    }
+}

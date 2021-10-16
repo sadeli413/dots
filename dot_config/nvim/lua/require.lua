@@ -4,6 +4,9 @@
 
 -- nvim-lspconfig and nvim-lspinstall
 require('config/nvim-lspconfig')
+-- nvim-lspconfig + virtual types
+-- require'lspconfig'.ocamllsp.setup{on_attach=require'virtualtypes'.on_attach}
+require('virtualtypes')
 
 -- nvim-cmp
 require('config/nvim-cmp')
@@ -27,6 +30,14 @@ require('goto-preview').setup {
     opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
     post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
 }
+
+-- lsp-colors
+require("lsp-colors").setup({
+    Error = "#F76594",
+    Warning = "#F7E5A0",
+    Information = "#88D1FE",
+    Hint = "#82D4BB"
+})
 
 -- nvim-colorizer
 require'colorizer'.setup()

@@ -33,10 +33,18 @@ return require('packer').startup(function(use)
 
     -- LSP signature help
     use 'ray-x/lsp_signature.nvim'
-    
+
     -- Pictograms
     use 'onsails/lspkind-nvim'
 
+    -- LSP colors
+    use 'folke/lsp-colors.nvim'
+
+    -- Virtual types
+    use 'jubnzv/virtual-types.nvim'
+
+    -- Syntax --
+    ------------
     -------------
     -- Editing --
     -------------

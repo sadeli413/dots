@@ -52,6 +52,15 @@ vim.g.indentLinechar="|"
 -- Set default web browser for markdown-preview
 vim.g.mkdp_browser="firefox"
 
+-- colorscheme
+vim.g.halloween_italic_comments = true
+vim.g.halloween_italic_keywords = true
+vim.g.halloween_contrast = true
+vim.g.halloween_borders = true
+
+-- map Ctrl c to escape
+vim.api.nvim_set_keymap('i', '<C-c>', '<Esc>', {noremap=true})
+
 ----------------------
 -- Run vim commands --
 ----------------------

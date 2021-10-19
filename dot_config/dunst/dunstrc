@@ -29,16 +29,14 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    # geometry = "300x5-30+20"
-    geometry = "453x27-672+5"
+    geometry = "300x5-10+38"
 
     # Turn on the progess bar
     progress_bar = true
 
     # Set the progress bar height. This includes the frame, so make sure
     # it's at least twice as big as the frame width.
-    # progress_bar_height = 10
-    progress_bar_height = 5
+    progress_bar_height = 10
 
     # Set the frame width of the progress bar
     progress_bar_frame_width = 1
@@ -65,17 +63,15 @@
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
     # to the font height and padding.
-    notification_height = 27
+    notification_height = 0
 
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 1
+    separator_height = 2
 
     # Padding between text and separator.
-    # padding = 8
-    # padding = 5
-    padding = 5
+    padding = 8
 
     # Horizontal padding.
     horizontal_padding = 8
@@ -85,10 +81,10 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 0
+    frame_width = 3
 
     # Defines color of the frame around the notification window.
-    # frame_color = "#00000000"
+    frame_color = "#F76594"
 
     # Define a color for the separator.
     # possible values are:
@@ -110,7 +106,7 @@
 
     ### Text ###
 
-    font = Hack Nerd Font Mono 10
+    font = Monospace 8
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -150,7 +146,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>: %b"
+    format = "<b>%s</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -167,9 +163,7 @@
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    # word_wrap = yes
-    word_wrap = no
-
+    word_wrap = yes
 
     # When word_wrap is set to no, specify where to make an ellipsis in long lines.
     # Possible values are "start", "middle" and "end".
@@ -198,19 +192,16 @@
     min_icon_size = 0
 
     # Scale larger icons down to this size, set to 0 to disable
-    # max_icon_size = 32
-    max_icon_size = 17
-
+    max_icon_size = 32
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/
 
     ### History ###
 
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
-    # sticky_history = yes
-    sticky_history = no
+    sticky_history = yes
 
     # Maximum amount of notifications kept in history
     history_length = 20
@@ -235,7 +226,7 @@
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
     # automatically after a crash.
-    startup_notification = yes
+    startup_notification = false
 
     # Manage dunst's desire for talking
     # Can be one of the following values:
@@ -244,14 +235,14 @@
     #  mesg: Important Messages
     #  info: all unimportant stuff
     # debug: all less than unimportant stuff
-    verbosity = info
+    verbosity = mesg
 
     # Define the corner radius of the notification window
     # in pixel size. If the radius is 0, you have no rounded
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 1
+    corner_radius = 14
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -336,26 +327,26 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#0a0c0b"
-    foreground = "#e9e0cd"
+    background = "#1e181b"
+    foreground = "#aaa19d"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon = /usr/share/icons/candy-icons-png/preferences/16x16/bell.png
 
 [urgency_normal]
-    background = "#0a0c0b"
-    foreground = "#e9e0cd"
+    background = "#1e181b"
+    foreground = "#f4e6e1"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon = /usr/share/icons/candy-icons-png/preferences/16x16/bell.png
 
 [urgency_critical]
-    background = "#0a0c0b"
-    foreground = "#F0386B"
-    frame_color = "#e9e0cd"
+    background = "#1e181b"
+    foreground = "#F76594"
+    frame_color = "#F7E5A0"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon = /usr/share/icons/candy-icons-png/apps/16x16/system-error.png
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
@@ -473,5 +464,3 @@
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
-[stack_all]
-    set_stack_tag = "tag"

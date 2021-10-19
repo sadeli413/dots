@@ -16,9 +16,7 @@ return require('packer').startup(function(use)
 
     -- Language Server
     use 'neovim/nvim-lspconfig'
-
-    -- Language Server Installation
-    use 'kabouzeid/nvim-lspinstall'
+    use 'williamboman/nvim-lsp-installer'
 
     -- Autocompletion
     use 'hrsh7th/nvim-cmp'
@@ -33,9 +31,23 @@ return require('packer').startup(function(use)
 
     -- LSP signature help
     use 'ray-x/lsp_signature.nvim'
-    
+
     -- Pictograms
     use 'onsails/lspkind-nvim'
+
+    -- LSP colors
+    use 'folke/lsp-colors.nvim'
+
+    -- Virtual types
+    -- use 'jubnzv/virtual-types.nvim'
+
+    ------------
+    -- Syntax --
+    ------------
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
 
     -------------
     -- Editing --
@@ -52,9 +64,6 @@ return require('packer').startup(function(use)
     -- Colors for hex like this #FFFFFF
     use 'norcalli/nvim-colorizer.lua'
 
-    -- Comment toggle
-    use 'terrortylor/nvim-comment'
-
     -- Line indentation
     use 'lukas-reineke/indent-blankline.nvim'
 
@@ -64,17 +73,46 @@ return require('packer').startup(function(use)
     -- Underline words under cursor
     use 'xiyaowong/nvim-cursorword'
 
+    -- use {
+    --     'nvim-telescope/telescope.nvim',
+    --     requires = { {'nvim-lua/plenary.nvim'} }
+    -- }
+
+    -- todo-comments dep
+    -- use {
+    --     "folke/trouble.nvim",
+    --     requires = "kyazdani42/nvim-web-devicons",
+    --     config = function()
+    --         require("trouble").setup {}
+    --     end
+    -- }
+
+    --------------
+    -- Comments --
+    --------------
+
+    -- Comment toggle
+    use 'terrortylor/nvim-comment'
+
+    -- Fancy TODO: comments
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("todo-comments").setup {}
+        end
+    }
+
     -------------
     -- Visuals --
     -------------
-    -- use {
-    --     'glepnir/galaxyline.nvim',
-    --     branch='main',
-    --     -- custom statusline
-    --     config=function() require'config/eviline' end,
-    --     -- optional icons
-    --     requires={'kyazdani42/nvim-web-devicons', opt=true}
-    -- }
+    use {
+        'hoob3rt/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt=true}
+    }
+    use 'kyazdani42/nvim-web-devicons'
+
+    -- use 'yashguptaz/calvera-dark.nvim'
 
     ---------------------
     -- Integration --

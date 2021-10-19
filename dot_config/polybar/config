@@ -25,8 +25,10 @@ font-0 = Hack Nerd Font Mono:style=Regular:size=10;2
 font-1 = Hack Nerd Font Mono:size=18;4
 font-2 = NotoEmoji Nerd Font Mono:style=Book:size=11;3
 font-3 = NotoEmoji Nerd Font Mono:style=Book:size=15;3
+font-4 = Hack Nerd Font Mono:style=Bold:size=10;2
+font-5 = NotoEmoji Nerd Font Mono:style=Book:size=20;3
 
-width = 99%
+width = 99.6%
 
 ; WIDTH + 2(OFFSET_X) = 100%
 monitor = ${env:MONITOR:}
@@ -36,61 +38,59 @@ offset-y = 5
 offset-x = 0.5%
 background = ${colors.transparent}
 override-redirect = true
-border-size = 0
-padding = 0
+;border-size = 0
+;padding = 0
 
 ; full screen fix
 wm-restack = bspwm
 
-modules-left = round-left-black bspwm round-right-black
-modules-center = round-left-white clock time round-right-white
-modules-right = round-left-magenta3 date round-left-magenta2 alsa round-left-magenta1 battery round-right-magenta1
+modules-left = round-left-coffee bspwm round-right-coffee
+modules-center = round-left-coffee date blank clock time round-right-coffee
+modules-right = round-left-coffee round-left-dark2 alsa round-right-dark2 round-left-dark1 battery round-right-dark1 round-right-coffee
 
-[module/round-left-black]
+[module/round-left-coffee]
 type = custom/text
 content=%{T2}%{T-}
-content-foreground = ${colors.yellow}
+content-foreground = ${colors.coffee}
 
-[module/round-right-black]
+[module/round-right-coffee]
 type = custom/text
 content=%{T2} %{T1}
-content-foreground = ${colors.yellow}
+content-foreground = ${colors.coffee}
 
-[module/round-left-white]
+[module/round-left-dark1]
 type = custom/text
 content=%{T2}%{T-}
-content-foreground = ${colors.white}
+content-foreground = ${colors.dark}
+content-background = ${colors.coffee}
 
-[module/round-right-white]
+[module/round-right-dark1]
 type = custom/text
 content=%{T2} %{T1}
-content-foreground = ${colors.white}
+content-foreground = ${colors.dark}
+content-background = ${colors.coffee}
 
-[module/round-left-magenta1]
+[module/round-left-dark2]
 type = custom/text
-content=%{T2}%{T-}
-content-foreground = ${colors.magenta1}
-content-background = ${colors.magenta2}
+content=%{T2} %{T-}
+content-foreground = ${colors.dark}
+content-background = ${colors.coffee}
 
-[module/round-right-magenta1]
+[module/round-right-dark2]
 type = custom/text
-content=%{T2} %{T1}
-content-foreground = ${colors.magenta1}
+content=%{T2}  %{T1}
+content-foreground = ${colors.dark}
+content-background = ${colors.coffee}
 
-[module/round-left-magenta2]
+[module/blank]
 type = custom/text
-content=%{T2}%{T-}
-content-foreground = ${colors.magenta2}
-content-background = ${colors.magenta3}
-
-[module/round-left-magenta3]
-type = custom/text
-content=%{T2}%{T-}
-content-foreground = ${colors.magenta3}
+content = "  "
+content-foreground = ${colors.coffee}
+content-background = ${colors.coffee}
 
 [module/bspwm]
 type = internal/bspwm
-format-background = ${colors.yellow}
+format-background = ${colors.coffee}
 
 pin-workspaces = true
 enable-click = true
@@ -98,20 +98,15 @@ enable-scroll = true
 
 label-monitor = %name%
 label-focused= %name%
-label-focused-foreground = ${colors.gray}
-;label-focused-background = ${colors.white}
+label-focused-foreground = ${colors.cyan}
 
 label-occupied = %name%
-label-occupied-foreground = ${colors.orange}
-;label-occupied-background = ${colors.white}
-
+label-occupied-foreground = ${colors.yellow}
 label-urgent = %name%
 label-urgent-foreground = ${colors.black}
-;label-urgent-background = ${colors.white}
 
 label-empty = %name%
 label-empty-foreground = ${colors.pink}
-;label-empty-background = ${colors.white}
 
 label-focused-padding = 1
 label-urgent-padding = 1
@@ -123,49 +118,49 @@ type = custom/script
 tail = true
 exec = ~/.config/polybar/scripts/clock.sh
 format = %{T4}<label>%{T-}
-format-foreground = ${colors.pink}
-format-background = ${colors.white}
+format-foreground = ${colors.green}
+format-background = ${colors.coffee}
 
 [module/time]
 type = internal/date
 interval = 1.0
 time = %I:%M %p
 
-format = <label>
+format = %{T5}<label>%{T-}
 label = %time%
-label-foreground = ${colors.pink}
-label-background = ${colors.white}
+label-foreground = ${colors.green}
+label-background = ${colors.coffee}
 
 [module/date]
 type = internal/date
 interval = 1.0
-date = %{T1}%A, %B %d
+date = %{T5}%a, %b %d%{T1}
 
 format = <label>
-format-foreground = ${colors.black}
-format-background = ${colors.magenta3}
-format-padding = 1
+format-foreground = ${colors.magenta3}
+format-background = ${colors.coffee}
 
-format-prefix = %{T3}%{T-}
-format-prefix-foreground = ${colors.green}
-format-prefix-background = ${colors.magenta3}
+format-prefix = %{T4}%{T-}
+format-prefix-foreground = ${colors.magenta3}
+format-prefix-background = ${colors.coffee}
 
 label = %date%
 
 [module/alsa]
 type = internal/alsa
 
-format-volume = <ramp-volume> <label-volume>
-format-volume-foreground = ${colors.yellow}
-format-volume-background = ${colors.magenta2}
+format-volume = <ramp-volume> %{T5}<label-volume>%{T-}
+format-volume-foreground = ${colors.cyan}
+format-volume-background = ${colors.dark}
 
 label-volume = %percentage%%
-label-volume-minlen = 5
+label-volume-minlen = 4
 
 format-muted-prefix = %{T3}%{T1}
-format-muted-background = ${colors.magenta2}
+format-muted-background = ${colors.dark}
+format-muted-foreground = ${colors.white}
 label-muted = " "
-label-muted-minlen = 6
+label-muted-minlen = 5
 
 ramp-volume-0 = %{T3}%{T1}
 ramp-volume-1 = %{T3}%{T1}
@@ -182,31 +177,35 @@ battery = BAT0
 adapter = ADP1
 full-at = 99
 
-format-charging = <animation-charging> <label-charging>
-format-charging-background = ${colors.magenta1}
+format-charging = <animation-charging> %{T5}<label-charging>%{T-}
+label-charging-foreground = ${colors.magenta3}
+format-charging-background = ${colors.dark}
 
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-background = ${colors.magenta1}
+format-discharging = <animation-discharging> %{T5}<label-discharging>%{T-}
+label-discharging-foreground = ${colors.magenta3}
+format-discharging-background = ${colors.dark}
 
-format-full-prefix = %{T3}%{T1}
+format-full-prefix = %{T3}%{T-}
+format-full = %{T5}<label-full>%{T-}
 format-full-prefix-foreground = ${colors.pink}
-format-full-background = ${colors.magenta1}
+format-full-foreground = ${colors.magenta3}
+format-full-background = ${colors.dark}
 
 ramp-capacity-0 = %{T3}%{T1}
 ramp-capacity-1 = %{T3}%{T1}
 ramp-capacity-2 = %{T3}%{T1}
-ramp-capacity-foreground = ${colors.white}
+ramp-capacity-foreground = ${colors.magenta3}
 
 animation-charging-0 = %{T3}%{T1}
 animation-charging-1 = %{T3}%{T1}
 animation-charging-2 = %{T3}%{T1}
-animation-charging-foreground = ${colors.green}
+animation-charging-foreground = ${colors.magenta3}
 animation-charging-framerate = 750
 
 animation-discharging-0 = %{T3}%{T1}
 animation-discharging-1 = %{T3}%{T1}
 animation-discharging-2 = %{T3}%{T1}
-animation-discharging-foreground = ${colors.cyan}
+animation-discharging-foreground = ${colors.magenta3}
 animation-discharging-framerate = 750
 
 [settings]

@@ -2,11 +2,20 @@
 -- Plugins that need require --
 -------------------------------
 
--- nvim-lspconfig and nvim-lspinstall
-require('config/nvim-lspconfig')
+-- nvim-lspconfig and nvim-lsp-installer
+require('config.nvim-lspconfig')
+require("nvim-lsp-installer").settings {
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    }
+}
 
 -- nvim-cmp
-require('config/nvim-cmp')
+require('config.nvim-cmp')
 require'cmp'.setup {
     sources = {
         { name = 'nvim_lua' },
@@ -18,7 +27,7 @@ require'cmp'.setup {
 }
 
 -- goto-preview
-require('config/goto-preview')
+require('config.goto-preview')
 require('goto-preview').setup {
     width = 120; -- Width of the floating window
     height = 15; -- Height of the floating window
@@ -27,6 +36,9 @@ require('goto-preview').setup {
     opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
     post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
 }
+
+-- lsp-colors
+require('lsp-colors')
 
 -- nvim-colorizer
 require'colorizer'.setup()
@@ -43,3 +55,9 @@ require("nvim-autopairs.completion.cmp").setup({
 
 -- lsp_signature.nvim
 require'lsp_signature'.setup()
+
+-- nvim-treesitter
+require('config.treesitter')
+
+-- lualine.nvim
+require('config.halloween-lualine')

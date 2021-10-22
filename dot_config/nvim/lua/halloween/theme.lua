@@ -16,7 +16,7 @@ theme.loadSyntax = function()
 		Number =					{ fg = halloween.yellow }, -- a number constant: 5
 		Boolean =					{ fg = halloween.orange }, -- a boolean constant: TRUE, false
 		Float =						{ fg = halloween.orange }, -- a floating point constant: 2.3e10
-		Statement =					{ fg = halloween.purple }, -- any statement
+		Statement =					{ fg = halloween.pink }, -- any statement
 		Label =						{ fg = halloween.purple }, -- case, default, etc.
 		Operator =					{ fg = halloween.cyan }, -- sizeof", "+", "*", etc.
 		Exception =					{ fg = halloween.cyan }, -- try, catch, throw
@@ -107,13 +107,13 @@ theme.loadEditor = function ()
 		Folded =				{ fg = halloween.disabled, bg = halloween.none, style = 'italic' }, -- line used for closed folds
 		FoldColumn =			{ fg = halloween.blue }, -- 'foldcolumn'
 		IncSearch =				{ fg = halloween.highlight, bg = halloween.white, style = 'reverse' }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-		LineNr =				{ fg = halloween.accent }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-		CursorLineNr =			{ fg = halloween.yellow }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+		LineNr =				{ fg = halloween.bg_alt }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		CursorLineNr =			{ fg = halloween.accent }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 		MatchParen =			{ fg = halloween.yellow, bg = halloween.none, style = 'bold' }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		ModeMsg =				{ fg = halloween.accent }, -- 'showmode' message (e.g., "-- INSERT -- ")
 		MoreMsg =				{ fg = halloween.accent }, -- |more-prompt|
 		NonText =				{ fg = halloween.disabled }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-		Pmenu =					{ fg = halloween.text, bg = halloween.popupbg }, -- Popup menu: normal item.
+		Pmenu =					{ fg = halloween.fg, bg = halloween.popupbg }, -- Popup menu: normal item.
 		PmenuSel =				{ fg = halloween.text, bg = halloween.active }, -- Popup menu: selected item.
 		PmenuSbar =				{ fg = halloween.text, bg = halloween.contrast }, -- Popup menu: scrollbar.
 		PmenuThumb =			{ fg = halloween.fg, bg = halloween.border }, -- Popup menu: Thumb of the scrollbar.
@@ -326,9 +326,9 @@ theme.loadLSP = function ()
         LspDiagnosticsFloatingHint =            { fg = halloween.green }, -- used for "Hint" diagnostic messages in the diagnostics float
         LspDiagnosticsVirtualTextHint =         { fg = halloween.green }, -- Virtual text "Hint"
         LspDiagnosticsUnderlineHint =           { style = 'undercurl', sp = halloween.paleblue }, -- used to underline "Hint" diagnostics.
-        LspReferenceText =                      { fg = halloween.refTextFg, bg = halloween.refTextBg }, -- used for highlighting "text" references
-        LspReferenceRead =                      { fg = halloween.refTextFg, bg = halloween.refTextBg }, -- used for highlighting "read" references
-        LspReferenceWrite =                     { fg = halloween.refTextFg, bg = halloween.refTextBg }, -- used for highlighting "write" references
+        LspReferenceText =                      { style = 'underline' }, -- used for highlighting "text" references
+        LspReferenceRead =                      { style = 'underline' }, -- used for highlighting "read" references
+        LspReferenceWrite =                     { style = 'underline' }, -- used for highlighting "write" references
     }
 
     return lsp
@@ -471,8 +471,8 @@ theme.loadPlugins = function()
         DapStopped =                            { fg = halloween.green },
 
 		-- Illuminate
-		illuminatedWord =						{ bg = halloween.highight },
-		illuminatedCurWord =					{ bg = halloween.highight },
+		illuminatedWord =						{ style = 'underline' },
+		illuminatedCurWord =					{ style = 'underline' },
 
 		-- Hop
 		HopNextKey = 							{ fg = halloween.orange, style = "bold" },

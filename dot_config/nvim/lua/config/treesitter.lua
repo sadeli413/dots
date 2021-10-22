@@ -24,3 +24,11 @@ require'nvim-treesitter.configs'.setup {
         },
     },
 }
+
+-- folding
+-- zc to close. zo to open
+vim.o.foldminlines=5
+vim.o.foldlevel=20
+vim.o.foldmethod='expr'
+vim.o.foldexpr='nvim_treesitter#foldexpr()'
+vim.o.foldcolumn='2'

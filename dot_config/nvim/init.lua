@@ -61,6 +61,9 @@ vim.g.halloween_italic_keywords = true
 vim.g.halloween_contrast = true
 vim.g.halloween_borders = true
 
+-- Keep sign column (gutter) the same width
+vim.o.signcolumn='yes'
+
 -- map Ctrl c to escape
 vim.api.nvim_set_keymap('i', '<C-c>', '<Esc>', {noremap=true})
 

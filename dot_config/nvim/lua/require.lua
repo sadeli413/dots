@@ -16,26 +16,9 @@ require("nvim-lsp-installer").settings {
 
 -- nvim-cmp
 require('config.nvim-cmp')
-require'cmp'.setup {
-    sources = {
-        { name = 'nvim_lua' },
-        { name = 'path' },
-        { name = 'buffer' },
-        { name = 'vsnip' },
-        { name = 'nvim_lsp' }
-    }
-}
 
 -- goto-preview
 require('config.goto-preview')
-require('goto-preview').setup {
-    width = 120; -- Width of the floating window
-    height = 15; -- Height of the floating window
-    default_mappings = false; -- Bind default mappings
-    debug = false; -- Print debug information
-    opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
-    post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
-}
 
 -- lsp-colors
 require('lsp-colors')
@@ -61,3 +44,58 @@ require('config.treesitter')
 
 -- lualine.nvim
 require('config.halloween-lualine')
+
+-- nvim-ts-rainbow
+require'nvim-treesitter.configs'.setup {
+    rainbow = {
+        enable = true,
+        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        max_file_lines = nil, -- Do not enable for files with more than n lines, int
+        colors = {
+            "#f4e6e1",
+            "#88D1FE",
+            "#F7E5A0",
+            "#E6A0AA",
+            "#FF9753",
+            "#BE96BD",
+            "#82D4BB"
+        }, -- table of hex strings
+        -- termcolors = {} -- table of colour name strings
+    }
+}
+
+-- specs.nvim
+require('specs').setup{
+    show_jumps = true,
+    min_jump = 30,
+    popup = {
+        delay_ms = 0, -- delay before popup displays
+        inc_ms = 10, -- time increments used for fade/resize effects
+        blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
+        width = 20,
+        winhl = "PMenu",
+        fader = require('specs').linear_fader,
+        resizer = require('specs').shrink_resizer
+    },
+    ignore_filetypes = {},
+    ignore_buftypes = {
+        nofile = true,
+    },
+}
+
+-- spellsitter.nvim
+require('spellsitter').setup {
+    hl = 'SpellBad',
+    captures = {}, -- set to {} to spellcheck everything
+    -- Spellchecker to use. values:
+    -- * vimfn: built-in spell checker using vim.fn.spellbadword()
+    -- * ffi: built-in spell checker using the FFI to access the
+    --   internal spell_check() function
+    spellchecker = 'vimfn',
+}
+
+-- todo-comments
+require("todo-comments").setup {}
+
+-- which-key.nvim
+require("which-key").setup {}

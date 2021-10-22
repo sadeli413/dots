@@ -25,9 +25,9 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lsp'
 
-    -- vsnip
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/vim-vsnip'
+    -- luasnip
+    use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
 
     -- LSP signature help
     use 'ray-x/lsp_signature.nvim'
@@ -54,24 +54,36 @@ return require('packer').startup(function(use)
     -------------
 
     -- goto preview
-    use {
-        'rmagatti/goto-preview',
-        config = function()
-            require('goto-preview').setup {}
-        end
-    }
-
-    -- Colors for hex like this #FFFFFF
-    use 'norcalli/nvim-colorizer.lua'
-
-    -- Line indentation
-    use 'lukas-reineke/indent-blankline.nvim'
+    use 'rmagatti/goto-preview'
 
     -- Auto pairs
     use 'windwp/nvim-autopairs'
 
-    -- Underline words under cursor
-    use 'xiyaowong/nvim-cursorword'
+    -- Rainbow parentheses
+    use 'p00f/nvim-ts-rainbow'
+
+    -----------
+    -- Color --
+    -----------
+
+    -- Colors for hex like this #FFFFFF
+    use 'norcalli/nvim-colorizer.lua'
+
+    ------------
+    -- Indent --
+    ------------
+
+    -- Line indentation
+    use 'lukas-reineke/indent-blankline.nvim'
+
+    ------------
+    -- Cursor --
+    ------------
+
+    use 'RRethy/vim-illuminate'
+
+    -- Show where cursor moves in large distances
+    use 'edluffy/specs.nvim'
 
     -- use {
     --     'nvim-telescope/telescope.nvim',
@@ -98,9 +110,6 @@ return require('packer').startup(function(use)
     use {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("todo-comments").setup {}
-        end
     }
 
     -------------
@@ -126,5 +135,16 @@ return require('packer').startup(function(use)
         'iamcco/markdown-preview.nvim',
         run=[[sh -c 'cd app && yarn install']],
     }
+
+    ----------------
+    -- Keybinding --
+    ----------------
+    use 'folke/which-key.nvim'
+
+    ----------------
+    -- Spellcheck --
+    ----------------
+
+    use 'lewis6991/spellsitter.nvim'
 
 end)

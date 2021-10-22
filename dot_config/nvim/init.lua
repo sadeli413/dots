@@ -37,6 +37,9 @@ vim.o.conceallevel=0
 -- Set menuone and noselect for nvim-compe
 vim.o.completeopt="menuone,noselect"
 
+-- temporary fix for indent-blankline
+vim.o.colorcolumn="99999"
+
 ----------------------
 -- Global variables --
 ----------------------

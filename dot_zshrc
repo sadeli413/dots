@@ -3,6 +3,134 @@
 # Fancy zsh colors
 autoload -U colors && colors
 
+# Prompt
+# https://github.com/romkatv/gitstatus
+source ~/.config/zsh/gitstatus/gitstatus.plugin.zsh
+getGitStatus() {
+    # Check if use is inside a git repo
+    if ! { gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]] }
+    then
+        echo -n ""
+        return
+    fi
+
+    # define colors
+    local clean="%{$fg[green]%}"
+    local modified="%{$fg[yellow]%}"
+    local untracked="%{$fg[blue]%}"
+    local conflicted="%{$fg[red]%}"
+
+    # copied from gitstatus.prompt.zsh
+    local p
+
+    local where  # branch name, tag or commit
+    if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
+        where=" on   $VCS_STATUS_LOCAL_BRANCH"
+    elif [[ -n $VCS_STATUS_TAG ]]; then
+        p+='%f#'
+        where=" on   $VCS_STATUS_TAG"
+    else
+        p+='%f@'
+        where=" on    ${VCS_STATUS_COMMIT[1,8]}"
+    fi
+
+    (( $#where > 32 )) && where[13,-13]="…"  # truncate long branch names and tags
+    p+="${clean}${where//\%/%%}"             # escape %
+
+    (( VCS_STATUS_COMMITS_BEHIND )) && p+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
+    (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && p+=" "
+    (( VCS_STATUS_COMMITS_AHEAD  )) && p+="${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
+    (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && p+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
+    (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && p+=" "
+    (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && p+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
+    (( VCS_STATUS_STASHES        )) && p+=" ${clean}*${VCS_STATUS_STASHES}"
+    [[ -n $VCS_STATUS_ACTION     ]] && p+=" ${conflicted}${VCS_STATUS_ACTION}"
+    (( VCS_STATUS_NUM_CONFLICTED )) && p+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
+    (( VCS_STATUS_NUM_STAGED     )) && p+=" ${modified}+${VCS_STATUS_NUM_STAGED}"
+    (( VCS_STATUS_NUM_UNSTAGED   )) && p+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
+    (( VCS_STATUS_NUM_UNTRACKED  )) && p+=" ${untracked}?${VCS_STATUS_NUM_UNTRACKED}"
+
+    # Echo the git status
+    echo -n "${p}%f"
+}
+
+getParent() {
+    # Get the name of the parent command
+    comm_name="$(ps -p $PPID -o comm=)"
+    PARENT=""
+    # Ignore if kitty
+    if [ $comm_name != "kitty" ]; then PARENT="[\e[2m\e[3m$comm_name\e[0m%{$fg[cyan]%}]"; fi
+    echo $PARENT
+}
+
+getPrompt() {
+    PROMPT="%{$fg[cyan]%}╭─"
+    PROMPT+=$(getParent)
+    PROMPT+="[%B%{$fg[blue]%}%n%{$fg[cyan]%}@%{$fg[blue]%}%m%{$fg[cyan]%}: %~%b%{$fg[cyan]%}]%{$reset_color%}"
+    PROMPT+=$(getGitStatus)
+    PROMPT+="
+%{$fg[cyan]%}╰─%(!.#.$)%{$reset_color%} "
+    setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
+}
+gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd getPrompt
+
+# Environment variables
+export PATH=$PATH:$HOME/.local/bin
+export EDITOR=nvim                          # Chezmoi edit
+export ZOOM_HOME=$HOME/zoomus               # Docker zoom-us
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket  # vimtex shift click
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=242"  # zsh-autosuggestions colors
+
+# zsh history
+export HISTFILE=$HOME/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt appendhistory
+
+# fzf-tab
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
+
+
+# Aliases
+alias lc='ls --color=none'
+alias ls='exa --icons'                           # Fancy ls
+alias la='exa --icons -lgaa --git --color-scale'  # Fancy ls -la
+alias l='exa --icons -lg --git --color-scale'     # Fancy ls -l
+alias tree="exa --icons -T"
+alias vim='nvim'
+alias cme='chezmoi edit'
+alias ssh='TERM=xterm-256color ssh' # So ssh works properly with kitty
+alias cp="cp -i"                    # Confirm before overwriting something
+alias df='df -h'
+alias du='du . -h -d1 2>/dev/null | sort -hr'
+alias cd..='cd ..'
+alias cl='clear'
+alias icat='kitty +kitten icat'
+alias locate='plocate'
+
+# autocorrect
+eval $(thefuck --alias)
+
+# keybinds
+bindkey -e
+bindkey "^[[3~" delete-char     # Make 'delete' actually delete
+bindkey \^U backward-kill-line  # Ctrl-U works as in bash
+bindkey "^[[1;5C" forward-word  # Ctrl-right moves right a word
+bindkey "^[[1;5D" backward-word # Ctrl-left moves left a word
+bindkey "^[[Z" autosuggest-accept # Accept suggestion from zsh-autosuggestions
+bindkey "^ " autosuggest-execute  # Accept and execute suggestion from zsh-autosuggest
+
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -33,71 +161,8 @@ zinit wait lucid blockf for \
     Aloxaf/fzf-tab \
     zdharma/fast-syntax-highlighting \
     hlissner/zsh-autopair \
-    MikeDacre/tmux-zsh-vim-titles
-
-# Prompt
-PS1="%{$fg[cyan]%}╭─[%B%{$fg[blue]%}%n%{$fg[cyan]%}@%{$fg[blue]%}%m%{$fg[cyan]%}: %~%b%{$fg[cyan]%}]
-╰─%(!.#.$)%{$reset_color%} "
-
-# Environment variables
-export PATH=$PATH:$HOME/.local/bin
-export EDITOR=nvim                          # Chezmoi edit
-export ZOOM_HOME=$HOME/zoomus               # Docker zoom-us
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket  # vimtex shift click
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=242"  # zsh-autosuggestions colors
-
-# zsh history
-export HISTFILE=$HOME/.zsh_history
-export HISTSIZE=10000
-export SAVEHIST=10000
-setopt appendhistory
-
-# fzf-tab
-source $HOME/.config/fzf/completion.zsh
-source $HOME/.config/fzf/key-bindings.zsh
-# disable sort when completing `git checkout`
-zstyle ':completion:*:git-checkout:*' sort false
-# set descriptions format to enable group support
-zstyle ':completion:*:descriptions' format '[%d]'
-# set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-# switch group using `,` and `.`
-zstyle ':fzf-tab:*' switch-group ',' '.'
+    MikeDacre/tmux-zsh-vim-titles \
+    arzzen/calc.plugin.zsh \
+    MichaelAquilina/zsh-auto-notify
 
 
-# Aliases
-alias lc='ls --color=none'
-alias ls='exa --icons'                           # Fancy ls
-alias la='exa --icons -lgaa --git --color-scale'  # Fancy ls -la
-alias l='exa --icons -lg --git --color-scale'     # Fancy ls -l
-alias tree="exa --icons -T"
-alias vim='nvim'
-alias cme='chezmoi edit'
-alias ssh='TERM=xterm-256color ssh' # So ssh works properly with kitty
-alias cp="cp -i"                    # Confirm before overwriting something
-alias df='df -h'
-alias du='du . -h -d1 2>/dev/null | sort -hr'
-alias cd..='cd ..'
-alias cl='clear'
-alias icat='kitty +kitten icat'
-alias locate='plocate'
-
-# pywal persistence
-(cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh
-
-# autocorrect
-eval $(thefuck --alias)
-
-# kitty +kitten icat "$(find $HOME/Downloads/afterdark -type f -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' | shuf -n 1)"
-
-# keybinds
-bindkey -e
-bindkey "^[[3~" delete-char     # Make 'delete' actually delete
-bindkey \^U backward-kill-line  # Ctrl-U works as in bash
-bindkey "^[[1;5C" forward-word  # Ctrl-right moves right a word
-bindkey "^[[1;5D" backward-word # Ctrl-left moves left a word
-bindkey "^[[Z" autosuggest-accept # Accept suggestion from zsh-autosuggestions
-bindkey "^ " autosuggest-execute  # Accept and execute suggestion from zsh-autosuggest

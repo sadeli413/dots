@@ -4,15 +4,15 @@ local halloween = {
 	white    =		'#f4e6e1',
 	gray     =      '#aaa19d',
 	black    = 		'#1e181b',
-	red      =   	'#F76594',
+    red      =   	'#F76594',
 	green    = 		'#82D4BB',
 	yellow   =		'#F7E5A0',
-	blue     =  	'#88D1FE',
-	paleblue =		'#DEFFF2',
-	cyan     =  	'#88D1FE',
-	purple   =		'#E6A0AA',
-	orange   =		'#FF9753',
-	pink     =  	'#BE96BD',
+	blue     =  	'#FF9753',
+	paleblue =		'#FFE0CE',
+	cyan     =  	'#FAA9C3',
+	purple   =		'#88D1FE',
+    orange   =		'#FF9753',
+    pink     =  	'#E6A0AA',
 
 	error    =		'#F76594',
 	link     =		'#82D4BB',
@@ -23,32 +23,30 @@ local halloween = {
 
 -- Style specific colors
 
--- Darker theme style
-
+-- Darker theme style hall
 
 halloween.bg =			'#1e181b'
-halloween.bg_alt =		'#322D30'
+halloween.bg_alt =		'#1e181b'
 halloween.fg =			'#f4e6e1'
-halloween.text =			'#1e181b'
-halloween.comments =		'#aaa19d'
-halloween.selection = 	'#565154'
-halloween.contrast =		'#322D30'
-halloween.active =		'#C9C8C9'
-halloween.border =		'#aaa19d'
-halloween.line_numbers =	'#F7E5A0'
-halloween.highlight =		'#322D30'
-halloween.disabled =		'#7272AB'
-halloween.accent =		'#FF9753'
+halloween.text =			'#FFC9A8'
+halloween.comments =		'#615664'
+halloween.selection = 	'#2E2532'
+halloween.contrast =		'#171013'
+halloween.active =		'#2A222D'
+halloween.border =		'#3D2942'
+halloween.line_numbers =	'#565154'
+halloween.highlight =		'#403243'
+halloween.disabled =		'#322D30'
+halloween.accent =		'#403243'
 
 halloween.indentHlDefault ='#2A2B2E'
 halloween.indentHlContext ='#FF0000'
-halloween.popupbg = '#322D30'
+halloween.popupbg = '#3D3640'
 halloween.popupbgActive = '#FF0000'
-halloween.refTextBg = halloween.cyan
-halloween.refTextFg = halloween.fg
-halloween.nvimTreeTxt = '#C9C8C9'
-halloween.cursorLineBG = '#454043'
-halloween.statuslinebg = '#2E2532'
+halloween.refTextBg = '#FF0000'
+halloween.refTextFg = '#FF0000'
+halloween.nvimTreeTxt = '#615664'
+halloween.cursorLineBG = halloween.active
 -- Optional colors
 
 -- LuaFormatter on
@@ -59,7 +57,7 @@ if vim.g.halloween_contrast == false then
     halloween.float = halloween.bg
 else
     halloween.sidebar = halloween.contrast
-    halloween.float = halloween.contrast
+    halloween.float = halloween.popupbg
 end
 
 -- Enable custom variable colors
@@ -72,7 +70,7 @@ end
 -- Set BG Transparent
 if vim.g.halloween_transparent_bg == true then
     halloween.bg = 'NONE'
-    halloween.comments = '#A7ACC9'
+    halloween.comments = '#7272AB'
     halloween.cursorLineBG = 'NONE'
     halloween.line_numbers = halloween.gray
 end

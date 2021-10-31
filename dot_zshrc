@@ -106,9 +106,9 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # Aliases
 alias lc='ls --color=none'
-alias ls='exa --icons'                           # Fancy ls
-alias la='exa --icons -lgaa --git --color-scale'  # Fancy ls -la
-alias l='exa --icons -lg --git --color-scale'     # Fancy ls -l
+alias ls='exa --icons'                              # Fancy ls
+alias la='exa --icons -lgaa --git --color-scale'    # Fancy ls -la
+alias l='exa --icons -lg --git --color-scale'       # Fancy ls -l
 alias tree="exa --icons -T"
 alias vim='nvim'
 alias cme='chezmoi edit'

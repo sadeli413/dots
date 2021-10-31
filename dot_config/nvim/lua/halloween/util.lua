@@ -21,14 +21,14 @@ end
 -- Only define Calvera if it's the active colorshceme
 function util.onColorScheme()
     if vim.g.colors_name ~= "halloween" then
-        vim.cmd [[autocmd! halloween]]
-        vim.cmd [[augroup! halloween]]
+        vim.cmd [[autocmd! Calvera]]
+        vim.cmd [[augroup! Calvera]]
     end
 end
 
 -- Change the background for the terminal and packer windows
 util.contrast = function()
-    vim.cmd [[augroup Halloween]]
+    vim.cmd [[augroup Calvera]]
     vim.cmd [[  autocmd!]]
     vim.cmd [[  autocmd ColorScheme * lua require("halloween.util").onColorScheme()]]
     vim.cmd [[  autocmd TermOpen * setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]]

@@ -10,3 +10,5 @@ package.loaded['halloween.functions'] = nil
 
 vim.g.halloween_transparentbg = false
 require('halloween').set()
+-- Make ghost text different from comment colorscheme
+vim.api.nvim_command [[ hi Comment guifg=#322D30 ]]

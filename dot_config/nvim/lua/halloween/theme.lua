@@ -7,7 +7,7 @@ theme.loadSyntax = function()
     -- Syntax highlight groups
 
 	local syntax = {
-		Type =						{ fg = halloween.green }, -- int, long, char, etc.
+		Type =						{ fg = halloween.purple }, -- int, long, char, etc.
 		StorageClass =				{ fg = halloween.cyan }, -- static, register, volatile, etc.
 		Structure =					{ fg = halloween.puple }, -- struct, union, enum, etc.
 		Constant =					{ fg = halloween.yellow }, -- any constant
@@ -63,11 +63,11 @@ theme.loadSyntax = function()
 	-- Italic Keywords
 	if vim.g.halloween_italic_keywords == true then
 		syntax.Conditional =		{fg = halloween.purple, bg = halloween.none, style = 'italic'} -- italic if, then, else, endif, switch, etc.
-		syntax.Keyword =			{fg = halloween.pink, bg = halloween.none, style = 'italic'} -- italic for, do, while, etc.
+		syntax.Keyword =			{fg = halloween.purple, bg = halloween.none, style = 'italic'} -- italic for, do, while, etc.
 		syntax.Repeat =				{fg = halloween.purple, bg = halloween.none, style = 'italic'} -- italic any other keyword
 	else
 		syntax.Conditional =		{fg = halloween.purple} -- normal if, then, else, endif, switch, etc.
-		syntax.Keyword =			{fg = halloween.pink} -- normal for, do, while, etc.
+		syntax.Keyword =			{fg = halloween.purple} -- normal for, do, while, etc.
 		syntax.Repeat =				{fg = halloween.purple} -- normal any other keyword
 	end
 
@@ -107,13 +107,13 @@ theme.loadEditor = function ()
 		Folded =				{ fg = halloween.disabled, bg = halloween.none, style = 'italic' }, -- line used for closed folds
 		FoldColumn =			{ fg = halloween.blue }, -- 'foldcolumn'
 		IncSearch =				{ fg = halloween.highlight, bg = halloween.white, style = 'reverse' }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-		LineNr =				{ fg = halloween.bg_alt }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-		CursorLineNr =			{ fg = halloween.accent }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+		LineNr =				{ fg = halloween.accent }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		CursorLineNr =			{ fg = halloween.blue }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 		MatchParen =			{ fg = halloween.yellow, bg = halloween.none, style = 'bold' }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		ModeMsg =				{ fg = halloween.accent }, -- 'showmode' message (e.g., "-- INSERT -- ")
 		MoreMsg =				{ fg = halloween.accent }, -- |more-prompt|
 		NonText =				{ fg = halloween.disabled }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-		Pmenu =					{ fg = halloween.fg, bg = halloween.popupbg }, -- Popup menu: normal item.
+		Pmenu =					{ fg = halloween.text, bg = halloween.popupbg }, -- Popup menu: normal item.
 		PmenuSel =				{ fg = halloween.text, bg = halloween.active }, -- Popup menu: selected item.
 		PmenuSbar =				{ fg = halloween.text, bg = halloween.contrast }, -- Popup menu: scrollbar.
 		PmenuThumb =			{ fg = halloween.fg, bg = halloween.border }, -- Popup menu: Thumb of the scrollbar.
@@ -126,7 +126,7 @@ theme.loadEditor = function ()
 		SpellCap =				{ fg = halloween.blue, bg = halloween.none, style = 'italic,undercurl' }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
 		SpellLocal =			{ fg = halloween.cyan, bg = halloween.none, style = 'italic,undercurl' }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
 		SpellRare =				{ fg = halloween.purple, bg = halloween.none, style = 'italic,undercurl' }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-		StatusLine =			{ fg = halloween.fg, bg = halloween.statuslinebg}, -- status line of current window
+		StatusLine =			{ fg = halloween.accent, bg = halloween.active }, -- status line of current window
 		StatusLineNC =  		{ fg = halloween.fg, bg = halloween.bg }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 		StatusLineTerm =		{ fg = halloween.fg, bg = halloween.active }, -- status line of current terminal window
 		StatusLineTermNC =		{ fg = halloween.text, bg = halloween.bg }, -- status lines of not-current terminal windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
@@ -321,10 +321,10 @@ theme.loadLSP = function ()
         LspDiagnosticsFloatingInformation =     { fg = halloween.paleblue }, -- used for "Information" diagnostic messages in the diagnostics float
         LspDiagnosticsVirtualTextInformation =  { fg = halloween.paleblue }, -- Virtual text "Information"
         LspDiagnosticsUnderlineInformation =    { style = 'undercurl', sp = halloween.paleblue }, -- used to underline "Information" diagnostics.
-        LspDiagnosticsDefaultHint =             { fg = halloween.green },  -- used for "Hint" diagnostic virtual text
-        LspDiagnosticsSignHint =                { fg = halloween.green }, -- used for "Hint" diagnostic signs in sign column
-        LspDiagnosticsFloatingHint =            { fg = halloween.green }, -- used for "Hint" diagnostic messages in the diagnostics float
-        LspDiagnosticsVirtualTextHint =         { fg = halloween.green }, -- Virtual text "Hint"
+        LspDiagnosticsDefaultHint =             { fg = halloween.purple  },  -- used for "Hint" diagnostic virtual text
+        LspDiagnosticsSignHint =                { fg = halloween.purple  }, -- used for "Hint" diagnostic signs in sign column
+        LspDiagnosticsFloatingHint =            { fg = halloween.purple  }, -- used for "Hint" diagnostic messages in the diagnostics float
+        LspDiagnosticsVirtualTextHint =         { fg = halloween.purple  }, -- Virtual text "Hint"
         LspDiagnosticsUnderlineHint =           { style = 'undercurl', sp = halloween.paleblue }, -- used to underline "Hint" diagnostics.
         LspReferenceText =                      { style = 'underline' }, -- used for highlighting "text" references
         LspReferenceRead =                      { style = 'underline' }, -- used for highlighting "read" references
@@ -471,8 +471,8 @@ theme.loadPlugins = function()
         DapStopped =                            { fg = halloween.green },
 
 		-- Illuminate
-		illuminatedWord =						{ style = 'underline' },
-		illuminatedCurWord =					{ style = 'underline' },
+		illuminatedWord =						{ bg = halloween.highight },
+		illuminatedCurWord =					{ bg = halloween.highight },
 
 		-- Hop
 		HopNextKey = 							{ fg = halloween.orange, style = "bold" },

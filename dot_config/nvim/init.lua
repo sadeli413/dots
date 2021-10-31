@@ -40,6 +40,9 @@ vim.o.completeopt="menuone,noselect"
 -- temporary fix for indent-blankline
 vim.o.colorcolumn="99999"
 
+-- Disable line wrapping
+vim.o.wrap=false
+
 ----------------------
 -- Global variables --
 ----------------------

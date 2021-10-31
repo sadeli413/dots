@@ -123,7 +123,7 @@ return require('packer').startup(function(use)
     }
     use 'kyazdani42/nvim-web-devicons'
 
-    -- use 'yashguptaz/calvera-dark.nvim'
+    use 'yashguptaz/calvera-dark.nvim'
 
     ---------------------
     -- Integration --

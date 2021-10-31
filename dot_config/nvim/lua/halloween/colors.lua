@@ -37,7 +37,7 @@ halloween.active =		'#C9C8C9'
 halloween.border =		'#aaa19d'
 halloween.line_numbers =	'#F7E5A0'
 halloween.highlight =		'#322D30'
-halloween.disabled =		'#41415F'
+halloween.disabled =		'#7272AB'
 halloween.accent =		'#FF9753'
 
 halloween.indentHlDefault ='#2A2B2E'
@@ -46,7 +46,7 @@ halloween.popupbg = '#322D30'
 halloween.popupbgActive = '#FF0000'
 halloween.refTextBg = halloween.cyan
 halloween.refTextFg = halloween.fg
-halloween.nvimTreeTxt = '#FF0000'
+halloween.nvimTreeTxt = '#C9C8C9'
 halloween.cursorLineBG = '#454043'
 halloween.statuslinebg = '#2E2532'
 -- Optional colors

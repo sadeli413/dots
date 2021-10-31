@@ -87,5 +87,4 @@ autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
 -------------
 -- Plugins --
 -------------
-require('plugins')
 require('require')

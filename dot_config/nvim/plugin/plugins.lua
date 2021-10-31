@@ -24,6 +24,8 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/cmp-calc'
 
     -- luasnip
     use 'L3MON4D3/LuaSnip'
@@ -141,10 +143,12 @@ return require('packer').startup(function(use)
     ----------------
     use 'folke/which-key.nvim'
 
-    ----------------
-    -- Spellcheck --
-    ----------------
-
-    use 'lewis6991/spellsitter.nvim'
+    -------------------
+    -- File Explorer --
+    -------------------
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = 'kyazda/nvim-web-devicons'
+    }
 
 end)

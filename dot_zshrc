@@ -72,6 +72,8 @@ getPrompt() {
 %{$fg[cyan]%}╰─%(!.#.$)%{$reset_color%} "
     setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
 }
+
+# launch the prompt
 gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd getPrompt
@@ -154,6 +156,7 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+# zsh plugins
 zinit wait lucid blockf for \
     atinit"zicompinit; zicdreplay" \
     atload"_zsh_autosuggest_start" \
@@ -164,5 +167,3 @@ zinit wait lucid blockf for \
     MikeDacre/tmux-zsh-vim-titles \
     arzzen/calc.plugin.zsh \
     MichaelAquilina/zsh-auto-notify
-
-

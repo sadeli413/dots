@@ -30,11 +30,7 @@ require'colorizer'.setup()
 require('nvim_comment').setup({line_mapping="<C-_>"})
 
 -- nvim-autopairs
-require('nvim-autopairs').setup()
-require("nvim-autopairs.completion.cmp").setup({
-    map_cr = true, --  map <CR> on insert mode
-    map_complete = true
-})
+require('nvim-autopairs').setup{}
 
 -- lsp_signature.nvim
 require'lsp_signature'.setup()
@@ -83,19 +79,11 @@ require('specs').setup{
     },
 }
 
--- spellsitter.nvim
-require('spellsitter').setup {
-    hl = 'SpellBad',
-    captures = {}, -- set to {} to spellcheck everything
-    -- Spellchecker to use. values:
-    -- * vimfn: built-in spell checker using vim.fn.spellbadword()
-    -- * ffi: built-in spell checker using the FFI to access the
-    --   internal spell_check() function
-    spellchecker = 'vimfn',
-}
-
 -- todo-comments
 require("todo-comments").setup {}
 
 -- which-key.nvim
 require("which-key").setup {}
+
+-- nvim-tree.lua
+require('config.nvim-tree')

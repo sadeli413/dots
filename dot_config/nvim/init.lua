@@ -43,6 +43,9 @@ vim.o.colorcolumn="99999"
 -- Disable line wrapping
 vim.o.wrap=false
 
+-- Turn off showmode
+vim.o.showmode=false
+
 ----------------------
 -- Global variables --
 ----------------------

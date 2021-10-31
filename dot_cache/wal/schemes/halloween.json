@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sadeli/Pictures/wallpapers/Liz_Halloween.png",
+    "alpha": "100",
+    "special": {
+        "background": "#1e181b",
+        "foreground": "#f4e6e1",
+        "cursor": "#f4e6e1"
+    },
+    "colors": {
+        "color0": "#1e181b",
+        "color1": "#F76594",
+        "color2": "#82D4BB",
+        "color3": "#F7E5A0",
+        "color4": "#FF9753",
+        "color5": "#BE96BD",
+        "color6": "#88D1FE",
+        "color7": "#f4e6e1",
+        "color8": "#aaa19d",
+        "color9": "#F76594",
+        "color10": "#82D4BB",
+        "color11": "#F7E5A0",
+        "color12": "#FF9753",
+        "color13": "#BE96BD",
+        "color14": "#88D1FE",
+        "color15": "#f4e6e1"
+    }
+}

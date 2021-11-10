@@ -1,7 +1,7 @@
 #! /bin/sh
 bspc rule -r "*"
-bspc monitor -d ● ● ● ● ● ● ● ● ● ● 
-bspc monitor HDMI-1 -d ● ● ● ● ● ● ● ● ● ● 
+bspc monitor -d ひ ふ み よ い む な や こ と
+bspc monitor HDMI-1 -d ひ ふ み よ い む な や こ と
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 $HOME/.config/polybar/scripts/launch.sh
@@ -36,6 +36,6 @@ bspc rule -a peek state=floating
 dunst &
 
 # Set wallpaper and then show rofi
-/usr/bin/nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/Liz_Halloween.png
-/usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/Liz_Halloween.png
+/usr/bin/nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/peace_okeno_kamoku.jpg
+/usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/peace_okeno_kamoku.jpg
 /usr/bin/rofi -no-lazy-grab -show drun -theme $HOME/.config/rofi/style_11.rasi

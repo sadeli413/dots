@@ -1,5 +1,5 @@
 local util = {}
-local halloween = require('halloween.theme')
+local peace = require('peace.theme')
 
 -- Go trough the table and highlight the group with the color values
 util.highlight = function(group, color)
@@ -20,7 +20,7 @@ end
 
 -- Only define Calvera if it's the active colorshceme
 function util.onColorScheme()
-    if vim.g.colors_name ~= "halloween" then
+    if vim.g.colors_name ~= "peace" then
         vim.cmd [[autocmd! Calvera]]
         vim.cmd [[augroup! Calvera]]
     end
@@ -30,7 +30,7 @@ end
 util.contrast = function()
     vim.cmd [[augroup Calvera]]
     vim.cmd [[  autocmd!]]
-    vim.cmd [[  autocmd ColorScheme * lua require("halloween.util").onColorScheme()]]
+    vim.cmd [[  autocmd ColorScheme * lua require("peace.util").onColorScheme()]]
     vim.cmd [[  autocmd TermOpen * setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]]
     vim.cmd [[  autocmd FileType packer setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]]
     vim.cmd [[  autocmd FileType qf setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]]
@@ -44,31 +44,31 @@ function util.load()
     if vim.fn.exists("syntax_on") then vim.cmd("syntax reset") end
     vim.o.background = "dark"
     vim.o.termguicolors = true
-    vim.g.colors_name = "halloween"
+    vim.g.colors_name = "peace"
 
     -- Load plugins and lsp async
     local async
     async = vim.loop.new_async(vim.schedule_wrap(function()
-        halloween.loadTerminal()
+        peace.loadTerminal()
 
         -- imort tables for plugins and lsp
-        local plugins = halloween.loadPlugins()
-        local lsp = halloween.loadLSP()
+        local plugins = peace.loadPlugins()
+        local lsp = peace.loadLSP()
 
         for group, colors in pairs(plugins) do
             util.highlight(group, colors)
         end
 
         for group, colors in pairs(lsp) do util.highlight(group, colors) end
-        if vim.g.halloween_contrast == true then util.contrast() end
+        if vim.g.peace_contrast == true then util.contrast() end
         async:close()
 
     end))
 
     -- load base theme
-    local editor = halloween.loadEditor()
-    local syntax = halloween.loadSyntax()
-    local treesitter = halloween.loadTreeSitter()
+    local editor = peace.loadEditor()
+    local syntax = peace.loadSyntax()
+    local treesitter = peace.loadTreeSitter()
 
     for group, colors in pairs(editor) do util.highlight(group, colors) end
 

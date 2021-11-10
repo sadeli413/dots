@@ -296,7 +296,7 @@
     foreground = "#aaa19d"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
-    new_icon = /usr/share/icons/candy-icons-png/preferences/16x16/bell.png
+    #new_icon = /usr/share/icons/candy-icons-png/preferences/16x16/bell.png
 
 [urgency_normal]
     background = "#1e181b"

@@ -39,7 +39,7 @@ require'lsp_signature'.setup()
 require('config.treesitter')
 
 -- lualine.nvim
-require('config.halloween-lualine')
+require('config.peace-lualine')
 
 -- nvim-ts-rainbow
 require'nvim-treesitter.configs'.setup {
@@ -48,13 +48,13 @@ require'nvim-treesitter.configs'.setup {
         extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
         max_file_lines = nil, -- Do not enable for files with more than n lines, int
         colors = {
-            "#f4e6e1",
-            "#88D1FE",
-            "#F7E5A0",
-            "#E6A0AA",
-            "#FF9753",
-            "#BE96BD",
-            "#82D4BB"
+            "#ede1f5",
+            "#A2EFFD",
+            "#E9EB9E",
+            "#D46CA5",
+            "#A39AE8",
+            "#F7B1F9",
+            "#72E2C1"
         }, -- table of hex strings
         -- termcolors = {} -- table of colour name strings
     }

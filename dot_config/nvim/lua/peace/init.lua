@@ -14,7 +14,7 @@
 -- Description:             Colorscheme for NeoVim based on the calvera pallete
 -- Author:                  Yash Gupta <yashguptaz@protonmail.com>
 -- Website:                 https://github.com/yashguptaz/calvera-dark.nvim
-local util = require('halloween.util')
+local util = require('peace.util')
 
 -- Load the theme
 local set = function() util.load() end

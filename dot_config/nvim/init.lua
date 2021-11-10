@@ -43,6 +43,9 @@ vim.o.colorcolumn="99999"
 -- Disable line wrapping
 vim.o.wrap=false
 
+-- Turn off showmode
+vim.o.showmode=false
+
 ----------------------
 -- Global variables --
 ----------------------
@@ -80,7 +83,7 @@ vim.api.nvim_set_keymap('i', '<C-c>', '<Esc>', {noremap=true})
 -- Disable comment continuation on new line
 -- Automatically apply chezmoi changes
 vim.cmd([[
-colorscheme halloween
+colorscheme peace
 autocmd BufWritePost plugins.lua PackerCompile
 au BufNewFile,BufRead /*.rasi setf css
 au BufWinEnter * set formatoptions-=cro

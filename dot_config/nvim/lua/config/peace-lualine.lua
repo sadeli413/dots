@@ -1,16 +1,16 @@
 -- Based on modus_vivendi.lua
 -- https://github.com/hoob3rt/lualine.nvim/blob/master/lua/lualine/themes/modus_vivendi.lua
 local colors = {
-    black = '#1e181b',
-    white = '#f4e6e1',
-    red = '#E6A0AA',
-    green = '#82D4BB',
-    blue = '#FF9753',
-    magenta = '#BE96BD',
-    cyan = '#88D1FE',
-    gray = '#2E2532',
-    darkgray = '#322D30',
-    lightgray = '#565154'
+    black = '#1F1522',
+    white = '#ede1f5',
+    red = '#D46CA5',
+    green = '#72E2C1',
+    blue = '#E397F3',
+    magenta = '#F7B1F9',
+    cyan = '#A2EFFD',
+    gray = '#433044',
+    darkgray = '#312833',
+    lightgray = '#463D48'
 }
 -- LuaFormatter on
 halloween = {

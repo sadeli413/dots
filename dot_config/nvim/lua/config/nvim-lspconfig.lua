@@ -124,6 +124,13 @@ lsp_installer.on_server_ready(function(server)
     -- end
     if server.name == "sumneko_lua" then
         opts.cmd = {"/home/sadeli/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/Linux/lua-language-server", "-E", "/home/sadeli/.local/share/nvim/lsp_servers/sumneko_lua/extension/server" .. "/main.lua"}
+        opts.settings = {
+            Lua = {
+                diagnostics = {
+                    globals = { 'vim' }
+                }
+            }
+        }
     end
 
     -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)

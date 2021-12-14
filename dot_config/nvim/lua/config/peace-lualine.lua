@@ -13,7 +13,7 @@ local colors = {
     lightgray = '#463D48'
 }
 -- LuaFormatter on
-halloween = {
+local peace = {
   normal = {
     a = {bg = colors.blue, fg = colors.lightgray, gui = 'bold'},
     b = {bg = colors.lightgray, fg = colors.blue},
@@ -47,5 +47,5 @@ halloween = {
 }
 
 require'lualine'.setup {
-    options = { theme = halloween },
+    options = { theme = peace }
 }

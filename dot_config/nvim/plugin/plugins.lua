@@ -151,4 +151,12 @@ return require('packer').startup(function(use)
         requires = 'kyazda/nvim-web-devicons'
     }
 
+    -------------
+    -- Tabline --
+    -------------
+    use {
+        'romgrk/barbar.nvim',
+        requires = {'kyazdani42/nvim-web-devicons'}
+    }
+
 end)

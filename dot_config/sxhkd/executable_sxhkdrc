@@ -28,6 +28,7 @@ super + Return
 	/usr/bin/kitty
 
 # program launcher
+# Super_L
 super + @space
     /usr/bin/rofi -no-lazy-grab -show drun -theme $HOME/.config/rofi/style_11.rasi
 
@@ -181,3 +182,7 @@ XF86Audio{Play,Next,Prev}
 XF86MonBrightness{Down,Up}
     light -{U,A} 20
 	# xbacklight -{dec,inc} 20
+
+# kek
+super + shift + ctrl + o
+    xclip -sel clip -t image/jpeg -i $HOME/Downloads/afterdark/turtle.jpg

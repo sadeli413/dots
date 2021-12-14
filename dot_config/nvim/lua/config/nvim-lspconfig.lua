@@ -43,7 +43,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -66,10 +66,10 @@ local on_attach = function(client, bufnr)
 end
 
 -- Change diagnostic symbols in the gutter
-local signs = { Error = " ", Warning = " ", Hint = " ", Info = " " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
-    local hl = "LspDiagnosticsSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -123,11 +123,15 @@ lsp_installer.on_server_ready(function(server)
     --      opts.root_dir = function() ... end
     -- end
     if server.name == "sumneko_lua" then
-        opts.cmd = {"/home/sadeli/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/Linux/lua-language-server", "-E", "/home/sadeli/.local/share/nvim/lsp_servers/sumneko_lua/extension/server" .. "/main.lua"}
+        -- opts.cmd = {"/home/sadeli/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/Linux/lua-language-server", "-E", "/home/sadeli/.local/share/nvim/lsp_servers/sumneko_lua/extension/server" .. "/main.lua"}
         opts.settings = {
             Lua = {
                 diagnostics = {
                     globals = { 'vim' }
+                },
+                workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    library = vim.api.nvim_get_runtime_file("", true)
                 }
             }
         }

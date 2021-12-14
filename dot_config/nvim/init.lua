@@ -62,10 +62,10 @@ vim.g.indentLinechar="|"
 vim.g.mkdp_browser="firefox"
 
 -- colorscheme
-vim.g.halloween_italic_comments = true
-vim.g.halloween_italic_keywords = true
-vim.g.halloween_contrast = true
-vim.g.halloween_borders = true
+vim.g.peace_italic_comments = true
+vim.g.peace_italic_keywords = true
+vim.g.peace_contrast = true
+vim.g.peace_borders = true
 
 -- Keep sign column (gutter) the same width
 vim.o.signcolumn='yes'

@@ -25,7 +25,6 @@ require('lsp-colors')
 
 -- nvim-colorizer
 require'colorizer'.setup()
-
 -- nvim-comment
 require('nvim_comment').setup({line_mapping="<C-_>"})
 
@@ -87,3 +86,6 @@ require("which-key").setup {}
 
 -- nvim-tree.lua
 require('config.nvim-tree')
+
+-- babar.nvim
+require('config.barbar')

@@ -4,7 +4,7 @@ bspc monitor -d ひ ふ み よ い む な や こ と
 bspc monitor HDMI-1 -d ひ ふ み よ い む な や こ と
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-$HOME/.config/polybar/scripts/launch.sh
+$HOME/.config/polybar/scripts/launch.sh &
 
 bspc config border_width         3
 bspc config window_gap           10
@@ -15,8 +15,7 @@ bspc config split_ratio          0.50
 # bspc config split_ratio	 0.618 # golden ratio
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
-bspc config focus_follows_pointer true
-
+bspc config focus_follows_pointer true 
 # source the colors.
 . "${HOME}/.cache/wal/colors.sh"
 
@@ -37,4 +36,5 @@ dunst &
 # Set wallpaper and then show rofi
 /usr/bin/nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/peace_okeno_kamoku.jpg
 /usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/peace_okeno_kamoku.jpg
+notify-send "$(fortune -s)"
 /usr/bin/rofi -no-lazy-grab -show drun -theme $HOME/.config/rofi/style_11.rasi

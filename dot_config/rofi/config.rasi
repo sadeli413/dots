@@ -1,7 +1,8 @@
 /** Basic config file **/
 
 configuration {
-  modi: "window,drun,filebrowser";
-  show-icons:         true;
-  icon-theme:         "candy-icons";
+  modi:             "window,drun";
+  show-icons:       true;
+  icon-theme:       "candy-icons";
+  matching:         "fuzzy";
 }

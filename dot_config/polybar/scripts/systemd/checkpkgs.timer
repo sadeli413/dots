@@ -1,0 +1,11 @@
+[Unit]
+Description=Run checkupdates service every ten minutes
+Requires=checkpkgs.service
+
+[Timer]
+Unit=checkpkgs.service
+OnUnitActiveSec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

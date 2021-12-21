@@ -7,6 +7,7 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 CONFIG=/home/sadeli/.config/polybar/config.ini
+
 # Launch Polybar, using default config location ~/.config/polybar/config
 # polybar on both screens https://github.com/polybar/polybar/issues/763
 if type "xrandr"; then

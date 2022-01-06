@@ -24,7 +24,14 @@ cmp.setup({
         { name = 'vsnip' },
         { name = 'nvim_lsp' },
         { name = 'cmdline' },
-        { name = 'calc' }
+        { name = 'calc' },
+        { name = 'buffer',
+            options = {
+                get_bufnrs = function()
+                    return vim.api.nvim_list_bufs()
+                end
+            }
+        }
     }, {
         { name = 'buffer' }
     }),

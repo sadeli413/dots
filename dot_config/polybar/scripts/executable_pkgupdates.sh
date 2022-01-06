@@ -8,7 +8,7 @@ done
 RED='%{T5}%{F#D46CA5}%{u#D46CA5}%{+u}'
 PURPLE='%{T5}%{F#E397F3}'
 FONT='%{T1}'
-NIL='%{F-}%{T-}%{u-}'
+NIL='%{-u}%{F-}%{T-}'
 
 CHECKUPDATES=$(fakeroot /usr/bin/pacman -Qu --dbpath /tmp/checkup-db-1000 2>/dev/null)
 CRITICAL=$(echo "$CHECKUPDATES" | grep linux)

@@ -111,7 +111,6 @@ alias la='exa --icons -lgaa --git --color-scale'    # Fancy ls -la
 alias l='exa --icons -lg --git --color-scale'       # Fancy ls -l
 alias tree="exa --icons -T"
 alias vim='nvim'
-alias cme='chezmoi edit'
 alias ssh='TERM=xterm-256color ssh' # So ssh works properly with kitty
 alias cp="cp -i"                    # Confirm before overwriting something
 alias df='df -h'

@@ -136,6 +136,14 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
+# Create kitty window with slop
+super + shift + s
+    bspc rule -a kitty -o state=floating rectangle=$(/usr/bin/slop -o) && /usr/bin/kitty
+
+# Create any window with slop
+super + ctrl + s
+    bspc rule -a \* -o state=floating rectangle=$(/usr/bin/slop -o)
+
 #
 # move/resize
 #

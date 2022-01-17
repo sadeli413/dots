@@ -122,6 +122,10 @@ lsp_installer.on_server_ready(function(server)
     -- if server.name == "tsserver" then
     --      opts.root_dir = function() ... end
     -- end
+    if server.name == "grammarly" then
+        return
+    end
+
     if server.name == "sumneko_lua" then
         -- opts.cmd = {"/home/sadeli/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/Linux/lua-language-server", "-E", "/home/sadeli/.local/share/nvim/lsp_servers/sumneko_lua/extension/server" .. "/main.lua"}
         opts.cmd = { "lua-language-server" }

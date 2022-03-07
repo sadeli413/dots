@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-calc'
+    use 'hrsh7th/cmp-omni'
 
     -- luasnip
     use 'L3MON4D3/LuaSnip'
@@ -43,17 +44,40 @@ return require('packer').startup(function(use)
     -- Virtual types
     -- use 'jubnzv/virtual-types.nvim'
 
+    -- Symbols viewer
+    use 'simrat39/symbols-outline.nvim'
+
+    -- List diagnostics
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+    }
+
     ------------
     -- Syntax --
     ------------
+
+    -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
 
+    -- Surround
+    use 'echasnovski/mini.nvim'
+    -- use {
+    --     "blackCauldron7/surround.nvim",
+    --     config = function()
+    --         require"surround".setup {mappings_style = "sandwich"}
+    --     end
+    -- }
+
     -------------
     -- Editing --
     -------------
+
+    -- XML and HTML autotag
+    use 'windwp/nvim-ts-autotag'
 
     -- goto preview
     use 'rmagatti/goto-preview'
@@ -92,15 +116,6 @@ return require('packer').startup(function(use)
     --     requires = { {'nvim-lua/plenary.nvim'} }
     -- }
 
-    -- todo-comments dep
-    -- use {
-    --     "folke/trouble.nvim",
-    --     requires = "kyazdani42/nvim-web-devicons",
-    --     config = function()
-    --         require("trouble").setup {}
-    --     end
-    -- }
-
     --------------
     -- Comments --
     --------------
@@ -124,6 +139,11 @@ return require('packer').startup(function(use)
     use 'kyazdani42/nvim-web-devicons'
 
     use 'yashguptaz/calvera-dark.nvim'
+
+    use {
+        "catppuccin/nvim",
+        as = "catppuccin"
+    }
 
     ---------------------
     -- Integration --

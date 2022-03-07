@@ -46,6 +46,9 @@ vim.o.wrap=false
 -- Turn off showmode
 vim.o.showmode=false
 
+-- Keep sign column (gutter) the same width
+vim.o.signcolumn='yes'
+
 ----------------------
 -- Global variables --
 ----------------------
@@ -67,12 +70,6 @@ vim.g.peace_italic_keywords = true
 vim.g.peace_contrast = true
 vim.g.peace_borders = true
 
--- Keep sign column (gutter) the same width
-vim.o.signcolumn='yes'
-
--- map Ctrl c to escape
-vim.api.nvim_set_keymap('i', '<C-c>', '<Esc>', {noremap=true})
-
 ----------------------
 -- Run vim commands --
 ----------------------
@@ -90,7 +87,8 @@ au BufWinEnter * set formatoptions-=cro
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
 ]])
 
--------------
--- Plugins --
--------------
+-- Plugins
 require('require')
+
+-- Keybinds
+require('config.keymaps')

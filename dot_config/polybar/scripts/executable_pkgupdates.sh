@@ -6,7 +6,7 @@ done
 
 # polybar color formatting
 RED='%{T5}%{F#D46CA5}%{u#D46CA5}%{+u}'
-PURPLE='%{T5}%{F#E397F3}'
+PURPLE='%{T5}%{F#E397F3}%{u#E397F3}%{+u#E397F3}'
 FONT='%{T1}'
 NIL='%{-u}%{F-}%{T-}'
 

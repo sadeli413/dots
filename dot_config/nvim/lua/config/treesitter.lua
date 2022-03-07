@@ -23,6 +23,26 @@ require'nvim-treesitter.configs'.setup {
             node_decremental = "grm",
         },
     },
+    -- nvim-ts-rainbow
+    rainbow = {
+        enable = true,
+        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        max_file_lines = nil, -- Do not enable for files with more than n lines, int
+        colors = {
+            "#ede1f5",
+            "#A2EFFD",
+            "#E9EB9E",
+            "#D46CA5",
+            "#A39AE8",
+            "#F7B1F9",
+            "#72E2C1"
+        }, -- table of hex strings
+        -- termcolors = {} -- table of colour name strings
+    },
+    -- nvim-ts-autotag
+    autotag = {
+        enable = true,
+    }
 }
 
 -- folding

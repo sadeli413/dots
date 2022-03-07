@@ -25,6 +25,7 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'cmdline' },
         { name = 'calc' },
+        { name = 'omni' },
         { name = 'buffer',
             options = {
                 get_bufnrs = function()

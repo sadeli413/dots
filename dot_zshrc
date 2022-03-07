@@ -120,6 +120,9 @@ alias cl='clear'
 alias icat='kitty +kitten icat'
 alias locate='plocate'
 
+# Interactive comments
+setopt interactivecomments
+
 # autocorrect
 eval $(thefuck --alias)
 

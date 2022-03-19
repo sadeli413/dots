@@ -326,6 +326,8 @@ theme.loadLSP = function ()
         LspDiagnosticsFloatingHint =            { fg = peace.purple  }, -- used for "Hint" diagnostic messages in the diagnostics float
         LspDiagnosticsVirtualTextHint =         { fg = peace.purple  }, -- Virtual text "Hint"
         LspDiagnosticsUnderlineHint =           { style = 'undercurl', sp = peace.paleblue }, -- used to underline "Hint" diagnostics.
+
+        -- NOTE: FIXED FOR VIM-ILLUMINATE --
         LspReferenceText =                      { style = 'underline' }, -- used for highlighting "text" references
         LspReferenceRead =                      { style = 'underline' }, -- used for highlighting "read" references
         LspReferenceWrite =                     { style = 'underline' }, -- used for highlighting "write" references

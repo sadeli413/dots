@@ -64,7 +64,8 @@ return require('packer').startup(function(use)
     }
 
     -- Surround
-    use 'echasnovski/mini.nvim'
+    use 'tpope/vim-surround'
+    -- use 'echasnovski/mini.nvim'
     -- use {
     --     "blackCauldron7/surround.nvim",
     --     config = function()

@@ -38,7 +38,11 @@ require'lsp_signature'.setup()
 require('config.treesitter')
 
 -- lualine.nvim
-require('config.peace-lualine')
+require('lualine').setup {
+    options = {
+        theme = "catppuccin"
+    }
+}
 
 -- specs.nvim
 require('specs').setup{
@@ -70,6 +74,3 @@ require('config.nvim-tree')
 
 -- babar.nvim
 require('config.barbar')
-
--- mini.surround
-require('mini.surround').setup({})

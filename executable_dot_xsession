@@ -25,7 +25,7 @@ xset b off
 xset b 0 0 0
 
 # Curser rate
-xset r rate 330 40
+xset r rate 250 45
 
 # turn off screen saver
 xset dpms 0 0 0

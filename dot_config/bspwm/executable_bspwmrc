@@ -34,7 +34,7 @@ bspc rule -a peek state=floating
 dunst &
 
 # Set wallpaper and then show rofi
-/usr/bin/nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/peace_okeno_kamoku.jpg
-/usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/peace_okeno_kamoku.jpg
+/usr/bin/nitrogen --head=0 --set-zoom-fill $HOME/Pictures/wallpapers/dangerdrop-red.png
+/usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/dangerdrop-red.png
 /usr/bin/notify-send "$(/usr/bin/fortune -s)"
 /usr/bin/rofi -no-lazy-grab -show drun -theme $HOME/.config/rofi/style_11.rasi

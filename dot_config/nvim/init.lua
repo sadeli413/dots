@@ -64,11 +64,18 @@ vim.g.indentLinechar="|"
 -- Set default web browser for markdown-preview
 vim.g.mkdp_browser="firefox"
 
--- colorscheme
-vim.g.peace_italic_comments = true
-vim.g.peace_italic_keywords = true
-vim.g.peace_contrast = true
-vim.g.peace_borders = true
+-- Catppuccin settings
+require("catppuccin").setup({
+    styles = {
+        variables = "NONE"
+    },
+    integrations = {
+        lsp_trouble = true,
+        which_key = true,
+        barbar = true,
+        ts_rainbow = true,
+    }
+})
 
 ----------------------
 -- Run vim commands --
@@ -79,12 +86,23 @@ vim.g.peace_borders = true
 -- Allow nvim-colorizer to colorize .rasi files
 -- Disable comment continuation on new line
 -- Automatically apply chezmoi changes
+-- Set custom vim-illuminate configs
 vim.cmd([[
-colorscheme peace
+colorscheme catppuccin
 autocmd BufWritePost plugins.lua PackerCompile
 au BufNewFile,BufRead /*.rasi setf css
 au BufWinEnter * set formatoptions-=cro
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
+
+augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline guibg=NONE
+    autocmd VimEnter * hi illuminatedCurWord cterm=underline gui=underline guibg=NONE
+augroup END
+
+hi LspReferenceText cterm=underline gui=underline guibg=NONE
+hi LspReferenceRead cterm=underline gui=underline guibg=NONE
+hi LspReferenceWrite cterm=underline gui=underline guibg=NONE
 ]])
 
 -- Plugins

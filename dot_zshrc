@@ -66,7 +66,7 @@ getParent() {
 getPrompt() {
     PROMPT="%{$fg[cyan]%}╭─"
     PROMPT+=$(getParent)
-    PROMPT+="[%B%{$fg[blue]%}%n%{$fg[cyan]%}@%{$fg[blue]%}%m%{$fg[cyan]%}: %~%b%{$fg[cyan]%}]%{$reset_color%}"
+    PROMPT+="[%B%{$fg[magenta]%}%n%{$fg[cyan]%}@%{$fg[magenta]%}%m%{$fg[cyan]%}: %~%b%{$fg[cyan]%}]%{$reset_color%}"
     PROMPT+=$(getGitStatus)
     PROMPT+="
 %{$fg[cyan]%}╰─%(!.#.$)%{$reset_color%} "

@@ -1,7 +1,5 @@
+----------------- Vim Options --
 -----------------
--- Vim Options --
------------------
-
 vim.o.encoding="UTF-8"
 
 -- Show relative numberlines instead of absolute
@@ -74,6 +72,11 @@ require("catppuccin").setup({
         which_key = true,
         barbar = true,
         ts_rainbow = true,
+        nvimtree = {
+            enabled = true,
+            show_root = true,
+            transparent_panel = false,
+        },
     }
 })
 

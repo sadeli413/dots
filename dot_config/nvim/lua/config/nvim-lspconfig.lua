@@ -57,7 +57,10 @@ local on_attach = function(client, bufnr)
 
     -- Customizing how diagnostics are displayed
     vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true,
+        -- virtual_text = true,
+        virtual_text = {
+            prefix = '●', -- Could be '▎', 'x', '■'
+        },
         signs = true,
         underline = true,
         update_in_insert = true,
@@ -71,12 +74,6 @@ for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-        prefix = '●', -- Could be '▎', 'x', '■'
-    }
-})
 
 -- Print diagnostics in the status line
 -- function PrintDiagnostics(opts, bufnr, line_nr, client_id)

@@ -74,3 +74,7 @@ require('config.nvim-tree')
 
 -- babar.nvim
 require('config.barbar')
+
+-- rust-tools.nvim
+require('rust-tools').setup({})
+require('rust-tools.inlay_hints').set_inlay_hints()

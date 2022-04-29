@@ -53,6 +53,15 @@ return require('packer').startup(function(use)
         requires = "kyazdani42/nvim-web-devicons",
     }
 
+    -- Rust
+    use {
+        'simrat39/rust-tools.nvim',
+        requires = {
+            {'nvim-lua/plenary.nvim'},
+            {'mfussenegger/nvim-dap'},
+        }
+    }
+
     ------------
     -- Syntax --
     ------------

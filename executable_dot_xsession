@@ -52,7 +52,7 @@ export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Fix segfault during Burp Suite startup
-export app_java_home=/usr/lib/jvm/java-17-openjdk $HOME/.local/share/BurpSuiteCommunity
+export app_java_home=/usr/lib/jvm/java-18-openjdk
 
 # numlock
 numlockx &

@@ -5,12 +5,12 @@ while ! /usr/bin/fakeroot /usr/bin/pacman -Qu --dbpath /tmp/checkup-db-1000 >/de
 done
 
 # polybar color formatting
-RED='%{T5}%{F#D46CA5}%{u#D46CA5}%{+u}'
-PURPLE='%{T5}%{F#E397F3}%{u#E397F3}%{+u}'
+RED='%{T5}%{F#F28FAD}%{u#F28FAD}%{+u}'
+YELLOW='%{T5}%{F#FAE3B0}%{u#FAE3B0}%{+u}'
 FONT='%{T1}'
 NIL='%{-u}%{F-}%{T-}'
 
 CHECKUPDATES=$(/usr/bin/fakeroot /usr/bin/pacman -Qu --dbpath /tmp/checkup-db-1000 2>/dev/null)
 CRITICAL=$(echo "$CHECKUPDATES" | grep linux)
 COUNT=$(echo "$CHECKUPDATES" | wc -l)
-[[ -z $CRITICAL ]] && echo "$PURPLE$FONT $COUNT$NIL  " || echo "$RED󰮯$FONT $COUNT$NIL  " 
+[[ -z $CRITICAL ]] && echo "$YELLOW󰮯$FONT $COUNT$NIL  " || echo "$RED$FONT $COUNT$NIL  " 

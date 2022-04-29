@@ -8,6 +8,6 @@ Wallpaper by dangerdrop: https://www.pixiv.net/en/artworks/55725854
 
 - **bar**: [polybar](https://github.com/polybar/polybar)
 - **launcher**: [rofi](https://github.com/adi1090x/rofi)
-- **compositor**: [picom-ibhagwan-git](https://github.com/ibhagwan/picom)
+- **compositor**: [picom-jonaburg-git](https://github.com/jonaburg/picom)
 - **discord theme**:[discocss](https://github.com/mlvzk/discocss)
 - **spotify theme**: [spicetify](https://github.com/khanhas/spicetify-cli)

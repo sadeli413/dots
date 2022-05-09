@@ -4,7 +4,7 @@
 
 -- nvim-lspconfig and nvim-lsp-installer
 require('config.nvim-lspconfig')
-require("nvim-lsp-installer").settings {
+require("nvim-lsp-installer").setup({
     ui = {
         icons = {
             server_installed = "✓",
@@ -12,7 +12,7 @@ require("nvim-lsp-installer").settings {
             server_uninstalled = "✗"
         }
     }
-}
+})
 
 -- nvim-cmp
 require('config.nvim-cmp')

@@ -76,5 +76,8 @@ require('config.nvim-tree')
 require('config.barbar')
 
 -- rust-tools.nvim
-require('rust-tools').setup({})
-require('rust-tools.inlay_hints').set_inlay_hints()
+-- require('rust-tools').setup({})
+-- require('rust-tools.inlay_hints').set_inlay_hints()
+
+-- fidgent.nvim
+require"fidget".setup{}

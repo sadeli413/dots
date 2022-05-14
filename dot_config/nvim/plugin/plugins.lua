@@ -42,7 +42,7 @@ return require('packer').startup(function(use)
     use 'folke/lsp-colors.nvim'
 
     -- Virtual types
-    -- use 'jubnzv/virtual-types.nvim'
+    use 'jubnzv/virtual-types.nvim'
 
     -- Symbols viewer
     use 'simrat39/symbols-outline.nvim'
@@ -61,6 +61,15 @@ return require('packer').startup(function(use)
             {'mfussenegger/nvim-dap'},
         }
     }
+
+    -- Code actions
+    use {
+        'weilbith/nvim-code-action-menu',
+        cmd = 'CodeActionMenu'
+    }
+
+    -- lsp progress
+    use 'j-hui/fidget.nvim'
 
     ------------
     -- Syntax --
@@ -188,5 +197,20 @@ return require('packer').startup(function(use)
         'romgrk/barbar.nvim',
         requires = {'kyazdani42/nvim-web-devicons'}
     }
+
+    -------------
+    -- Utility --
+    -------------
+    -- Notifications
+    use 'rcarriga/nvim-notify'
+
+    -------------
+    -- Startup --
+    -------------
+    -- Display neovim startup time
+    -- use 'henriquehbr/nvim-startup.lua'
+
+    -- Improve startup time
+    -- use 'lewis6991/impatient.nvim'
 
 end)

@@ -1,6 +1,5 @@
 --------------------
--- nvim-lspconfig --
---------------------
+-- nvim-lspconfig -- ------------------
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -34,6 +33,9 @@ local on_attach = function(client, bufnr)
 
     -- vim-illuminate
     require 'illuminate'.on_attach(client)
+
+    -- virtual-types
+    -- require'virtualtypes'.on_attach(client)
 end
 
 -- UI Customization
@@ -58,25 +60,16 @@ local handlers =  {
 }
 
 vim.diagnostic.config({
-    virtual_text = true,
+    virtual_text = {
+        source = "always",  -- Or "if_many"
+        prefix = '●', -- Could be '■', '▎', 'x'
+    },
     signs = true,
     underline = true,
     update_in_insert = false,
     severity_sort = false,
-})
-
-vim.diagnostic.config({
-    virtual_text = {
-        source = "always",  -- Or "if_many"
-    },
     float = {
         source = "always",  -- Or "if_many"
-    },
-})
-
-vim.diagnostic.config({
-    virtual_text = {
-        prefix = '●', -- Could be '■', '▎', 'x'
     }
 })
 
@@ -89,56 +82,49 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = {
-    'clangd',
-    'cmake',
-    'cssls',
-    'emmet_ls',
-    'golangci_lint_ls',
-    'gopls',
-    'grammarly',
-    'html',
-    'rust_analyzer',
-    'sumneko_lua',
-    'zk'
-}
-
 local lsp_path = "/home/sadeli/.local/share/nvim/lsp_servers/"
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-for _, lsp in pairs(servers) do
-    local setup = {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        handlers = handlers
-    }
-
-    if lsp == "clangd" then
-        setup.cmd = {lsp_path .. "clangd/clangd/bin/clangd"}
-    end
-    if lsp == "cmake" then
-        setup.cmd = {lsp_path .. "cmake/venv/bin/cmake-language-server"}
-    end
-    if lsp == "cssls" then
-        setup.cmd = {lsp_path .. "cssls/node_modules/vscode-langservers-extracted/bin/vscode-css-language-server", "--stdio"}
-    end
-    if lsp == "emmet_ls" then
-        setup.cmd = {lsp_path .. "emmet_ls/node_modules/.bin/emmet-ls", "--stdio"}
-    end
-    if lsp == "golangci_lint_ls" then
-        setup.cmd = {lsp_path .. "golangci_lint_ls/golangci-lint-langserver"}
-        setup.init_options = {
-            command = {lsp_path .. "golangci_lint_ls/golangci-lint", "run", "--out-format", "json"}
+local servers = {
+    bashls = {
+        cmd = {lsp_path .. "bashls/node_modules/.bin/bash-language-server", "start"},
+        filetypes = {"sh", "zsh"}
+    };
+    clangd = {
+        cmd = {lsp_path .. "clangd/clangd/bin/clangd"}
+    },
+    cmake = {
+        cmd = {lsp_path .. "cmake/venv/bin/cmake-language-server"}
+    },
+    cssls = {
+        cmd = {lsp_path .. "cssls/node_modules/vscode-langservers-extracted/bin/vscode-css-language-server", "--stdio"}
+    },
+    emmet_ls = {
+        cmd = {lsp_path .. "emmet_ls/node_modules/.bin/emmet-ls", "--stdio"}
+    },
+    golangci_lint_ls = {
+        cmd = {lsp_path .. "golangci_lint_ls/golangci-lint-langserver"},
+        init_options = {
+            command = {lsp_path .. "golangci_lint_ls/golangci-lint","run", "--out-format", "json"}
         }
-    end
-    if lsp == "gopls" then
-        setup.cmd = {lsp_path .. "gopls/gopls"}
-    end
-    if lsp == "html" then
-        setup.cmd = {lsp_path .. "html/node_modules/.bin/vscode-html-language-server", "--stdio"}
-    end
-    if lsp == "sumneko_lua" then
-        setup.cmd = {"lua-language-server"}
-        setup.settings = {
+    },
+    gopls = {
+        cmd = {lsp_path .. "gopls/gopls"}
+    },
+    grammarly = {
+        cmd = {lsp_path .. "grammarly/node_modules/.bin/unofficial-grammarly-language-server"}
+    },
+    html = {
+        cmd = {lsp_path .. "html/node_modules/.bin/vscode-html-language-server", "--stdio"}
+    },
+    jedi_language_server = {
+        cmd = {lsp_path .. "jedi_language_server/venv/bin/jedi-language-server"}
+    },
+    pyright = {
+        cmd = {lsp_path .. "pyright/node_modules/.bin/pyright-langserver", "--stdio"}
+    };
+    sumneko_lua = {
+        cmd = {"lua-language-server"},
+        settings = {
             Lua ={
                 diagnostics = {
                     globals = { 'vim' }
@@ -149,13 +135,21 @@ for _, lsp in pairs(servers) do
                 },
                 telemetry = {
                     enable = false,
-                },
-            },
+                }
+            }
         }
-    end
-    if lsp == "zk" then
-        setup.cmd = {lsp_path .. "zk/zk", "lsp"}
-    end
+    },
+    rust_analyzer = {
+        cmd = {"rust-analyzer"}
+    },
+    zk = {
+        cmd = {lsp_path .. "zk/zk", "lsp"}
+    }
+}
 
+for lsp, setup in pairs(servers) do
+    setup.on_attach = on_attach
+    setup.capabilities = capabilities
+    setup.handlers = handlers
     require('lspconfig')[lsp].setup(setup)
 end

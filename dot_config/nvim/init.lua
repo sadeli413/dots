@@ -90,6 +90,7 @@ require("catppuccin").setup({
 -- Disable comment continuation on new line
 -- Automatically apply chezmoi changes
 -- Set custom vim-illuminate configs
+-- Set nvim-notify colors
 vim.cmd([[
 colorscheme catppuccin
 autocmd BufWritePost plugins.lua PackerCompile
@@ -106,6 +107,27 @@ augroup END
 hi LspReferenceText cterm=underline gui=underline guibg=NONE
 hi LspReferenceRead cterm=underline gui=underline guibg=NONE
 hi LspReferenceWrite cterm=underline gui=underline guibg=NONE
+
+hi NotifyERRORBorder guifg=#F28FAD
+hi NotifyWARNBorder guifg=#F8BD96
+hi NotifyINFOBorder guifg=#ABE9B3
+hi NotifyDEBUGBorder guifg=#C3BAC6
+hi NotifyTRACEBorder guifg=#6E6C7E
+hi NotifyERRORIcon guifg=#F28FAD
+hi NotifyWARNIcon guifg=#FAE3B0
+hi NotifyINFOIcon guifg=#ABE9B3
+hi NotifyDEBUGIcon guifg=#C3BAC6
+hi NotifyTRACEIcon guifg=#DDB6F2
+hi NotifyERRORTitle  guifg=#F28FAD
+hi NotifyWARNTitle guifg=#FAE3B0
+hi NotifyINFOTitle guifg=#ABE9B3
+hi NotifyDEBUGTitle  guifg=#C3BAC6
+hi NotifyTRACETitle  guifg=#DDB6F2
+hi link NotifyERRORBody Normal
+hi link NotifyWARNBody Normal
+hi link NotifyINFOBody Normal
+hi link NotifyDEBUGBody Normal
+hi link NotifyTRACEBody Normal
 ]])
 
 -- Plugins

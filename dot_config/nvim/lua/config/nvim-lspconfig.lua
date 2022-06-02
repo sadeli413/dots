@@ -116,9 +116,9 @@ local servers = {
     html = {
         cmd = {lsp_path .. "html/node_modules/.bin/vscode-html-language-server", "--stdio"}
     },
-    jedi_language_server = {
-        cmd = {lsp_path .. "jedi_language_server/venv/bin/jedi-language-server"}
-    },
+    -- jedi_language_server = {
+    --     cmd = {lsp_path .. "jedi_language_server/venv/bin/jedi-language-server"}
+    -- },
     pyright = {
         cmd = {lsp_path .. "pyright/node_modules/.bin/pyright-langserver", "--stdio"}
     };

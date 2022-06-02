@@ -1,6 +1,20 @@
 -------------------------------
 -- Plugins that need require --
 -------------------------------
+-- rust-tools.nvim
+require('rust-tools').setup({
+    server = {
+        settings = {
+            ['rust-analyzer'] = {
+                cargo = {
+                    autoReload = true,
+                    runBuildScripts = true
+                }
+            }
+        }
+    }
+})
+require('rust-tools.inlay_hints').set_inlay_hints()
 
 -- nvim-lspconfig and nvim-lsp-installer
 require('config.nvim-lspconfig')
@@ -75,9 +89,9 @@ require('config.nvim-tree')
 -- babar.nvim
 require('config.barbar')
 
--- rust-tools.nvim
--- require('rust-tools').setup({})
--- require('rust-tools.inlay_hints').set_inlay_hints()
 
 -- fidgent.nvim
 require"fidget".setup{}
+
+-- crates.nvim
+require('crates').setup()

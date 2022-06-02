@@ -11,13 +11,11 @@ CONFIG=/home/sadeli/.config/polybar/config.ini
 # Launch Polybar, using default config location ~/.config/polybar/config
 # polybar on both screens https://github.com/polybar/polybar/issues/763
 if type "xrandr"; then
-  for m in $(polybar --list-monitors | cut -d":" -f1); do
-    MONITOR=$m polybar --config=$CONFIG --reload master &
-    MONITOR=$m polybar --config=$CONFIG --reload spotify &
-  done
+    for m in $(polybar --list-monitors | cut -d":" -f1); do
+        MONITOR=$m polybar --config=$CONFIG --reload master &
+    done
 else
-  polybar --config=$CONFIG --reload master &
-  polybar --config=$CONFIG --reload spotify &
+    polybar --config=$CONFIG --reload master &
 fi
 
 echo "Polybar launched..."

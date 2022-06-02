@@ -62,6 +62,11 @@ return require('packer').startup(function(use)
         }
     }
 
+    use {
+        'saecki/crates.nvim',
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
+
     -- Code actions
     use {
         'weilbith/nvim-code-action-menu',
@@ -203,6 +208,11 @@ return require('packer').startup(function(use)
     -------------
     -- Notifications
     use 'rcarriga/nvim-notify'
+
+    ----------
+    -- Yuck --
+    ----------
+    use 'elkowar/yuck.vim'
 
     -------------
     -- Startup --

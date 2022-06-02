@@ -35,6 +35,7 @@ cmp.setup({
         { name = 'cmdline' },
         { name = 'calc' },
         { name = 'omni' },
+        { name = 'crates' },
         { name = 'buffer',
             options = {
                 get_bufnrs = function()

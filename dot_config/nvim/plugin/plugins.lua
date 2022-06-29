@@ -145,7 +145,7 @@ return require('packer').startup(function(use)
     --------------
 
     -- Comment toggle
-    use 'terrortylor/nvim-comment'
+    use 'numToStr/Comment.nvim'
 
     -- Fancy TODO: comments
     use {

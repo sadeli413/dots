@@ -1,4 +1,4 @@
--------------------------------
+
 -- Plugins that need require --
 -------------------------------
 -- rust-tools.nvim
@@ -7,14 +7,18 @@ require('rust-tools').setup({
         settings = {
             ['rust-analyzer'] = {
                 cargo = {
-                    autoReload = true,
+                    -- autoReload = true,
                     runBuildScripts = true
+                },
+                diagnostics = {
+                    disabled = {"unresolved-proc-macro"}
                 }
             }
         }
     }
 })
-require('rust-tools.inlay_hints').set_inlay_hints()
+-- require('rust-tools').setup()
+-- require('rust-tools.inlay_hints').set_inlay_hints()
 
 -- nvim-lspconfig and nvim-lsp-installer
 require('config.nvim-lspconfig')
@@ -39,8 +43,6 @@ require('lsp-colors')
 
 -- nvim-colorizer
 require'colorizer'.setup()
--- nvim-comment
-require('nvim_comment').setup({line_mapping="<C-_>"})
 
 -- nvim-autopairs
 require('nvim-autopairs').setup{}
@@ -95,3 +97,5 @@ require"fidget".setup{}
 
 -- crates.nvim
 require('crates').setup()
+
+require('Comment').setup()

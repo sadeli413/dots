@@ -1,5 +1,4 @@
------------------ Vim Options --
------------------
+----------------- Vim Options -------------------
 vim.o.encoding="UTF-8"
 
 -- Show relative numberlines instead of absolute

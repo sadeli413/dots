@@ -173,17 +173,14 @@ ctrl + alt + {Left,Right}
 # Toggle volume mute
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
-	#/usr/bin/pulseaudio-ctl mute
 
 # Toggle mic mute
 XF86AudioMicMute
     pactl set-source-mute @DEFAULT_SOURCE@ toggle
-	#/usr/bin/pulseaudio-ctl mute-input
 
 # Change volume
 XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
-    #/usr/bin/pulseaudio-ctl {up,down} 5
 
 # Control playerctl
 XF86Audio{Play,Next,Prev}

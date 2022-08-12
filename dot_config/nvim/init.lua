@@ -5,10 +5,10 @@ vim.o.encoding="UTF-8"
 vim.o.relativenumber=true
 vim.o.number=true
 
--- Tab is 4 spaces
-vim.o.tabstop=4
-vim.o.softtabstop=4
-vim.o.shiftwidth=4
+-- Tab is 2 spaces
+vim.o.tabstop=2
+vim.o.softtabstop=2
+vim.o.shiftwidth=2
 
 -- Express tabs as spaces
 vim.o.expandtab=true
@@ -62,22 +62,8 @@ vim.g.indentLinechar="|"
 vim.g.mkdp_browser="firefox"
 
 -- Catppuccin settings
-require("catppuccin").setup({
-    styles = {
-        variables = "NONE"
-    },
-    integrations = {
-        lsp_trouble = true,
-        which_key = true,
-        barbar = true,
-        ts_rainbow = true,
-        nvimtree = {
-            enabled = true,
-            show_root = true,
-            transparent_panel = false,
-        },
-    }
-})
+vim.g.catppuccin_flavour = "mocha"
+require("catppuccin").setup()
 
 ----------------------
 -- Run vim commands --

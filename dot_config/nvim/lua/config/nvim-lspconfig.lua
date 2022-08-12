@@ -139,6 +139,9 @@ local servers = {
             }
         }
     },
+    tailwindcss = {
+      cmd = {lsp_path .. "/tailwindcss/node_modules/.bin/tailwindcss-language-server", "--stdio"}
+    },
     rust_analyzer = {
         cmd = {"rust-analyzer"}
     },

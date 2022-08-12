@@ -99,3 +99,5 @@ require"fidget".setup{}
 require('crates').setup()
 
 require('Comment').setup()
+
+-- require("lsp_lines").setup()

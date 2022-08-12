@@ -53,6 +53,9 @@ return require('packer').startup(function(use)
         requires = "kyazdani42/nvim-web-devicons",
     }
 
+    -- Diagnostics with virtual lines
+    use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+
     -- Rust
     use {
         'simrat39/rust-tools.nvim',
@@ -222,5 +225,8 @@ return require('packer').startup(function(use)
 
     -- Improve startup time
     -- use 'lewis6991/impatient.nvim'
+
+    -- Other
+    use 'AndrewRadev/splitjoin.vim'
 
 end)

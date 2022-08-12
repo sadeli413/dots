@@ -42,11 +42,13 @@ else
         echo "$NOSTAT"
     elif [ "$STATUS" = "Paused"  ]; then
         update_hooks "$PARENT_BAR_PID" 2
-        echo $(playerctl --player=$PLAYER metadata --format "$FORMAT" 2>/dev/null) "    "
+        PLAYER_OUT=$(playerctl --player=$PLAYER metadata --format "$FORMAT" 2>/dev/null)
+        echo "$PLAYER_OUT" "    "
     elif [ "$STATUS" = "No player is running"  ]; then
         echo -e "$NOSTAT"
     else
         update_hooks "$PARENT_BAR_PID" 1
-        echo $(playerctl --player=$PLAYER metadata --format "$FORMAT" 2>/dev/null) "    "
+        PLAYER_OUT=$(playerctl --player=$PLAYER metadata --format "$FORMAT" 2>/dev/null)
+        echo "$PLAYER_OUT" "    "
     fi
 fi

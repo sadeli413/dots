@@ -23,7 +23,7 @@ super + ctrl + alt + l
     /usr/bin/light-locker-command --lock
 
 # Color picker
-super + C
+super + ctrl + C
     /usr/bin/colorpicker >> color.txt
 
 # Terminal emulator
@@ -110,7 +110,7 @@ super + {o,i}
 
 # Focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} 'focused:^{1-9,10}'
 
 # Rotate tree
 super + {r,e}
@@ -195,4 +195,4 @@ XF86MonBrightness{Down,Up}
 
 # kek
 super + shift + ctrl + o
-    xclip -sel clip -t image/jpeg -i $HOME/Downloads/afterdark/turtle.jpg
+    xclip -selection clipboard -t image/png -i Downloads/afterdark/fakkyuu.png 

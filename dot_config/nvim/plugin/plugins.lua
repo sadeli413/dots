@@ -16,7 +16,12 @@ return require('packer').startup(function(use)
 
     -- Language Server
     use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
+    -- use {
+    --   "jose-elias-alvarez/null-ls.nvim",
+    --   requires = { "nvim-lua/plenary.nvim" }
+    -- }
 
     -- Autocompletion
     use 'hrsh7th/nvim-cmp'

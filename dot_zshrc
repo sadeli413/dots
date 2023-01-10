@@ -92,6 +92,8 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 setopt appendhistory
 
+export ZOOM_HOME=$HOME/zoomus
+
 # FZF
 source $HOME/.config/fzf/completion.zsh
 source $HOME/.config/fzf/key-bindings.zsh
@@ -106,6 +108,10 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 # Aliases
 alias lc='ls --color=none'
@@ -123,9 +129,19 @@ alias cl='clear'
 alias icat='kitty +kitten icat'
 alias locate='plocate'
 alias cat='bat'
+alias s='kitty +kitten ssh'
+alias tetris='tetriscurses'
 
-# Interactive comments
-setopt interactivecomments
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt interactivecomments       # Allow typing comments at an interactive prompt
+setopt correct                   # Suggest spelling suggestions for mistyped commands
 
 # autocorrect
 # eval $(thefuck --alias)
@@ -145,6 +161,9 @@ fuck () {
     export PYTHONIOENCODING=$TF_PYTHONIOENCODING;
     test -n "$TF_CMD" && print -s $TF_CMD
 }
+
+# gaming
+autoload -Uz tetriscurses
 
 #######################
 # keybinds

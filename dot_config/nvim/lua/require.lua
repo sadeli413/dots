@@ -1,36 +1,24 @@
 
+-------------------------------
 -- Plugins that need require --
 -------------------------------
 -- rust-tools.nvim
-require('rust-tools').setup({
-    server = {
-        settings = {
-            ['rust-analyzer'] = {
-                cargo = {
-                    -- autoReload = true,
-                    runBuildScripts = true
-                },
-                diagnostics = {
-                    disabled = {"unresolved-proc-macro"}
-                }
-            }
-        }
-    }
-})
+-- require('rust-tools').setup({
+--   server = {
+--     settings = {
+--       ['rust-analyzer'] = {
+--         cargo = {
+--           runBuildScripts = true
+--         }
+--       }
+--     }
+--   }
+-- })
 -- require('rust-tools').setup()
 -- require('rust-tools.inlay_hints').set_inlay_hints()
 
 -- nvim-lspconfig and nvim-lsp-installer
 require('config.nvim-lspconfig')
-require("nvim-lsp-installer").setup({
-    ui = {
-        icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗"
-        }
-    }
-})
 
 -- nvim-cmp
 require('config.nvim-cmp')
@@ -99,5 +87,7 @@ require"fidget".setup{}
 require('crates').setup()
 
 require('Comment').setup()
+
+require('symbols-outline').setup()
 
 -- require("lsp_lines").setup()

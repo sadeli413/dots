@@ -16,6 +16,5 @@ vim.api.nvim_set_keymap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent 
 vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
 
 -- Comment.nvim
-vim.keymap.set('n', '<C-/>', '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>')
-vim.keymap.set('n', '<C-\\>', '<cmd>lua require("Comment.api").toggle_current_blockwise()<CR>')
-vim.keymap.set('x', '<C-/>', '<Esc><cmd>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
+vim.keymap.set('n', '<C-/>', '<Plug>(comment_toggle_linewise_current)')
+vim.keymap.set('x', '<C-/>', '<Plug>(comment_toggle_linewise_visual)')

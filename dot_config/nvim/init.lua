@@ -31,8 +31,8 @@ vim.o.guicursor="n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
 -- Dont hide characters
 vim.o.conceallevel=0
 
--- Set menuone and noselect for nvim-compe
-vim.o.completeopt="menuone,noselect"
+-- Set menuone and noselect for nvim-cmp
+vim.o.completeopt="menu,menuone,noselect"
 
 -- temporary fix for indent-blankline
 vim.o.colorcolumn="99999"
@@ -45,6 +45,9 @@ vim.o.showmode=false
 
 -- Keep sign column (gutter) the same width
 vim.o.signcolumn='yes'
+
+-- Disable mouse
+vim.o.mouse = ''
 
 ----------------------
 -- Global variables --
@@ -59,7 +62,7 @@ vim.g.vimtex_compiler_progname="nvr"
 vim.g.indentLinechar="|"
 
 -- Set default web browser for markdown-preview
-vim.g.mkdp_browser="firefox"
+vim.g.mkdp_browser="librewolf"
 
 -- Catppuccin settings
 vim.g.catppuccin_flavour = "mocha"

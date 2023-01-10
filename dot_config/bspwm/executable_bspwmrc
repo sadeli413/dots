@@ -1,28 +1,14 @@
-#! /bin/sh
+#!/bin/bash
 bspc rule -r "*"
 bspc monitor -d ひ ふ み よ い む な や こ と
 bspc monitor HDMI-1 -d ひ ふ み よ い む な や こ と
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-$HOME/.config/polybar/scripts/launch.sh &
-
-# Close eww on fullscreen
-# bspc subscribe node_state | while read -r _ _ _ _ state flag; do if [ "$state" != "fullscreen" ]; then
-#         continue
-#     fi
-#
-#     monitor=$(bspc query -M -m --names)
-#     if [ "$flag" == on ]; then
-#         /usr/bin/eww -c $HOME/.config/eww/bar close bar_$monitor
-#     else
-#         /usr/bin/eww -c $HOME/.config/eww/bar open bar_$monitor
-#     fi
-# done &
+$HOME/.config/eww/bar/scripts/launch.sh &
 
 bspc config border_width         3
 bspc config window_gap           10
-bspc config top_padding          28
-# bspc config top_padding          0
+bspc config top_padding          0
 bspc config bottom_padding		 0
 
 bspc config split_ratio          0.50
@@ -52,4 +38,3 @@ dunst &
 /usr/bin/nitrogen --head=1 --set-zoom-fill $HOME/Pictures/wallpapers/dangerdrop_gun.png
 /usr/bin/notify-send "$(/usr/bin/fortune -s)"
 /usr/bin/rofi -no-lazy-grab -show drun -theme $HOME/.config/rofi/style_11.rasi
-

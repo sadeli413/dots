@@ -5,8 +5,7 @@
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts) vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
 -- Use an on_attach function to only map the following keys
@@ -81,78 +80,23 @@ for type, icon in pairs(signs) do
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local lsp_path = "/home/sadeli/.local/share/nvim/lsp_servers/"
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local servers = {
-    bashls = {
-        cmd = {lsp_path .. "bashls/node_modules/.bin/bash-language-server", "start"},
-        filetypes = {"sh", "zsh"}
-    };
-    clangd = {
-        cmd = {lsp_path .. "clangd/clangd/bin/clangd"}
-    },
-    cmake = {
-        cmd = {lsp_path .. "cmake/venv/bin/cmake-language-server"}
-    },
-    cssls = {
-        cmd = {lsp_path .. "cssls/node_modules/vscode-langservers-extracted/bin/vscode-css-language-server", "--stdio"}
-    },
-    emmet_ls = {
-        cmd = {lsp_path .. "emmet_ls/node_modules/.bin/emmet-ls", "--stdio"}
-    },
-    golangci_lint_ls = {
-        cmd = {lsp_path .. "golangci_lint_ls/golangci-lint-langserver"},
-        init_options = {
-            command = {lsp_path .. "golangci_lint_ls/golangci-lint","run", "--out-format", "json"}
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
         }
-    },
-    gopls = {
-        cmd = {lsp_path .. "gopls/gopls"}
-    },
-    grammarly = {
-        cmd = {lsp_path .. "grammarly/node_modules/.bin/unofficial-grammarly-language-server"}
-    },
-    html = {
-        cmd = {lsp_path .. "html/node_modules/.bin/vscode-html-language-server", "--stdio"}
-    },
-    -- jedi_language_server = {
-    --     cmd = {lsp_path .. "jedi_language_server/venv/bin/jedi-language-server"}
-    -- },
-    pyright = {
-        cmd = {lsp_path .. "pyright/node_modules/.bin/pyright-langserver", "--stdio"}
-    };
-    sumneko_lua = {
-        cmd = {"lua-language-server"},
-        settings = {
-            Lua ={
-                diagnostics = {
-                    globals = { 'vim' }
-                },
-                workspace = {
-                    -- Make the server aware of Neovim runtime files
-                    library = vim.api.nvim_get_runtime_file("", true)
-                },
-                telemetry = {
-                    enable = false,
-                }
-            }
-        }
-    },
-    tailwindcss = {
-      cmd = {lsp_path .. "/tailwindcss/node_modules/.bin/tailwindcss-language-server", "--stdio"}
-    },
-    rust_analyzer = {
-        cmd = {"rust-analyzer"}
-    },
-    zk = {
-        cmd = {lsp_path .. "zk/zk", "lsp"}
     }
-}
-
-for lsp, setup in pairs(servers) do
+})
+require("mason-lspconfig").setup()
+require("mason-lspconfig").setup_handlers {
+  function (server_name)
+    local setup = {}
     setup.on_attach = on_attach
     setup.capabilities = capabilities
     setup.handlers = handlers
-    require('lspconfig')[lsp].setup(setup)
-end
+    require("lspconfig")[server_name].setup(setup)
+  end
+}

@@ -1,0 +1,127 @@
+; Datetime variables
+(defpoll date :interval "1m" "/usr/bin/date +'%A, %B %d'")
+(defpoll time :interval "1s" "/usr/bin/date +'%I:%M %p'")
+
+; Almost realtime measurements
+(defpoll volume_percent :interval "0.1s" "/usr/bin/pamixer --get-volume")
+(defpoll volume_muted   :interval "0.1s" "/usr/bin/pamixer --get-mute")
+
+; Workspaces scripts
+(deflisten workspace_0 "EWW_MONITOR=eDP-1 scripts/workspaces.sh")
+(deflisten workspace_1 "EWW_MONITOR=HDMI-1 scripts/workspaces.sh")
+
+; Package updates
+(defpoll pkgupdates :interval "10m" "scripts/pkgupdates.sh")
+; (defpoll checkupdates :interval "10m" "/usr/bin/fakeroot /usr/bin/pacman -Qu --dbpath /tmp/checkup-db-1000 2>/dev/null")
+
+; Windows on each monitor
+(defwindow bar_eDP-1
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "5px"
+                      :width "99%"
+                      :height "35px"
+                      :anchor "top center")
+  :stacking "bg"
+  :reserve (struts :distance "35px" :side "top")
+  :windowtype "dock"
+  :wm-ignore false
+  (bar_main :monitor "0"))
+
+; Windows on each monitor
+(defwindow bar_HDMI-1
+  :monitor 1
+  :geometry (geometry :x "0%"
+                      :y "5px"
+                      :width "99%"
+                      :height "35px"
+                      :anchor "top center")
+  :stacking "bg"
+  :reserve (struts :distance "35px" :side "top")
+  :windowtype "dock"
+  :wm-ignore false
+  (bar_main :monitor "1"))
+
+(defwidget bar_main [monitor]
+  (centerbox
+    (left :monitor monitor)
+    (center)
+    (right)))
+
+(defwidget left [monitor]
+  (box :class "bar_class"
+       :orientation "h"
+       :halign "start"
+       :space-evenly false
+    (workspaces :monitor monitor)))
+
+(defwidget center []
+  (box :class "bar_class"
+       :orientation "h"
+       :halign "center"
+       :space-evenly false
+    (datetime)))
+
+(defwidget right []
+  (box :class "bar_class"
+       :orientation "h"
+       :halign "end"
+       :space-evenly false
+    (volume)
+    (memory)
+    (cpu)
+    (pacman)
+    (battery)))
+
+(defwidget workspaces [monitor]
+  (eventbox :valign "center"
+            :onscroll "[[ \"{}\" == \"up\" ]] && bspc desktop -f prev.local || bspc desktop -f next.local"
+    (box :class "workspaces"
+      (literal :content {monitor == "0" ? workspace_0 : workspace_1}))))
+
+(defwidget volume []
+    (eventbox
+      :space-evenly false
+      :spacing "3"
+      :orientation "h"
+      ; Mute when clicking
+      :onclick "/usr/bin/pamixer -t"
+      ; Change volume when scrolling
+      :onscroll "[[ \"{}\" == \"up\" ]] && pamixer -i 5 || pamixer -d 5"
+      (label :class "volume"
+             :text { (volume_muted == "true") ? " " : "  ${volume_percent}%" })))
+
+(defwidget memory []
+  (label :class "memory"
+         :text " ${round((EWW_RAM.used_mem / 1000000), 0)} MiB"))
+
+(defwidget cpu []
+    (label :class "cpu"
+           :text " ${ (round(EWW_CPU.avg, 0) < 10) ? ' ' : '' }${round(EWW_CPU.avg, 0)}%"))
+
+(defwidget battery []
+  (label :class "battery"
+         :text { 
+          (EWW_BATTERY.BAT0.status == "Charging") ? " ${EWW_BATTERY.BAT0.capacity}%" :
+          (EWW_BATTERY.BAT0.capacity < 20) ? " ${EWW_BATTERY.BAT0.capacity}%" :
+          (EWW_BATTERY.BAT0.capacity < 40) ? " ${EWW_BATTERY.BAT0.capacity}%" :
+          (EWW_BATTERY.BAT0.capacity < 60) ? " ${EWW_BATTERY.BAT0.capacity}%" :
+          (EWW_BATTERY.BAT0.capacity < 80) ? " ${EWW_BATTERY.BAT0.capacity}%" :
+          " ${EWW_BATTERY.BAT0.capacity}%" }))
+
+(defwidget pacman []
+  (label
+    :class "pkgupdates"
+    :text {
+      pkgupdates
+      ; arraylength(search(checkupdates, "linux")) > 0 ?
+      ; " ${arraylength(search(checkupdates, "\\n"))+1}" :
+      ; "󰮯 ${arraylength(search(checkupdates, "\\n"))+1}"
+    }))
+
+(defwidget datetime []
+  (box :space-evenly false
+    (label :class "date"
+           :text "${date}")
+    (label :class "clock"
+           :text "${time}")))

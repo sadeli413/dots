@@ -1,0 +1,70 @@
+*{
+  all: unset;
+  font-family: FantasqueSansMono Nerd Font;
+  font-weight: bold;
+}
+
+.bar_class {
+  background-color: #1E1E2E; color: #CDD6F4;
+  border-radius: 15px;
+}
+
+// margin: Top, right, bottom, left
+.workspaces {
+  margin: 0px 15px 0px 15px;
+  font-size: 12;
+}
+
+.workspace_active, .workspace_occupied, .workspace_empty {
+  border-radius: 50%;
+  min-width: 22px;
+  min-height: 22px;
+}
+
+.workspace_active {
+  color: #1E1E2E;
+  border: 2px solid #CDD6F4;
+  background-color: #CDD6F4;
+}
+
+.workspace_occupied {
+  color: #CDD6F4;
+  border: 2px solid #CDD6F4;
+}
+
+.workspace_empty {
+  color: #585b70;
+  border: 2px solid #585b70;
+}
+
+// scale trough {
+//   all: unset;
+//   background-color: #45475a;
+//   border-radius: 15px;
+//   min-height: 10px;
+//   min-width: 70px;
+//   margin: 0px 0px 0px 15px;
+// }
+//
+// .volume_slider trough highlight {
+//   border-radius: 15px;
+//   background-color: #b4befe;
+// }
+
+// Modules on the left
+.volume {
+  margin: 0px 0px 0px 20px;
+  font-size: 15;
+}
+
+// Modules in the center
+.memory, .cpu, .date, .pkgupdates {
+  margin: 0px 0px 0px 20px;
+  font-size: 15;
+}
+
+// Modules on the right
+.battery, .clock, {
+  margin: 0px 20px 0px 20px;
+  font-size: 15;
+}

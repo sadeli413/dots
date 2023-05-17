@@ -2,23 +2,15 @@
 -------------------------------
 -- Plugins that need require --
 -------------------------------
--- rust-tools.nvim
--- require('rust-tools').setup({
---   server = {
---     settings = {
---       ['rust-analyzer'] = {
---         cargo = {
---           runBuildScripts = true
---         }
---       }
---     }
---   }
--- })
--- require('rust-tools').setup()
--- require('rust-tools.inlay_hints').set_inlay_hints()
 
--- nvim-lspconfig and nvim-lsp-installer
-require('config.nvim-lspconfig')
+-- on_attach and stuff
+require('config.util')
+
+-- LSP
+require('config.mason')
+
+-- Rust tools
+require('config.rust-tools')
 
 -- nvim-cmp
 require('config.nvim-cmp')

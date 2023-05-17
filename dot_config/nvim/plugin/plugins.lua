@@ -215,7 +215,7 @@ return require('packer').startup(function(use)
     -- Utility --
     -------------
     -- Notifications
-    use 'rcarriga/nvim-notify'
+    -- use 'rcarriga/nvim-notify'
 
     ----------
     -- Yuck --

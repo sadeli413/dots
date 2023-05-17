@@ -1,7 +1,8 @@
--- Custom keybinds
-vim.api.nvim_set_keymap('i', '<C-c>', '<Esc>', {noremap=true})
+-- SymbolsOutline
 vim.api.nvim_set_keymap('n', '<C-s>', ':SymbolsOutline<CR>', { silent = true })
-vim.api.nvim_set_keymap('i', '<C-l>', '<Esc>A;<Esc>', {silent = true, noremap = true})
+
+-- Nvim Tree
+vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', {silent = true, noremap = true})
 
 -- vim-illuminate
 vim.api.nvim_set_keymap('n', '<a-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>', {noremap=true})

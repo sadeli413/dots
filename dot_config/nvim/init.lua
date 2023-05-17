@@ -53,9 +53,9 @@ vim.o.mouse = ''
 -- Global variables --
 ----------------------
 
--- Set default pdf viewer to okular for VimTex
+-- Set default pdf viewer to zathura for VimTex
 vim.g.vimtex_view_method="general"
-vim.g.vimtex_view_general_viewer="okular"
+vim.g.vimtex_view_general_viewer="zathura"
 vim.g.vimtex_compiler_progname="nvr"
 
 -- Set indent blank lines for indent-blankline
@@ -63,6 +63,10 @@ vim.g.indentLinechar="|"
 
 -- Set default web browser for markdown-preview
 vim.g.mkdp_browser="librewolf"
+
+-- nvim-tree advises disabling netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Catppuccin settings
 vim.g.catppuccin_flavour = "mocha"
@@ -96,26 +100,26 @@ hi LspReferenceText cterm=underline gui=underline guibg=NONE
 hi LspReferenceRead cterm=underline gui=underline guibg=NONE
 hi LspReferenceWrite cterm=underline gui=underline guibg=NONE
 
-hi NotifyERRORBorder guifg=#F28FAD
-hi NotifyWARNBorder guifg=#F8BD96
-hi NotifyINFOBorder guifg=#ABE9B3
-hi NotifyDEBUGBorder guifg=#C3BAC6
-hi NotifyTRACEBorder guifg=#6E6C7E
-hi NotifyERRORIcon guifg=#F28FAD
-hi NotifyWARNIcon guifg=#FAE3B0
-hi NotifyINFOIcon guifg=#ABE9B3
-hi NotifyDEBUGIcon guifg=#C3BAC6
-hi NotifyTRACEIcon guifg=#DDB6F2
-hi NotifyERRORTitle  guifg=#F28FAD
-hi NotifyWARNTitle guifg=#FAE3B0
-hi NotifyINFOTitle guifg=#ABE9B3
-hi NotifyDEBUGTitle  guifg=#C3BAC6
-hi NotifyTRACETitle  guifg=#DDB6F2
-hi link NotifyERRORBody Normal
-hi link NotifyWARNBody Normal
-hi link NotifyINFOBody Normal
-hi link NotifyDEBUGBody Normal
-hi link NotifyTRACEBody Normal
+" hi NotifyERRORBorder guifg=#F28FAD
+" hi NotifyWARNBorder guifg=#F8BD96
+" hi NotifyINFOBorder guifg=#ABE9B3
+" hi NotifyDEBUGBorder guifg=#C3BAC6
+" hi NotifyTRACEBorder guifg=#6E6C7E
+" hi NotifyERRORIcon guifg=#F28FAD
+" hi NotifyWARNIcon guifg=#FAE3B0
+" hi NotifyINFOIcon guifg=#ABE9B3
+" hi NotifyDEBUGIcon guifg=#C3BAC6
+" hi NotifyTRACEIcon guifg=#DDB6F2
+" hi NotifyERRORTitle  guifg=#F28FAD
+" hi NotifyWARNTitle guifg=#FAE3B0
+" hi NotifyINFOTitle guifg=#ABE9B3
+" hi NotifyDEBUGTitle  guifg=#C3BAC6
+" hi NotifyTRACETitle  guifg=#DDB6F2
+" hi link NotifyERRORBody Normal
+" hi link NotifyWARNBody Normal
+" hi link NotifyINFOBody Normal
+" hi link NotifyDEBUGBody Normal
+" hi link NotifyTRACEBody Normal
 ]])
 
 -- Plugins

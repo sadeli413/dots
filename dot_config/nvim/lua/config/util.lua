@@ -1,5 +1,4 @@
---------------------
--- nvim-lspconfig -- ------------------
+local M = {}
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -10,7 +9,7 @@ vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<C
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+M.on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -53,7 +52,7 @@ local border = {
 }
 
 -- LSP settings (for overriding per client)
-local handlers =  {
+M.handlers =  {
     ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}),
     ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border }),
 }
@@ -73,30 +72,12 @@ vim.diagnostic.config({
 })
 
 -- Change diagnostic symbols in the gutter
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-require("mason-lspconfig").setup()
-require("mason-lspconfig").setup_handlers {
-  function (server_name)
-    local setup = {}
-    setup.on_attach = on_attach
-    setup.capabilities = capabilities
-    setup.handlers = handlers
-    require("lspconfig")[server_name].setup(setup)
-  end
-}
+M.capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+return M

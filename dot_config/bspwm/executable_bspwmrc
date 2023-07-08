@@ -29,6 +29,7 @@ bspc config presel_feedback_color '#585B70'
 #bspc config presel_border_color "$color1"
 bspc rule -a flameshot state=floating
 bspc rule -a peek state=floating
+bspc rule -a Zathura state=tiled
 
 # notification server
 dunst &

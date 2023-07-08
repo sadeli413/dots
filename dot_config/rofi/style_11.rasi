@@ -8,7 +8,7 @@
  */
 
 configuration {
-	font:							"FantasqueSansMono Nerd Font 11";
+	font:							"FantasqueSansM Nerd Font 11";
     show-icons:                     true;
 	icon-theme: 					"candy-icons";
     display-drun: 					"Applications";
@@ -45,7 +45,7 @@ prompt {
 	padding: 						1.25% 0.75% 1.25% 0.75%;
 	background-color: 				@ac;
 	text-color: 					@bg;
-	font:							"FantasqueSansMono Nerd Font 12";
+	font:							"FantasqueSansM Nerd Font 12";
     border-radius:                  100%;
 }
 

@@ -80,7 +80,7 @@ autoload -Uz add-zsh-hook
 add-zsh-hook precmd getPrompt
 
 # Environment variables
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/go/bin
 export EDITOR=nvim                          # Chezmoi edit
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket  # vimtex shift click
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=242"  # zsh-autosuggestions colors
@@ -161,6 +161,12 @@ fuck () {
     export PYTHONIOENCODING=$TF_PYTHONIOENCODING;
     test -n "$TF_CMD" && print -s $TF_CMD
 }
+
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # gaming
 autoload -Uz tetriscurses

@@ -11,8 +11,12 @@
 (deflisten workspace_1 "EWW_MONITOR=HDMI-1 scripts/workspaces.sh")
 
 ; Package updates
-(defpoll pkgupdates :interval "10m" "scripts/pkgupdates.sh")
-; (defpoll checkupdates :interval "10m" "/usr/bin/fakeroot /usr/bin/pacman -Qu --dbpath /tmp/checkup-db-1000 2>/dev/null")
+(defpoll checkupdates :interval "10m" "/usr/bin/fakeroot /usr/bin/pacman -Qu --dbpath /tmp/checkup-db-1000 2>/dev/null")
+
+; Spotify
+(defpoll spotify_artist :interval "1s" "/usr/bin/playerctl --player=spotify metadata artist")
+(defpoll spotify_title :interval "1s" "/usr/bin/playerctl --player=spotify metadata title")
+(deflisten spotify_playpause "/usr/bin/playerctl status -F 2>/dev/null")
 
 ; Windows on each monitor
 (defwindow bar_eDP-1
@@ -53,7 +57,9 @@
        :orientation "h"
        :halign "start"
        :space-evenly false
-    (workspaces :monitor monitor)))
+    (workspaces :monitor monitor)
+    ; (spotify)
+    ))
 
 (defwidget center []
   (box :class "bar_class"
@@ -79,8 +85,19 @@
     (box :class "workspaces"
       (literal :content {monitor == "0" ? workspace_0 : workspace_1}))))
 
+(defwidget spotify []
+  (box :valign "center"
+    :space-evenly false
+    (label :class "artisttitle" :text "󰎈 ${spotify_artist} | ${spotify_title}")
+    (button :class "prev" :onclick "/usr/bin/playerctl previous --player=spotify" "")
+    (button :class "playpause" :onclick "/usr/bin/playerctl play-pause --player=spotify" 
+      {spotify_playpause == "Playing" ? "" : ""})
+    (button :class "next" :onclick "/usr/bin/playerctl next --player=spotify" "")
+    ))
+
 (defwidget volume []
     (eventbox
+      :valign "center"
       :space-evenly false
       :spacing "3"
       :orientation "h"
@@ -89,34 +106,37 @@
       ; Change volume when scrolling
       :onscroll "[[ \"{}\" == \"up\" ]] && pamixer -i 5 || pamixer -d 5"
       (label :class "volume"
-             :text { (volume_muted == "true") ? " " : "  ${volume_percent}%" })))
+             :text { (volume_muted == "true") ? "󰝟 " : "󰕾  ${volume_percent}%" })))
 
 (defwidget memory []
   (label :class "memory"
-         :text " ${round((EWW_RAM.used_mem / 1000000), 0)} MiB"))
+         :valign "center"
+         :text " ${round((EWW_RAM.used_mem / 1000000), 0)} MB"))
 
 (defwidget cpu []
     (label :class "cpu"
-           :text " ${ (round(EWW_CPU.avg, 0) < 10) ? ' ' : '' }${round(EWW_CPU.avg, 0)}%"))
+           :valign "center"
+           :text "󰍛 ${ (round(EWW_CPU.avg, 0) < 10) ? ' ' : '' }${round(EWW_CPU.avg, 0)}%"))
 
 (defwidget battery []
   (label :class "battery"
+         :valign "center"
          :text { 
-          (EWW_BATTERY.BAT0.status == "Charging") ? " ${EWW_BATTERY.BAT0.capacity}%" :
-          (EWW_BATTERY.BAT0.capacity < 20) ? " ${EWW_BATTERY.BAT0.capacity}%" :
-          (EWW_BATTERY.BAT0.capacity < 40) ? " ${EWW_BATTERY.BAT0.capacity}%" :
-          (EWW_BATTERY.BAT0.capacity < 60) ? " ${EWW_BATTERY.BAT0.capacity}%" :
-          (EWW_BATTERY.BAT0.capacity < 80) ? " ${EWW_BATTERY.BAT0.capacity}%" :
-          " ${EWW_BATTERY.BAT0.capacity}%" }))
+          (EWW_BATTERY.BAT0.status == "Charging") ? "󰂄 ${EWW_BATTERY.BAT0.capacity}%" :
+          (EWW_BATTERY.BAT0.capacity < 20) ? "󰁻 ${EWW_BATTERY.BAT0.capacity}%" :
+          (EWW_BATTERY.BAT0.capacity < 40) ? "󰁽 ${EWW_BATTERY.BAT0.capacity}%" :
+          (EWW_BATTERY.BAT0.capacity < 60) ? "󰁿 ${EWW_BATTERY.BAT0.capacity}%" :
+          (EWW_BATTERY.BAT0.capacity < 80) ? "󰂁 ${EWW_BATTERY.BAT0.capacity}%" :
+          "󰁹 ${EWW_BATTERY.BAT0.capacity}%" }))
 
 (defwidget pacman []
   (label
     :class "pkgupdates"
+    :valign "center"
     :text {
-      pkgupdates
-      ; arraylength(search(checkupdates, "linux")) > 0 ?
-      ; " ${arraylength(search(checkupdates, "\\n"))+1}" :
-      ; "󰮯 ${arraylength(search(checkupdates, "\\n"))+1}"
+      arraylength(search(checkupdates, "linux")) > 0 ?
+      "󰊠 ${arraylength(search(checkupdates, "\\n"))+1}" :
+      "󰮯 ${arraylength(search(checkupdates, "\\n"))+1}"
     }))
 
 (defwidget datetime []

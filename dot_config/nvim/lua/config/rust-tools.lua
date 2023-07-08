@@ -10,9 +10,12 @@ require("rust-tools").setup({
     capabilities = util.capabilities,
     on_attach = util.on_attach,
     handlers = util.handlers,
+    cmd = {
+      os.getenv("HOME") .. "/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rust-analyzer"
+    },
     settings = {
       ["rust-analyzer"] = {
-        checkOnSave = {
+        check = {
           command = "clippy",
         },
         cargo = {

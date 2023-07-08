@@ -1,7 +1,7 @@
 *{
   all: unset;
-  font-family: FantasqueSansMono Nerd Font;
-  font-weight: bold;
+  font-family: FantasqueSansM Nerd Font;
+  font-weight: Bold;
 }
 
 .bar_class {
@@ -55,16 +55,56 @@
 .volume {
   margin: 0px 0px 0px 20px;
   font-size: 15;
+  color: #1e1e2e;
+  border-radius: 8px;
+  background-color: #b4befe;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-height: 20px;
+}
+
+.date {
+  margin: 0px 0px 0px 10px;
+  font-size: 15;
 }
 
 // Modules in the center
-.memory, .cpu, .date, .pkgupdates {
+.artisttitle, .prev, .playpause, .memory, .cpu {
+  margin: 0px 0px 0px 10px;
+  font-size: 15;
+  color: #1e1e2e;
+  border-radius: 8px;
+  background-color: #b4befe;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-height: 20px;
+}
+
+// Modules in the center
+.pkgupdates {
   margin: 0px 0px 0px 20px;
   font-size: 15;
 }
 
-// Modules on the right
-.battery, .clock, {
+.clock {
   margin: 0px 20px 0px 20px;
   font-size: 15;
 }
+
+// Modules on the right
+.next, .battery, {
+  margin: 0px 20px 0px 20px;
+  font-size: 15;
+}
+
+// margin: Top, right, bottom, left
+// // Spotify stuff
+// .artist, .title {
+//   margin: 0px 10px 0px 20px;
+//   font-size: 15;
+// }
+//
+// .prev, .next, .playpause {
+//   margin: 0px 20px 0px 20px;
+//   font-size: 15;
+// }

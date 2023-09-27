@@ -71,8 +71,7 @@ require('config.nvim-tree')
 -- babar.nvim
 require('config.barbar')
 
-
--- fidgent.nvim
+-- fidget.nvim
 require"fidget".setup{}
 
 -- crates.nvim
@@ -83,3 +82,14 @@ require('Comment').setup()
 require('symbols-outline').setup()
 
 -- require("lsp_lines").setup()
+require('config.comment')
+
+require("telescope").setup {
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown()
+    }
+  }
+}
+
+require("telescope").load_extension("ui-select")

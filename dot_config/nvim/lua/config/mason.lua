@@ -25,6 +25,8 @@ require("mason-lspconfig").setup_handlers {
       }
     elseif server_name == "grammarly" then
       setup.filetypes = { "markdown", "tex" }
+    elseif server_name == "asm_lsp" then
+      setup.single_file_support = true
     end
     setup.on_attach = util.on_attach
     setup.capabilities = util.capabilities

@@ -19,3 +19,10 @@ vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = 
 -- Comment.nvim
 vim.keymap.set('n', '<C-/>', '<Plug>(comment_toggle_linewise_current)')
 vim.keymap.set('x', '<C-/>', '<Plug>(comment_toggle_linewise_visual)')
+
+-- telescope
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})

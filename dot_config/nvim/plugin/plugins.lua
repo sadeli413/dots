@@ -82,7 +82,10 @@ return require('packer').startup(function(use)
     }
 
     -- lsp progress
-    use 'j-hui/fidget.nvim'
+    use {
+      'j-hui/fidget.nvim',
+      tag = 'legacy',
+    }
 
     ------------
     -- Syntax --
@@ -143,10 +146,16 @@ return require('packer').startup(function(use)
     -- Show where cursor moves in large distances
     use 'edluffy/specs.nvim'
 
-    -- use {
-    --     'nvim-telescope/telescope.nvim',
-    --     requires = { {'nvim-lua/plenary.nvim'} }
-    -- }
+    ------------------
+    -- Fuzzy Finder --
+    ------------------
+
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
+
+    use {'nvim-telescope/telescope-ui-select.nvim' }
 
     --------------
     -- Comments --

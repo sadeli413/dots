@@ -48,11 +48,11 @@ wmname compiz
 export AWT_TOOLKIT=MToolkit
 
 # MATLAB
-export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
+# export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Fix segfault during Burp Suite startup
-export app_java_home=/usr/lib/jvm/java-19-openjdk
+export app_java_home=/usr/lib/jvm/java-21-openjdk
 
 # numlock
 numlockx &

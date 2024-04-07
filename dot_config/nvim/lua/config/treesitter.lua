@@ -1,4 +1,4 @@
-require'nvim-treesitter.configs'.setup {
+return {
     -- Highlight
     highlight = {
         enable = true,
@@ -44,12 +44,3 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
     }
 }
-
--- folding
--- zc to close. zo to open
-vim.o.foldminlines=5
-vim.o.foldlevel=3
-vim.o.foldnestmax =3
-vim.o.foldmethod='expr'
-vim.o.foldexpr='nvim_treesitter#foldexpr()'
-vim.o.foldcolumn='2'

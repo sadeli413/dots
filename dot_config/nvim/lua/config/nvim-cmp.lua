@@ -23,10 +23,9 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    -- ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<C-Space>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    
+
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -97,7 +96,7 @@ cmp.setup({
     if vim.api.nvim_get_mode().mode == 'c' then
       return true
     else
-      return not context.in_treesitter_capture("comment") 
+      return not context.in_treesitter_capture("comment")
         and not context.in_syntax_group("Comment")
     end
   end
@@ -128,7 +127,6 @@ cmp.setup.cmdline(':', {
 })
 
 -- lspkind-nvim
-local lspkind = require('lspkind')
 cmp.setup {
     formatting = {
         format = lspkind.cmp_format({with_text = true, maxwidth = 50})

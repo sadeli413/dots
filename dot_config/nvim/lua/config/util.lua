@@ -32,14 +32,11 @@ M.on_attach = function(client, bufnr)
     -- vim-illuminate
     require 'illuminate'.on_attach(client)
 
-    -- virtual-types
-    -- require'virtualtypes'.on_attach(client)
+    -- Lsp signature
+    require "lsp_signature".on_attach(client, bufnr)
 end
 
 -- UI Customization
-vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
-vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
-
 local border = {
       {"🭽", "FloatBorder"},
       {"▔", "FloatBorder"},
@@ -65,7 +62,7 @@ vim.diagnostic.config({
     signs = true,
     underline = true,
     update_in_insert = false,
-    severity_sort = false,
+    severity_sort = true,
     float = {
         source = "always",  -- Or "if_many"
     }

@@ -1,14 +1,19 @@
------------------ Vim Options -------------------
+-----------------
+-- Vim Options --
+-----------------
+
+vim.loader.enable()
+
 vim.o.encoding="UTF-8"
 
 -- Show relative numberlines instead of absolute
 vim.o.relativenumber=true
 vim.o.number=true
 
--- Tab is 2 spaces
-vim.o.tabstop=2
-vim.o.softtabstop=2
-vim.o.shiftwidth=2
+-- Tab is 4 spaces
+vim.o.tabstop=4
+vim.o.softtabstop=4
+vim.o.shiftwidth=4
 
 -- Express tabs as spaces
 vim.o.expandtab=true
@@ -49,6 +54,38 @@ vim.o.signcolumn='yes'
 -- Disable mouse
 vim.o.mouse = ''
 
+-- folding
+-- zc to close. zo to open
+vim.o.foldminlines=5
+vim.o.foldlevel=3
+vim.o.foldnestmax =3
+vim.o.foldmethod='expr'
+vim.o.foldexpr='nvim_treesitter#foldexpr()'
+vim.o.foldcolumn='2'
+
+--------------------
+-- Plugin manager --
+--------------------
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+local plugins = require("plugins")
+require("lazy").setup(plugins)
+
+vim.cmd.colorscheme "catppuccin"
+
+-- Keybinds
+require('config.keymaps')
+
 ----------------------
 -- Global variables --
 ----------------------
@@ -64,32 +101,21 @@ vim.g.indentLinechar="|"
 -- Set default web browser for markdown-preview
 vim.g.mkdp_browser="librewolf"
 
--- nvim-tree advises disabling netrw
-vim.g.loaded_netrw = 1
+-- nvim-tree advises disabling netrw vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Catppuccin settings
-vim.g.catppuccin_flavour = "mocha"
-require("catppuccin").setup()
+vim.g.rustaceanvim = require("config.rustaceanvim")
 
-----------------------
--- Run vim commands --
-----------------------
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = {"*.soy"},
+  command = "setfiletype soy",
+})
 
--- Enable syntax highlighting
--- Run PackerCompile when plugins.lua changes
--- Allow nvim-colorizer to colorize .rasi files
--- Disable comment continuation on new line
--- Automatically apply chezmoi changes
--- Set custom vim-illuminate configs
--- Set nvim-notify colors
 vim.cmd([[
-colorscheme catppuccin
-autocmd BufWritePost plugins.lua PackerCompile
-au BufNewFile,BufRead /*.rasi setf css
+" Disable comment continuation on newline
 au BufWinEnter * set formatoptions-=cro
-autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
 
+" Underline instead of highlight for vim-illuminate
 augroup illuminate_augroup
     autocmd!
     autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline guibg=NONE
@@ -100,30 +126,4 @@ hi LspReferenceText cterm=underline gui=underline guibg=NONE
 hi LspReferenceRead cterm=underline gui=underline guibg=NONE
 hi LspReferenceWrite cterm=underline gui=underline guibg=NONE
 
-" hi NotifyERRORBorder guifg=#F28FAD
-" hi NotifyWARNBorder guifg=#F8BD96
-" hi NotifyINFOBorder guifg=#ABE9B3
-" hi NotifyDEBUGBorder guifg=#C3BAC6
-" hi NotifyTRACEBorder guifg=#6E6C7E
-" hi NotifyERRORIcon guifg=#F28FAD
-" hi NotifyWARNIcon guifg=#FAE3B0
-" hi NotifyINFOIcon guifg=#ABE9B3
-" hi NotifyDEBUGIcon guifg=#C3BAC6
-" hi NotifyTRACEIcon guifg=#DDB6F2
-" hi NotifyERRORTitle  guifg=#F28FAD
-" hi NotifyWARNTitle guifg=#FAE3B0
-" hi NotifyINFOTitle guifg=#ABE9B3
-" hi NotifyDEBUGTitle  guifg=#C3BAC6
-" hi NotifyTRACETitle  guifg=#DDB6F2
-" hi link NotifyERRORBody Normal
-" hi link NotifyWARNBody Normal
-" hi link NotifyINFOBody Normal
-" hi link NotifyDEBUGBody Normal
-" hi link NotifyTRACEBody Normal
 ]])
-
--- Plugins
-require('require')
-
--- Keybinds
-require('config.keymaps')

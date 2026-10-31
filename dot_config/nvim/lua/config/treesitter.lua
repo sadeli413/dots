@@ -35,12 +35,28 @@ return {
             "#D46CA5",
             "#A39AE8",
             "#F7B1F9",
-            "#72E2C1"
+            "#72E2C1",
         }, -- table of hex strings
         -- termcolors = {} -- table of colour name strings
     },
     -- nvim-ts-autotag
     autotag = {
         enable = true,
-    }
+    },
+
+    ensure_installed = {
+        "bash",
+        "c",
+        "dockerfile",
+        "just",
+        "json",
+        "lua",
+        "make",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "rust",
+        "typst",
+        "toml",
+    },
 }

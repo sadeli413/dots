@@ -18,7 +18,7 @@ return {
         "hrsh7th/nvim-cmp",
         config = function()
             require("config.nvim-cmp")
-        end
+        end,
     },
 
     -- Lsp management
@@ -26,13 +26,25 @@ return {
         "williamboman/mason.nvim",
         config = function()
             require("config.mason")
-        end
+        end,
     },
+
     {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("config.mason-lspconfig")
-        end
+        end,
+    },
+
+    {
+        "nvimtools/none-ls.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvimtools/none-ls-extras.nvim",
+        },
+        config = function()
+            require("config.null-ls")
+        end,
     },
 
     -- luasnip
@@ -43,7 +55,9 @@ return {
         "ray-x/lsp_signature.nvim",
         event = "VeryLazy",
         opts = {},
-        config = function(_, opts) require'lsp_signature'.setup(opts) end
+        config = function(_, opts)
+            require("lsp_signature").setup(opts)
+        end,
     },
 
     -- Pictograms
@@ -56,17 +70,62 @@ return {
     { "jubnzv/virtual-types.nvim" },
 
     -- Symbols viewer
+    -- {
+    --     "simrat39/symbols-outline.nvim",
+    --     config = function()
+    --         require("symbols-outline").setup()
+    --     end,
+    -- },
     {
-        "simrat39/symbols-outline.nvim",
+        "stevearc/aerial.nvim", -- Symbol tree
         config = function()
-            require("symbols-outline").setup()
-        end
+            require("aerial").setup({
+                default_direction = "prefer_right",
+                filter_kind = false,
+                highlight_on_hover = true,
+                manage_folds = true,
+            })
+        end,
     },
 
     -- List diagnostics
     {
         "folke/trouble.nvim",
+        opts = {}, -- for default options, refer to the configuration section for custom setup.
         dependencies = { "nvim-tree/nvim-web-devicons" },
+        cmd = "Trouble",
+        keys = {
+            {
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+            },
+            {
+                "<leader>cs",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>cl",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>xL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
+            },
+            {
+                "<leader>xQ",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
+            },
+        },
     },
 
     -- Diagnostics with virtual lines
@@ -76,17 +135,17 @@ return {
     -- Rust --
     ----------
     {
-        'mrcjkb/rustaceanvim',
-        version = '^4', -- Recommended
-        ft = { 'rust' },
+        "mrcjkb/rustaceanvim",
+        version = "^4", -- Recommended
+        ft = { "rust" },
     },
 
     {
-        'saecki/crates.nvim',
-        tag = 'stable',
+        "saecki/crates.nvim",
+        tag = "stable",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
-            require('crates').setup()
+            require("crates").setup()
         end,
     },
 
@@ -94,11 +153,7 @@ return {
     {
         "aznhe21/actions-preview.nvim",
         config = function()
-            vim.keymap.set(
-                { "v", "n" },
-                "gf",
-                require("actions-preview").code_actions
-            )
+            vim.keymap.set({ "v", "n" }, "gf", require("actions-preview").code_actions)
         end,
     },
 
@@ -107,7 +162,7 @@ return {
         "j-hui/fidget.nvim",
         config = function()
             require("fidget").setup()
-        end
+        end,
     },
 
     ------------
@@ -116,11 +171,13 @@ return {
 
     {
         "nvim-treesitter/nvim-treesitter",
+        lazy = false,
+        branch = "main",
         build = ":TSUpdate",
         config = function()
             local opts = require("config.treesitter")
-            require'nvim-treesitter.configs'.setup(opts)
-        end
+            require("nvim-treesitter").setup(opts)
+        end,
     },
 
     -- Rainbow parenthesis
@@ -137,34 +194,37 @@ return {
         event = "VeryLazy",
         config = function()
             require("nvim-surround").setup()
-        end
+        end,
     },
 
     -- XML autotag
     { "windwp/nvim-ts-autotag" },
 
     {
-        'rmagatti/goto-preview',
+        "rmagatti/goto-preview",
+        dependencies = { "rmagatti/logger.nvim" },
+        event = "BufEnter",
         config = function()
-            require('goto-preview').setup {}
-        end
+            require("goto-preview").setup({ default_mappings = true })
+        end,
     },
 
     {
-        'windwp/nvim-autopairs',
+        "windwp/nvim-autopairs",
         event = "InsertEnter",
-        config = true
+        config = true,
     },
 
     ----------------
     -- Fuzzy find --
     ----------------
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.6',
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        "nvim-telescope/telescope.nvim",
+        -- tag = '0.1.6',
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             require("config.telescope")
-        end
+        end,
     },
 
     { "nvim-telescope/telescope-ui-select.nvim" },
@@ -176,18 +236,18 @@ return {
         config = function()
             -- calling `setup` is optional for customization
             require("fzf-lua").setup({})
-        end
+        end,
     },
 
     --------------
     -- Comments --
     --------------
     {
-        'numToStr/Comment.nvim',
+        "numToStr/Comment.nvim",
         lazy = false,
         config = function()
             require("Comment").setup()
-        end
+        end,
     },
 
     {
@@ -195,7 +255,7 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             require("todo-comments").setup()
-        end
+        end,
     },
 
     -------------
@@ -209,7 +269,7 @@ return {
         priority = 1000,
         config = function()
             require("catppuccin").setup()
-        end
+        end,
     },
 
     -- Colors for hex like this #FFFFFF
@@ -217,7 +277,7 @@ return {
         "norcalli/nvim-colorizer.lua",
         config = function()
             require("colorizer").setup()
-        end
+        end,
     },
 
     -- Line indentation
@@ -226,34 +286,30 @@ return {
         main = "ibl",
         config = function()
             local opts = {
-                scope = { enabled = false }
+                scope = { enabled = false },
             }
             require("ibl").setup(opts)
-        end
+        end,
     },
 
     -- Highlight matching words under cursor
     { "RRethy/vim-illuminate" },
 
     -- Show where the cursor moves in large distances
-    {
-        "edluffy/specs.nvim",
-        config = function()
-            require("config.specs")
-        end
-    },
+    -- {
+    --     "edluffy/specs.nvim",
+    --     config = function()
+    --         require("config.specs")
+    --     end
+    -- },
 
     -- Statusline
     {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            require("lualine").setup({
-                options = {
-                    theme = "catppuccin"
-                }
-            })
-        end
+            require("lualine").setup()
+        end,
     },
 
     -----------------
@@ -267,8 +323,16 @@ return {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end,
+        build = function()
+            vim.fn["mkdp#util#install"]()
+        end,
     },
+
+    -- {
+    --     "OXY2DEV/markview.nvim",
+    --     lazy = false,
+    --     dependencies = { "saghen/blink.cmp" },
+    -- },
 
     -------------------
     -- Miscellaneous --
@@ -284,7 +348,7 @@ return {
         end,
         config = function()
             require("which-key").setup()
-        end
+        end,
     },
 
     -- File tree explorer
@@ -292,21 +356,23 @@ return {
         "nvim-tree/nvim-tree.lua",
         config = function()
             require("nvim-tree").setup()
-        end
+        end,
     },
 
     -- Tabs
     {
         "romgrk/barbar.nvim",
         dependencies = {
-            'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-            'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+            "lewis6991/gitsigns.nvim",     -- OPTIONAL: for git status
+            "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
         },
-        init = function() vim.g.barbar_auto_setup = false end,
-        version = '^1.0.0', -- optional: only update when a new 1.x version is released
+        init = function()
+            vim.g.barbar_auto_setup = false
+        end,
+        version = "^1.0.0", -- optional: only update when a new 1.x version is released
         config = function()
             require("config.barbar")
-        end
+        end,
     },
 
     -- Notifications

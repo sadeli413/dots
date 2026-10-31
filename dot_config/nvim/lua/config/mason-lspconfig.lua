@@ -1,33 +1,38 @@
 local util = require("config.util")
 
-local handlers = {
-    -- The first entry (without a key) will be the default handler
-    -- and will be called for each installed server that doesn't have
-    -- a dedicated handler.
-    function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {
-            on_attach = util.on_attach,
-            capabilities = util.capabilities,
-            handlers = util.handlers,
-        }
-    end,
+vim.lsp.config("lua_ls", {
+    on_attach = util.on_attach,
+    capabilities = util.capabilities,
+    update_in_insert = true,
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = "LuaJIT",
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { "vim" },
+                -- Don't warn on unused variables starting with _
+                unusedLocalExclude = { "_*" },
+                neededFileStatus = {
+                    ["codestyle-check"] = "Any", -- Code style linting
+                },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
+            },
+            format = {
+                enable = true,
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+})
 
-    ['rust_analyzer'] = function() end,
-
-    ["lua_ls"] = function()
-        require("lspconfig").lua_ls.setup({
-            on_attach = util.on_attach,
-            capabilities = util.capabilities,
-            handlers = util.handlers,
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { "vim" }
-                    }
-                }
-            }
-        })
-    end,
-}
-
-require('mason-lspconfig').setup({handlers = handlers})
+require("mason-lspconfig").setup()

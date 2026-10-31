@@ -3,6 +3,7 @@
 -----------------
 
 vim.loader.enable()
+vim.o.winborder = "rounded"
 
 vim.o.encoding="UTF-8"
 
@@ -106,24 +107,31 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.g.rustaceanvim = require("config.rustaceanvim")
 
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-  pattern = {"*.soy"},
-  command = "setfiletype soy",
-})
-
 vim.cmd([[
 " Disable comment continuation on newline
 au BufWinEnter * set formatoptions-=cro
-
-" Underline instead of highlight for vim-illuminate
-augroup illuminate_augroup
-    autocmd!
-    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline guibg=NONE
-    autocmd VimEnter * hi illuminatedCurWord cterm=underline gui=underline guibg=NONE
-augroup END
-
-hi LspReferenceText cterm=underline gui=underline guibg=NONE
-hi LspReferenceRead cterm=underline gui=underline guibg=NONE
-hi LspReferenceWrite cterm=underline gui=underline guibg=NONE
-
 ]])
+
+-- Underline instead of highlight with vim-illuminate (vibed)
+local function set_illuminate_underline()
+  local groups = { "IlluminatedWordText", "IlluminatedWordRead", "IlluminatedWordWrite" }
+  for _, group in ipairs(groups) do
+    vim.api.nvim_set_hl(0, group, { underline = true, bg = "NONE" })
+  end
+end
+
+set_illuminate_underline()
+
+-- Reapply on colorscheme change in case the theme overwrites it
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = set_illuminate_underline,
+})
+-- end of vibed
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {"sh", "python", "rust", "toml", "markdown", "dockerfile"},
+  callback = function()
+    vim.treesitter.start()
+  end
+})
